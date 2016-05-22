@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ctapipe.configuration.core &mdash; ctapipe v0.0.dev388</title>
+  <title>ctapipe.configuration.core &mdash; ctapipe v0.0.dev607</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.0.dev388" href="../../../index.html"/>
+    <link rel="top" title="ctapipe v0.0.dev607" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.0.dev388
+                0.0.dev607
               </div>
             
           
@@ -158,13 +158,13 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ConfigurationException&#39;</span><span class="p">,</span> <span class="s1">&#39;Configuration&#39;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="ConfigurationException"><a class="viewcode-back" href="../../../api/ctapipe.configuration.ConfigurationException.html#ctapipe.configuration.ConfigurationException">[docs]</a><span class="k">class</span> <span class="nc">ConfigurationException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<div class="viewcode-block" id="ConfigurationException"><a class="viewcode-back" href="../../../api/ctapipe.configuration.core.ConfigurationException.html#ctapipe.configuration.ConfigurationException">[docs]</a><span class="k">class</span> <span class="nc">ConfigurationException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 
 	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span></div>
 
 
-<div class="viewcode-block" id="Configuration"><a class="viewcode-back" href="../../../api/ctapipe.configuration.Configuration.html#ctapipe.configuration.Configuration">[docs]</a><span class="k">class</span> <span class="nc">Configuration</span><span class="p">(</span><span class="n">ArgumentParser</span><span class="p">):</span>
+<div class="viewcode-block" id="Configuration"><a class="viewcode-back" href="../../../api/ctapipe.configuration.core.Configuration.html#ctapipe.configuration.Configuration">[docs]</a><span class="k">class</span> <span class="nc">Configuration</span><span class="p">(</span><span class="n">ArgumentParser</span><span class="p">):</span>
 	<span class="sd">&quot;&quot;&quot;Configuration initialization if other is not None and its type is</span>
 <span class="sd">	Configuration, its _entries dictionary content is copy to this</span>
 <span class="sd">	Configuration class</span>
@@ -192,7 +192,7 @@
 		<span class="k">else</span><span class="p">:</span>
 			<span class="bp">self</span><span class="o">.</span><span class="n">_entries</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># 1 SECTION -&gt; n KEY -&gt; pair(value,comment)</span>
 
-<div class="viewcode-block" id="Configuration.parse_args"><a class="viewcode-back" href="../../../api/ctapipe.configuration.Configuration.html#ctapipe.configuration.Configuration.parse_args">[docs]</a>	<span class="k">def</span> <span class="nf">parse_args</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Configuration.parse_args"><a class="viewcode-back" href="../../../api/ctapipe.configuration.core.Configuration.html#ctapipe.configuration.Configuration.parse_args">[docs]</a>	<span class="k">def</span> <span class="nf">parse_args</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
 		<span class="sd">&quot;&quot;&quot;Convert argument strings to objects and assign them as an entry in</span>
 <span class="sd">		self.__dict__[&#39;DEFAULT&#39;] Previous calls to add_argument()</span>
 <span class="sd">		determine exactly what objects are created and how they are</span>
@@ -230,7 +230,7 @@
 
 		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_entries</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Configuration.add"><a class="viewcode-back" href="../../../api/ctapipe.configuration.Configuration.html#ctapipe.configuration.Configuration.add">[docs]</a>	<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">DEFAULT</span><span class="p">):</span>
+<div class="viewcode-block" id="Configuration.add"><a class="viewcode-back" href="../../../api/ctapipe.configuration.core.Configuration.html#ctapipe.configuration.Configuration.add">[docs]</a>	<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">DEFAULT</span><span class="p">):</span>
 		<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">		Create section if not already exist in self._entries</span>
 <span class="sd">		Add configuration variable for corresponding section/key</span>
@@ -249,7 +249,7 @@
 
 <span class="sd">		Returns</span>
 <span class="sd">		--------</span>
-<span class="sd">		True is option is added, </span>
+<span class="sd">		True is option is added,</span>
 <span class="sd">		False is option already exist</span>
 <span class="sd">		&quot;&quot;&quot;</span>
 		<span class="k">if</span> <span class="n">section</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_entries</span><span class="p">:</span>
@@ -261,7 +261,7 @@
 			<span class="k">print</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="s2">&quot;already exist&quot;</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
 			<span class="k">return</span> <span class="bp">False</span></div>
 
-<div class="viewcode-block" id="Configuration.has_key"><a class="viewcode-back" href="../../../api/ctapipe.configuration.Configuration.html#ctapipe.configuration.Configuration.has_key">[docs]</a>	<span class="k">def</span> <span class="nf">has_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">DEFAULT</span><span class="p">):</span>
+<div class="viewcode-block" id="Configuration.has_key"><a class="viewcode-back" href="../../../api/ctapipe.configuration.core.Configuration.html#ctapipe.configuration.Configuration.has_key">[docs]</a>	<span class="k">def</span> <span class="nf">has_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">DEFAULT</span><span class="p">):</span>
 		<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">		Checks if a configuration entry exist</span>
 
@@ -280,7 +280,7 @@
 			<span class="k">return</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_entries</span><span class="p">[</span><span class="n">section</span><span class="p">]</span>  <span class="c1"># return True is key exists</span>
 		<span class="k">return</span> <span class="bp">False</span></div>
 
-<div class="viewcode-block" id="Configuration.get"><a class="viewcode-back" href="../../../api/ctapipe.configuration.Configuration.html#ctapipe.configuration.Configuration.get">[docs]</a>	<span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">DEFAULT</span><span class="p">):</span>
+<div class="viewcode-block" id="Configuration.get"><a class="viewcode-back" href="../../../api/ctapipe.configuration.core.Configuration.html#ctapipe.configuration.Configuration.get">[docs]</a>	<span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">DEFAULT</span><span class="p">):</span>
 		<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">		Get a configuration entry value</span>
 
@@ -300,7 +300,7 @@
 			<span class="k">return</span> <span class="bp">None</span>
 		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_entries</span><span class="p">[</span><span class="n">section</span><span class="p">][</span><span class="n">key</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">VALUE_INDEX</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Configuration.get_comment"><a class="viewcode-back" href="../../../api/ctapipe.configuration.Configuration.html#ctapipe.configuration.Configuration.get_comment">[docs]</a>	<span class="k">def</span> <span class="nf">get_comment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">DEFAULT</span><span class="p">):</span>
+<div class="viewcode-block" id="Configuration.get_comment"><a class="viewcode-back" href="../../../api/ctapipe.configuration.core.Configuration.html#ctapipe.configuration.Configuration.get_comment">[docs]</a>	<span class="k">def</span> <span class="nf">get_comment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">DEFAULT</span><span class="p">):</span>
 		<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">		get a configuration entry comment</span>
 
@@ -320,7 +320,7 @@
 			<span class="k">return</span> <span class="bp">None</span>
 		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_entries</span><span class="p">[</span><span class="n">section</span><span class="p">][</span><span class="n">key</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">COMMENT_INDEX</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Configuration.write"><a class="viewcode-back" href="../../../api/ctapipe.configuration.Configuration.html#ctapipe.configuration.Configuration.write">[docs]</a>	<span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">impl</span><span class="o">=</span><span class="n">FITS</span><span class="p">,</span> <span class="n">implementation</span><span class="o">=</span><span class="n">DATAIMPL</span><span class="p">):</span>
+<div class="viewcode-block" id="Configuration.write"><a class="viewcode-back" href="../../../api/ctapipe.configuration.core.Configuration.html#ctapipe.configuration.Configuration.write">[docs]</a>	<span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">impl</span><span class="o">=</span><span class="n">FITS</span><span class="p">,</span> <span class="n">implementation</span><span class="o">=</span><span class="n">DATAIMPL</span><span class="p">):</span>
 		<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">		write configuration entries to a file.</span>
 
@@ -346,7 +346,7 @@
 		<span class="k">else</span><span class="p">:</span>
 			<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Format:&quot;</span><span class="p">,</span> <span class="n">impl</span><span class="p">,</span> <span class="s1">&#39;not allowed&#39;</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Configuration.read"><a class="viewcode-back" href="../../../api/ctapipe.configuration.Configuration.html#ctapipe.configuration.Configuration.read">[docs]</a>	<span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filenames</span><span class="p">,</span> <span class="n">impl</span><span class="o">=</span><span class="n">FITS</span><span class="p">,</span> <span class="n">implementation</span><span class="o">=</span><span class="n">DATAIMPL</span><span class="p">,</span>
+<div class="viewcode-block" id="Configuration.read"><a class="viewcode-back" href="../../../api/ctapipe.configuration.core.Configuration.html#ctapipe.configuration.Configuration.read">[docs]</a>	<span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filenames</span><span class="p">,</span> <span class="n">impl</span><span class="o">=</span><span class="n">FITS</span><span class="p">,</span> <span class="n">implementation</span><span class="o">=</span><span class="n">DATAIMPL</span><span class="p">,</span>
 				<span class="n">encoding</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
 		<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">		Read filename or a list of filenames and parse configuration entries.</span>
@@ -388,7 +388,7 @@
 			<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Format:&quot;</span><span class="p">,</span> <span class="n">impl</span><span class="p">,</span> <span class="s1">&#39;not allowed&#39;</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
 			<span class="k">return</span> <span class="nb">list</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Configuration.list"><a class="viewcode-back" href="../../../api/ctapipe.configuration.Configuration.html#ctapipe.configuration.Configuration.list">[docs]</a>	<span class="k">def</span> <span class="nf">list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Configuration.list"><a class="viewcode-back" href="../../../api/ctapipe.configuration.core.Configuration.html#ctapipe.configuration.Configuration.list">[docs]</a>	<span class="k">def</span> <span class="nf">list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
 		<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">		print all options (DEFAULT included)</span>
 
@@ -546,7 +546,7 @@
 					<span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="n">comment</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">section</span><span class="p">)</span>
 				<span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
 					<span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span>  <span class="n">section</span><span class="o">=</span><span class="n">section</span><span class="p">)</span>
-				
+
 
 		<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value_comment</span> <span class="ow">in</span> <span class="n">config_parser</span><span class="o">.</span><span class="n">defaults</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
 			<span class="n">foo</span> <span class="o">=</span> <span class="n">value_comment</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; ;&quot;</span><span class="p">)</span>
@@ -556,16 +556,16 @@
 			<span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="n">comment</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT</span><span class="p">)</span>
 		<span class="c1"># add default section</span>
 		<span class="k">return</span> <span class="bp">True</span>
-	
-	
-<div class="viewcode-block" id="Configuration.get_list"><a class="viewcode-back" href="../../../api/ctapipe.configuration.Configuration.html#ctapipe.configuration.Configuration.get_list">[docs]</a>	<span class="k">def</span> <span class="nf">get_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span><span class="n">section</span><span class="o">=</span><span class="n">DEFAULT</span><span class="p">):</span>
+
+
+<div class="viewcode-block" id="Configuration.get_list"><a class="viewcode-back" href="../../../api/ctapipe.configuration.core.Configuration.html#ctapipe.configuration.Configuration.get_list">[docs]</a>	<span class="k">def</span> <span class="nf">get_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span><span class="n">section</span><span class="o">=</span><span class="n">DEFAULT</span><span class="p">):</span>
 		<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">		Get a configuration entry value in python list format</span>
 
 <span class="sd">		Parameters:</span>
 <span class="sd">		-----------</span>
 <span class="sd">		key: str</span>
-<span class="sd">			key to search in section </span>
+<span class="sd">			key to search in section</span>
 <span class="sd">		section: str , optional</span>
 <span class="sd">			section to search key (&#39;DEFAULT&#39; section is used by default)</span>
 
@@ -577,8 +577,8 @@
 		<span class="n">chaine</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">section</span><span class="p">))</span>
 		<span class="n">l</span> <span class="o">=</span> <span class="n">chaine</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
 		<span class="k">return</span>  <span class="n">l</span></div>
-	
-<div class="viewcode-block" id="Configuration.get_section_list"><a class="viewcode-back" href="../../../api/ctapipe.configuration.Configuration.html#ctapipe.configuration.Configuration.get_section_list">[docs]</a>	<span class="k">def</span> <span class="nf">get_section_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Configuration.get_section_list"><a class="viewcode-back" href="../../../api/ctapipe.configuration.core.Configuration.html#ctapipe.configuration.Configuration.get_section_list">[docs]</a>	<span class="k">def</span> <span class="nf">get_section_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 		<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">		Get list of sections name</span>
 
@@ -588,10 +588,10 @@
 <span class="sd">		&quot;&quot;&quot;</span>
 		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_entries</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Configuration.dynamic_class_from_module"><a class="viewcode-back" href="../../../api/ctapipe.configuration.Configuration.html#ctapipe.configuration.Configuration.dynamic_class_from_module">[docs]</a>	<span class="k">def</span> <span class="nf">dynamic_class_from_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">section_name</span><span class="p">,</span><span class="n">pass_configuration</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Configuration.dynamic_class_from_module"><a class="viewcode-back" href="../../../api/ctapipe.configuration.core.Configuration.html#ctapipe.configuration.Configuration.dynamic_class_from_module">[docs]</a>	<span class="k">def</span> <span class="nf">dynamic_class_from_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">section_name</span><span class="p">,</span><span class="n">pass_configuration</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
 		<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">		Create an instance of a class from a configuration service section name</span>
-<span class="sd">		</span>
+
 <span class="sd">		Parameters:</span>
 <span class="sd">		-----------</span>
 <span class="sd">		section_name : str</span>
@@ -599,7 +599,7 @@
 <span class="sd">				Corresponding section must at least contains the following 3 entries:</span>
 <span class="sd">				module: python module name</span>
 <span class="sd">				class:  python class name within the module</span>
-<span class="sd">				filename: python modul full path filename </span>
+<span class="sd">				filename: python modul full path filename</span>
 <span class="sd">		Returns:</span>
 <span class="sd">		--------</span>
 <span class="sd">		A python instance of a class</span>
@@ -619,14 +619,9 @@
 			<span class="k">return</span> <span class="n">instance</span>
 		<span class="k">except</span><span class="p">(</span><span class="ne">AttributeError</span><span class="p">):</span>
 			<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Could not create an instance of&quot;</span><span class="p">,</span><span class="n">section_name</span><span class="p">,</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">class_name</span> <span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span></div></div>
-		
+
 		<span class="c1">#except(ImportError):</span>
 		<span class="c1">#	print(&quot;Could import module &quot;,module, file=sys.stderr)</span>
-
-
-
-
-
 </pre></div>
 
            </div>
@@ -639,7 +634,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 09 Mar 2016.
+      Last updated on 22 May 2016.
 
     </p>
   </div>
@@ -661,7 +656,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.0.dev388',
+            VERSION:'0.0.dev607',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

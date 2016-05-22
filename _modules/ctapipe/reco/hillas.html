@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ctapipe.reco.hillas &mdash; ctapipe v0.0.dev388</title>
+  <title>ctapipe.reco.hillas &mdash; ctapipe v0.0.dev607</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.0.dev388" href="../../../index.html"/>
+    <link rel="top" title="ctapipe v0.0.dev607" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.0.dev388
+                0.0.dev607
               </div>
             
           
@@ -158,6 +158,8 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">astropy.units</span> <span class="kn">import</span> <span class="n">Quantity</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">import</span> <span class="nn">astropy.units</span> <span class="kn">as</span> <span class="nn">u</span>
+
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;MomentParameters&#39;</span><span class="p">,</span>
@@ -274,9 +276,11 @@
 <span class="sd">    -------</span>
 <span class="sd">    hillas_parameters : `MomentParameters`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">unit</span> <span class="o">=</span> <span class="n">pix_x</span><span class="o">.</span><span class="n">unit</span>
+
     <span class="n">pix_x</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">pix_x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span><span class="o">.</span><span class="n">value</span>
     <span class="n">pix_y</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">pix_y</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span><span class="o">.</span><span class="n">value</span>
-    <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
     <span class="k">assert</span> <span class="n">pix_x</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span>
     <span class="k">assert</span> <span class="n">pix_y</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span>
 
@@ -322,16 +326,16 @@
 
     <span class="n">tanpsi_numer</span> <span class="o">=</span> <span class="p">(</span><span class="n">dd</span> <span class="o">+</span> <span class="n">zz</span><span class="p">)</span> <span class="o">*</span> <span class="n">moms</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">vxy</span> <span class="o">*</span> <span class="n">moms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">tanpsi_denom</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">vxy</span> <span class="o">*</span> <span class="n">moms</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="p">(</span><span class="n">dd</span> <span class="o">-</span> <span class="n">zz</span><span class="p">)</span> <span class="o">*</span> <span class="n">moms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">psi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">2.0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">tanpsi_numer</span><span class="p">,</span> <span class="n">tanpsi_denom</span><span class="p">)</span>
+    <span class="n">psi</span> <span class="o">=</span> <span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">tanpsi_numer</span><span class="p">,</span> <span class="n">tanpsi_denom</span><span class="p">))</span><span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">rad</span>
 
     <span class="c1"># polar coordinates of centroid</span>
 
     <span class="n">rr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hypot</span><span class="p">(</span><span class="n">moms</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">moms</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
     <span class="n">phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">moms</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">moms</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
-    <span class="k">return</span> <span class="n">MomentParameters</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">cen_x</span><span class="o">=</span><span class="n">moms</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cen_y</span><span class="o">=</span><span class="n">moms</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-                            <span class="n">length</span><span class="o">=</span><span class="n">length</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">rr</span><span class="p">,</span> <span class="n">phi</span><span class="o">=</span><span class="n">phi</span><span class="p">,</span>
-                            <span class="n">psi</span><span class="o">=</span><span class="n">psi</span><span class="p">,</span> <span class="n">miss</span><span class="o">=</span><span class="n">miss</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">MomentParameters</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">cen_x</span><span class="o">=</span><span class="n">moms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">unit</span><span class="p">,</span> <span class="n">cen_y</span><span class="o">=</span><span class="n">moms</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">unit</span><span class="p">,</span>
+                            <span class="n">length</span><span class="o">=</span><span class="n">length</span><span class="o">*</span><span class="n">unit</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="o">*</span><span class="n">unit</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">rr</span><span class="p">,</span> <span class="n">phi</span><span class="o">=</span><span class="n">phi</span><span class="p">,</span>
+                            <span class="n">psi</span><span class="o">=</span><span class="n">psi</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span> <span class="p">,</span> <span class="n">miss</span><span class="o">=</span><span class="n">miss</span><span class="o">*</span><span class="n">unit</span><span class="p">)</span>
 
 
 <span class="c1"># use the 2 version by default</span>
@@ -348,7 +352,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 09 Mar 2016.
+      Last updated on 22 May 2016.
 
     </p>
   </div>
@@ -370,7 +374,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.0.dev388',
+            VERSION:'0.0.dev607',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
