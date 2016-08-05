@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>GroundFrame &mdash; ctapipe v0.0.dev607</title>
+  <title>GroundFrame &mdash; ctapipe v0.0.dev793</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.0.dev607" href="../index.html"/>
+    <link rel="top" title="ctapipe v0.0.dev793" href="../index.html"/>
         <link rel="up" title="Coordinates" href="../coordinates/index.html"/>
         <link rel="next" title="NominalFrame" href="ctapipe.coordinates.NominalFrame.html"/>
         <link rel="prev" title="CameraFrame" href="ctapipe.coordinates.CameraFrame.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.0.dev607
+                0.0.dev793
               </div>
             
           
@@ -87,9 +87,9 @@
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started For Developers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Command line tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../analysis/index.html">Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../calib/index.html">Calibration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../configuration/index.html">Configuration</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../coordinates/index.html">Coordinates</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../coordinates/index.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../coordinates/index.html#getting-started">Getting Started</a></li>
@@ -103,12 +103,12 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../core/index.html">Core Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core/index.html">Core Data Structures and Base Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../datasets/index.html">Datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../instrument/index.html">Instrument</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/index.html">Input/Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Pipeline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reco/index.html">Reconstruction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Command line tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
 </ul>
 
@@ -162,12 +162,11 @@
 <dt id="ctapipe.coordinates.GroundFrame">
 <em class="property">class </em><code class="descclassname">ctapipe.coordinates.</code><code class="descname">GroundFrame</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/coordinates/frames.html#GroundFrame"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.coordinates.GroundFrame" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="http://docs.astropy.org/en/stable/api/astropy.coordinates.BaseCoordinateFrame.html#astropy.coordinates.BaseCoordinateFrame" title="astropy.coordinates.BaseCoordinateFrame"><code class="docutils literal"><span class="pre">astropy.coordinates.BaseCoordinateFrame</span></code></a></p>
-<p>Ground coordinate frame.
-The ground coordinate frame is a simple cartesian frame describing
-the 3 dimensional position of objects compared to the array ground level
-in relation to the nomial centre of the array.
-Typically this frame will be used for describing the position on telescopes
-and equipment</p>
+<p>Ground coordinate frame.  The ground coordinate frame is a simple
+cartesian frame describing the 3 dimensional position of objects
+compared to the array ground level in relation to the nomial
+centre of the array.  Typically this frame will be used for
+describing the position on telescopes and equipment</p>
 <p>Frame attributes: None</p>
 <p class="rubric">Attributes Summary</p>
 <table border="1" class="longtable docutils">
@@ -201,7 +200,7 @@ and equipment</p>
 
 <dl class="attribute">
 <dt id="ctapipe.coordinates.GroundFrame.frame_attributes">
-<code class="descname">frame_attributes</code><em class="property"> = OrderedDict([('pointing_direction', &lt;astropy.coordinates.baseframe.FrameAttribute object at 0x10d948a90&gt;)])</em><a class="headerlink" href="#ctapipe.coordinates.GroundFrame.frame_attributes" title="Permalink to this definition">¶</a></dt>
+<code class="descname">frame_attributes</code><em class="property"> = OrderedDict([('pointing_direction', &lt;astropy.coordinates.baseframe.FrameAttribute object at 0x11375af60&gt;)])</em><a class="headerlink" href="#ctapipe.coordinates.GroundFrame.frame_attributes" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -238,7 +237,7 @@ and equipment</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 22 May 2016.
+      Last updated on 05 Aug 2016.
 
     </p>
   </div>
@@ -260,7 +259,7 @@ and equipment</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.0.dev607',
+            VERSION:'0.0.dev793',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -1,0 +1,498 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Pipeline &mdash; ctapipe v0.0.dev793</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/astropy_logo.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="ctapipe v0.0.dev793" href="../index.html"/>
+        <link rel="next" title="Reconstruction" href="../reco/index.html"/>
+        <link rel="prev" title="CalibratedCameraData" href="../api/ctapipe.io.containers.CalibratedCameraData.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> ctapipe
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.dev793
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started For Developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Command line tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../analysis/index.html">Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../calib/index.html">Calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coordinates/index.html">Coordinates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core/index.html">Core Data Structures and Base Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datasets/index.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../instrument/index.html">Instrument</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io/index.html">Input/Output</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pipeline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#zmq-library-installation">ZMQ library installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pipeline-configuration">Pipeline configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mandatories-configuration-entries">Mandatories configuration entries:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mandatory-configuration-per-step">Mandatory configuration per step</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optional-entry-per-step">Optional entry per step</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#user-option-for-step">User option for step</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-example">configuration example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#steps-implementation">Steps implementation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#producer-run-method">Producer run method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stager-run-method">Stager run method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#consumer-run-method">Consumer run method</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-pipeline">Running the pipeline</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#execution-examples">Execution examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pipeline-graphical-representation">Pipeline Graphical representation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyside-library-is-required">pyside library is required</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#foressen-improvement">Foressen improvement:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#json-configuration-example">json configuration example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#producer-example">Producer example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stager-example">Stager example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#consumer-example">Consumer example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reco/index.html">Reconstruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">ctapipe</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Pipeline</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/pipeline/index.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pipeline">
+<span id="id1"></span><h1>Pipeline<a class="headerlink" href="#pipeline" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p><code class="xref py py-obj docutils literal"><span class="pre">ctapipe.pipeline</span></code>
+it is a parallelization system. It executes ctapipe processing modules in a multithread environment.</p>
+<p>It is based on ZeroMQ library (<a class="reference external" href="http://zeromq.org">http://zeromq.org</a>) for messages passing between threads.
+ZMQ library allows to stay away from class concurrency mechanisms like mutexes,
+critical sections semaphores, while being thread safe.</p>
+<p>User implements steps in Python class. Passing data between steps is managed by the router.
+If a step is executed by several threads, the router uses LRU pattern (least recently used ) to
+choose the step that will receive next data. The router also manage Queue for each step.</p>
+<div class="figure" id="id2">
+<a class="reference internal image-reference" href="../_images/pipeline.png"><img alt="pipeline example" src="../_images/pipeline.png" style="width: 400.4px; height: 329.0px;" /></a>
+<p class="caption"><span class="caption-text">A complete pipeline instance containing:- A producer step, a calibration step running on two threads, an Hillas step running on four threads and a consumer step.
+Oval shapes represent router elements.</span></p>
+</div>
+</div>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="zmq-library-installation">
+<h3>ZMQ library installation<a class="headerlink" href="#zmq-library-installation" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><em>prompt$&gt; conda install pyzmq</em></div></blockquote>
+</div>
+<div class="section" id="pipeline-configuration">
+<h3>Pipeline configuration<a class="headerlink" href="#pipeline-configuration" title="Permalink to this headline">¶</a></h3>
+<p>Pipeline configuration is read from a json configuration file, or command line arguments, thanks to traitlets config.</p>
+<div class="section" id="mandatories-configuration-entries">
+<h4>Mandatories configuration entries:<a class="headerlink" href="#mandatories-configuration-entries" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>One producer_conf containing 1 step.</li>
+<li>One consumer_conf containing 1 step.</li>
+<li>One stagers_conf containing 1 to n step(s). Step are executed in the same order as the defined list (stagers_conf).</li>
+</ul>
+</div>
+<div class="section" id="mandatory-configuration-per-step">
+<h4>Mandatory configuration per step<a class="headerlink" href="#mandatory-configuration-per-step" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name  : step name</li>
+<li>class : class name containing algorithm</li>
+<li>module: python module containing class (defined above)</li>
+</ul>
+</div>
+<div class="section" id="optional-entry-per-step">
+<h4>Optional entry per step<a class="headerlink" href="#optional-entry-per-step" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>nb_thread (only available for stage, not for producer or consumer). Define how many thread will execute this stage</li>
+</ul>
+</div>
+<div class="section" id="user-option-for-step">
+<h4>User option for step<a class="headerlink" href="#user-option-for-step" title="Permalink to this headline">¶</a></h4>
+<p>If step class derived form Component, you can add all required parameters for the step, and get them at execution time.
+You have to add a new entry with step&#8217;s class name.
+! Do not use entries in stagers_conf, producer_conf or consumer_conf</p>
+</div>
+<div class="section" id="configuration-example">
+<h4>configuration example<a class="headerlink" href="#configuration-example" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nt">&quot;Pipeline&quot;</span><span class="p">:</span> <span class="p">{</span>
+     <span class="nt">&quot;producer_conf&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;EVENT_READER&quot;</span><span class="p">,</span> <span class="nt">&quot;module&quot;</span><span class="p">:</span> <span class="s2">&quot;ctapipe.pipeline.algorithms.fake_producer&quot;</span><span class="p">,</span> <span class="nt">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;FakeProducer&quot;</span><span class="p">},</span>
+     <span class="nt">&quot;consumer_conf&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;SAVER&quot;</span><span class="p">,</span> <span class="nt">&quot;module&quot;</span><span class="p">:</span> <span class="s2">&quot;ctapipe.pipeline.algorithms.fake_process2&quot;</span><span class="p">,</span> <span class="nt">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;FakeProcess2&quot;</span><span class="p">},</span>
+     <span class="nt">&quot;stagers_conf&quot;</span> <span class="p">:</span> <span class="p">[{</span><span class="nt">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;CLEANING&quot;</span><span class="p">,</span> <span class="nt">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;FakeProcess&quot;</span><span class="p">,</span> <span class="nt">&quot;module&quot;</span><span class="p">:</span> <span class="s2">&quot;ctapipe.pipeline.algorithms.fake_process&quot;</span><span class="p">,</span> <span class="nt">&quot;nb_thread&quot;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+                       <span class="p">{</span><span class="nt">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;HILLAS&quot;</span><span class="p">,</span> <span class="nt">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;FakeProcess&quot;</span><span class="p">,</span> <span class="nt">&quot;module&quot;</span><span class="p">:</span> <span class="s2">&quot;ctapipe.pipeline.algorithms.fake_process&quot;</span><span class="p">,</span> <span class="nt">&quot;nb_thread&quot;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">}]</span>
+  <span class="p">},</span>
+   <span class="nt">&quot;FakeProducer&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;gamma_test.simtel.gz&quot;</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="steps-implementation">
+<h3>Steps implementation<a class="headerlink" href="#steps-implementation" title="Permalink to this headline">¶</a></h3>
+<p>Step is defined in a Python class. Each class defines 3 methods: init, run and finish
+These 3 methods are executed by the pipeline.</p>
+<div class="section" id="producer-run-method">
+<h4>Producer run method<a class="headerlink" href="#producer-run-method" title="Permalink to this headline">¶</a></h4>
+<p>Producer class run method does not have any input parameter and must yield a result (! not return), as a Python generator.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">for</span> <span class="n">input_file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source_dir</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">source_dir</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">input_file</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="stager-run-method">
+<h4>Stager run method<a class="headerlink" href="#stager-run-method" title="Permalink to this headline">¶</a></h4>
+<p>Stager class run method takes one parameter (sent by the previous step).
+It can return nothing or one value per input or yield several values per input.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">event</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">if</span> <span class="n">event</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="k">return</span> <span class="n">event</span><span class="o">.</span><span class="n">dl0</span><span class="o">.</span><span class="n">tels_with_data</span>
+</pre></div>
+</div>
+<p>In case a step has to send several output to the next step :</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">event</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="k">if</span> <span class="n">event</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>       <span class="n">tels</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">dl0</span><span class="o">.</span><span class="n">tels_with_data</span>
+<span class="gp">&gt;&gt;&gt; </span>       <span class="k">for</span> <span class="n">tel</span> <span class="ow">in</span> <span class="n">tels</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>           <span class="k">yield</span> <span class="n">tel</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="consumer-run-method">
+<h4>Consumer run method<a class="headerlink" href="#consumer-run-method" title="Permalink to this headline">¶</a></h4>
+<p>Consumer class run method takes one parameter and does not return anything</p>
+</div>
+</div>
+<div class="section" id="running-the-pipeline">
+<h3>Running the pipeline<a class="headerlink" href="#running-the-pipeline" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><em>prompt$&gt; ctapipe-pipeline &#8211;config=mypipeconfig.json</em></div></blockquote>
+<p>By default pipeline send its activity to a GUI  on <a class="reference external" href="tcp://localhost:5565">tcp://localhost:5565</a>.
+But if the GUI is running on another system, you can use &#8211;Pipeline.gui_address
+option to define another address.
+Configure the firewall to allow access to that port for authorized computers.</p>
+<div class="section" id="execution-examples">
+<h4>Execution examples<a class="headerlink" href="#execution-examples" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><em>prompt$&gt; ctapipe-pipeline &#8211;config=examples/brainstorm/pipeline/pipeline_py/example.json</em></div></blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="pipeline-graphical-representation">
+<h2>Pipeline Graphical representation<a class="headerlink" href="#pipeline-graphical-representation" title="Permalink to this headline">¶</a></h2>
+<p>A GUI can be launch to keep a close watch on pipeline execution.
+This GUI can be launch on the same system than the pipeline or on a different one.
+By default GUI is binded to port 5565. You can change it with &#8211;PipeGui.port option</p>
+<blockquote>
+<div><em>prompt$&gt; ctapipe-guipipe</em></div></blockquote>
+<div class="section" id="pyside-library-is-required">
+<h3>pyside library is required<a class="headerlink" href="#pyside-library-is-required" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><em>prompt$&gt; conda install pyside</em></div></blockquote>
+</div>
+</div>
+<div class="section" id="foressen-improvement">
+<h2>Foressen improvement:<a class="headerlink" href="#foressen-improvement" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>limit router queue if request by user.</li>
+<li>message passing to any pipeline step (not only the next one).</li>
+</ul>
+<div class="section" id="json-configuration-example">
+<h3>json configuration example<a class="headerlink" href="#json-configuration-example" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nt">&quot;Pipeline&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;producer_conf&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;HESSIO_READER&quot;</span><span class="p">,</span> <span class="nt">&quot;module&quot;</span><span class="p">:</span> <span class="s2">&quot;ctapipe.pipeline.algorithms.hessio_reader&quot;</span><span class="p">,</span>
+           <span class="nt">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;HessioReader&quot;</span><span class="p">},</span>
+      <span class="nt">&quot;consumer_conf&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;WRITER&quot;</span><span class="p">,</span> <span class="nt">&quot;module&quot;</span><span class="p">:</span> <span class="s2">&quot;ctapipe.pipeline.algorithms.string_writer&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;StringWriter&quot;</span><span class="p">},</span>
+      <span class="nt">&quot;stagers_conf&quot;</span> <span class="p">:</span> <span class="p">[{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;LIST_TEL&quot;</span><span class="p">,</span> <span class="nt">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;ListTelda&quot;</span><span class="p">,</span> <span class="nt">&quot;module&quot;</span><span class="p">:</span> <span class="s2">&quot;ctapipe.pipeline.algorithms.list_teldata&quot;</span><span class="p">,</span> <span class="nt">&quot;nb_thread&quot;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">}]</span>
+
+  <span class="p">},</span>
+   <span class="nt">&quot;HessioReader&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;gamma_test.simtel.gz&quot;</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="producer-example">
+<h4>Producer example<a class="headerlink" href="#producer-example" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ctapipe.utils.datasets</span> <span class="kn">import</span> <span class="n">get_path</span>
+<span class="kn">from</span> <span class="nn">ctapipe.io.hessio</span> <span class="kn">import</span> <span class="n">hessio_event_source</span>
+<span class="kn">from</span> <span class="nn">ctapipe.configuration.core</span> <span class="kn">import</span> <span class="n">Configuration</span><span class="p">,</span> <span class="n">ConfigurationException</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">from</span> <span class="nn">ctapipe.core</span> <span class="kn">import</span> <span class="n">Component</span>
+<span class="kn">from</span> <span class="nn">traitlets</span> <span class="kn">import</span> <span class="n">Unicode</span>
+
+
+<span class="k">class</span> <span class="nc">HessioReader</span><span class="p">(</span><span class="n">Component</span><span class="p">):</span>
+
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">Unicode</span><span class="p">(</span><span class="s1">&#39;gamma_test.simtel.gz&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;simtel MC input file&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span>
+        <span class="n">config</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">allow_none</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;--- HessioReader init ---&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">in_file</span> <span class="o">=</span> <span class="n">get_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="n">hessio_event_source</span><span class="p">(</span><span class="n">in_file</span><span class="p">,</span> <span class="n">max_events</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">(</span><span class="ne">RuntimeError</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;could not open &#39;</span> <span class="o">+</span> <span class="n">in_file</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">source</span><span class="p">:</span>
+            <span class="n">event</span><span class="o">.</span><span class="n">dl0</span><span class="o">.</span><span class="n">event_id</span> <span class="o">=</span> <span class="n">counter</span>
+            <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="c1"># send new job to next step thanks to router</span>
+            <span class="k">yield</span> <span class="n">event</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- HessioReader Done ---&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span> <span class="p">(</span><span class="s2">&quot;--- HessReader finish ---&quot;</span><span class="p">)</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="stager-example">
+<h4>Stager example<a class="headerlink" href="#stager-example" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">from</span> <span class="nn">ctapipe.core</span> <span class="kn">import</span> <span class="n">Component</span>
+
+
+<span class="k">class</span> <span class="nc">ListTelda</span><span class="p">(</span><span class="n">Component</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;--- ListTelda init ---&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">event</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">dl0</span><span class="o">.</span><span class="n">tels_with_data</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">res</span>
+
+    <span class="k">def</span> <span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;--- ListTelda finish ---&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="consumer-example">
+<h4>Consumer example<a class="headerlink" href="#consumer-example" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ctapipe.configuration.core</span> <span class="kn">import</span> <span class="n">Configuration</span><span class="p">,</span> <span class="n">ConfigurationException</span>
+<span class="kn">from</span> <span class="nn">ctapipe.core</span> <span class="kn">import</span> <span class="n">Component</span>
+
+<span class="k">class</span> <span class="nc">StringWriter</span><span class="p">(</span><span class="n">Component</span><span class="p">):</span>
+
+        <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;/tmp/test.txt&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;--- StringWriter init ---&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">True</span>
+
+        <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">object</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">object</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;--- StringWriter finish ---&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../reco/index.html" class="btn btn-neutral float-right" title="Reconstruction" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../api/ctapipe.io.containers.CalibratedCameraData.html" class="btn btn-neutral" title="CalibratedCameraData" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, ctapipe developers.
+      Last updated on 05 Aug 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0.dev793',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CameraDisplay &mdash; ctapipe v0.0.dev607</title>
+  <title>CameraDisplay &mdash; ctapipe v0.0.dev793</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.0.dev607" href="../index.html"/>
+    <link rel="top" title="ctapipe v0.0.dev793" href="../index.html"/>
         <link rel="up" title="Visualization" href="../visualization/index.html"/>
         <link rel="prev" title="ArrayDisplay" href="ctapipe.visualization.ArrayDisplay.html"/> 
 
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.0.dev607
+                0.0.dev793
               </div>
             
           
@@ -86,16 +86,16 @@
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started For Developers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Command line tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../analysis/index.html">Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../calib/index.html">Calibration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../configuration/index.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../coordinates/index.html">Coordinates</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../core/index.html">Core Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core/index.html">Core Data Structures and Base Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../datasets/index.html">Datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../instrument/index.html">Instrument</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/index.html">Input/Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Pipeline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reco/index.html">Reconstruction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Command line tools</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../visualization/index.html">Visualization</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../visualization/index.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../visualization/index.html#getting-started">Getting Started</a></li>
@@ -184,11 +184,9 @@
 <p><strong>norm</strong> : str or <code class="xref py py-obj docutils literal"><span class="pre">matplotlib.color.Normalize</span></code> instance (default &#8216;lin&#8217;)</p>
 <blockquote>
 <div><p>Normalization for the color scale.
-Supported str arguments are</p>
-<blockquote>
-<div><p>&#8216;lin&#8217;: linear scale
-&#8216;log&#8217;: logarithmic scale (base 10)</p>
-</div></blockquote>
+Supported str arguments are
+- &#8216;lin&#8217;: linear scale
+- &#8216;log&#8217;: logarithmic scale (base 10)</p>
 </div></blockquote>
 <p><strong>cmap</strong> : str or <a class="reference external" href="http://matplotlib.org/api/colors_api.html#matplotlib.colors.Colormap" title="(in Matplotlib v1.5.1)"><code class="xref py py-obj docutils literal"><span class="pre">matplotlib.colors.Colormap</span></code></a> (default &#8216;hot&#8217;)</p>
 <blockquote>
@@ -246,13 +244,13 @@ plt.savefig(filename). This includes <code class="xref py py-obj docutils litera
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.cmap" title="ctapipe.visualization.CameraDisplay.cmap"><code class="xref py py-obj docutils literal"><span class="pre">cmap</span></code></a></td>
-<td></td>
+<td>Color map to use.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.image" title="ctapipe.visualization.CameraDisplay.image"><code class="xref py py-obj docutils literal"><span class="pre">image</span></code></a></td>
-<td></td>
+<td>The image displayed on the camera (1D array of pixel values)</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.norm" title="ctapipe.visualization.CameraDisplay.norm"><code class="xref py py-obj docutils literal"><span class="pre">norm</span></code></a></td>
-<td>The norm instance of the Display Possible values:     &#8220;lin&#8221;: linear scale     &#8220;log&#8221;: log scale     any matplotlib.colors.Normalize instance, e.</td>
+<td>The norm instance of the Display</td>
 </tr>
 </tbody>
 </table>
@@ -296,22 +294,26 @@ plt.savefig(filename). This includes <code class="xref py py-obj docutils litera
 <dl class="attribute">
 <dt id="ctapipe.visualization.CameraDisplay.cmap">
 <code class="descname">cmap</code><a class="headerlink" href="#ctapipe.visualization.CameraDisplay.cmap" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Color map to use. Either a name or  <code class="xref py py-obj docutils literal"><span class="pre">matplotlib.colors.ColorMap</span></code>
+instance, e.g. from <code class="xref py py-obj docutils literal"><span class="pre">matplotlib.pyplot.cm</span></code></p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="ctapipe.visualization.CameraDisplay.image">
 <code class="descname">image</code><a class="headerlink" href="#ctapipe.visualization.CameraDisplay.image" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The image displayed on the camera (1D array of pixel values)</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="ctapipe.visualization.CameraDisplay.norm">
 <code class="descname">norm</code><a class="headerlink" href="#ctapipe.visualization.CameraDisplay.norm" title="Permalink to this definition">¶</a></dt>
-<dd><p>The norm instance of the Display
-Possible values:</p>
-<blockquote>
-<div>&#8220;lin&#8221;: linear scale
-&#8220;log&#8221;: log scale
-any matplotlib.colors.Normalize instance, e. g. PowerNorm(gamma=-2)</div></blockquote>
+<dd><p>The norm instance of the Display</p>
+<p>Possible values:</p>
+<ul class="simple">
+<li>&#8220;lin&#8221;: linear scale</li>
+<li>&#8220;log&#8221;: log scale</li>
+<li>any matplotlib.colors.Normalize instance, e. g. PowerNorm(gamma=-2)</li>
+</ul>
 </dd></dl>
 
 <p class="rubric">Methods Documentation</p>
@@ -443,7 +445,7 @@ or linewidth=6)</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 22 May 2016.
+      Last updated on 05 Aug 2016.
 
     </p>
   </div>
@@ -465,7 +467,7 @@ or linewidth=6)</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.0.dev607',
+            VERSION:'0.0.dev793',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

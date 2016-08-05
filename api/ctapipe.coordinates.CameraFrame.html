@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CameraFrame &mdash; ctapipe v0.0.dev607</title>
+  <title>CameraFrame &mdash; ctapipe v0.0.dev793</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.0.dev607" href="../index.html"/>
+    <link rel="top" title="ctapipe v0.0.dev793" href="../index.html"/>
         <link rel="up" title="Coordinates" href="../coordinates/index.html"/>
         <link rel="next" title="GroundFrame" href="ctapipe.coordinates.GroundFrame.html"/>
         <link rel="prev" title="project_to_ground" href="ctapipe.coordinates.project_to_ground.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.0.dev607
+                0.0.dev793
               </div>
             
           
@@ -87,9 +87,9 @@
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started For Developers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Command line tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../analysis/index.html">Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../calib/index.html">Calibration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../configuration/index.html">Configuration</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../coordinates/index.html">Coordinates</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../coordinates/index.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../coordinates/index.html#getting-started">Getting Started</a></li>
@@ -103,12 +103,12 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../core/index.html">Core Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core/index.html">Core Data Structures and Base Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../datasets/index.html">Datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../instrument/index.html">Instrument</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/index.html">Input/Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Pipeline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reco/index.html">Reconstruction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Command line tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
 </ul>
 
@@ -162,15 +162,11 @@
 <dt id="ctapipe.coordinates.CameraFrame">
 <em class="property">class </em><code class="descclassname">ctapipe.coordinates.</code><code class="descname">CameraFrame</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/coordinates/frames.html#CameraFrame"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.coordinates.CameraFrame" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="http://docs.astropy.org/en/stable/api/astropy.coordinates.BaseCoordinateFrame.html#astropy.coordinates.BaseCoordinateFrame" title="astropy.coordinates.BaseCoordinateFrame"><code class="docutils literal"><span class="pre">astropy.coordinates.BaseCoordinateFrame</span></code></a></p>
-<p>Camera coordinate frame.
-The camera frame is a simple physical cartesian frame, describing the 2 dimensional
-position of objects in the focal plane of the telescope
-Most Typically this will be used to describe the positions of the pixels in the focal
-plane</p>
-<p>Frame attributes:</p>
-<ul class="simple">
-<li>None</li>
-</ul>
+<p>Camera coordinate frame.  The camera frame is a simple physical
+cartesian frame, describing the 2 dimensional position of objects
+in the focal plane of the telescope Most Typically this will be
+used to describe the positions of the pixels in the focal plane</p>
+<p>Frame attributes:  None</p>
 <p class="rubric">Attributes Summary</p>
 <table border="1" class="longtable docutils">
 <colgroup>
@@ -229,7 +225,7 @@ plane</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 22 May 2016.
+      Last updated on 05 Aug 2016.
 
     </p>
   </div>
@@ -251,7 +247,7 @@ plane</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.0.dev607',
+            VERSION:'0.0.dev793',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
