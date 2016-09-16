@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>hillas_parameters &mdash; ctapipe v0.0.dev793</title>
+  <title>hillas_parameters &mdash; ctapipe v0.0.dev907</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.0.dev793" href="../index.html"/>
+    <link rel="top" title="ctapipe v0.0.dev907" href="../index.html"/>
         <link rel="up" title="Reconstruction" href="../reco/index.html"/>
         <link rel="next" title="make_mock_shower_image" href="ctapipe.reco.make_mock_shower_image.html"/>
         <link rel="prev" title="generate_2d_shower_model" href="ctapipe.reco.generate_2d_shower_model.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.0.dev793
+                0.0.dev907
               </div>
             
           
@@ -93,9 +93,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../coordinates/index.html">Coordinates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/index.html">Core Data Structures and Base Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../datasets/index.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../flow/index.html">Flow-based framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../instrument/index.html">Instrument</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/index.html">Input/Output</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Pipeline</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../reco/index.html">Reconstruction</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../reco/index.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../reco/index.html#getting-started">Getting Started</a></li>
@@ -163,9 +163,9 @@
 <dt id="ctapipe.reco.hillas_parameters">
 <code class="descclassname">ctapipe.reco.</code><code class="descname">hillas_parameters</code><span class="sig-paren">(</span><em>pix_x</em>, <em>pix_y</em>, <em>image</em><span class="sig-paren">)</span><a class="headerlink" href="#ctapipe.reco.hillas_parameters" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute Hillas parameters for a given shower image.</p>
-<p>Alternate implementation of <a class="reference internal" href="#ctapipe.reco.hillas_parameters" title="ctapipe.reco.hillas_parameters"><code class="xref py py-obj docutils literal"><span class="pre">hillas_parameters</span></code></a> ...
-in the end we&#8217;ll just keep one, but we&#8217;re using Hilllas parameter
-computation as an example for performance checks.</p>
+<p>Reference: Appendix of the Whipple Crab paper Weekes et al. (1998)
+<a class="reference external" href="http://adsabs.harvard.edu/abs/1989ApJ...342..379W">http://adsabs.harvard.edu/abs/1989ApJ...342..379W</a>
+(corrected for some obvious typos)</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -213,7 +213,7 @@ computation as an example for performance checks.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 05 Aug 2016.
+      Last updated on 16 Sep 2016.
 
     </p>
   </div>
@@ -235,7 +235,7 @@ computation as an example for performance checks.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.0.dev793',
+            VERSION:'0.0.dev907',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

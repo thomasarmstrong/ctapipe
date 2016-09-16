@@ -1,0 +1,8 @@
+
+
+HillasParameterizationError
+========================================
+
+.. currentmodule:: ctapipe.reco
+
+.. autoexception:: HillasParameterizationError

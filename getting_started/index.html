@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Getting Started For Developers &mdash; ctapipe v0.0.dev793</title>
+  <title>Getting Started For Developers &mdash; ctapipe v0.0.dev907</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.0.dev793" href="../index.html"/>
+    <link rel="top" title="ctapipe v0.0.dev907" href="../index.html"/>
         <link rel="next" title="Development Resources" href="../development/index.html"/>
         <link rel="prev" title="CTA Experimental Pipeline Framework (ctapipe)" href="../index.html"/> 
 
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.0.dev793
+                0.0.dev907
               </div>
             
           
@@ -102,9 +102,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../coordinates/index.html">Coordinates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/index.html">Core Data Structures and Base Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../datasets/index.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../flow/index.html">Flow-based framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../instrument/index.html">Instrument</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/index.html">Input/Output</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Pipeline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reco/index.html">Reconstruction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
 </ul>
@@ -154,7 +154,7 @@
   <div class="section" id="getting-started-for-developers">
 <span id="getting-started"></span><h1>Getting Started For Developers<a class="headerlink" href="#getting-started-for-developers" title="Permalink to this headline">¶</a></h1>
 <p>This guide assumes you are using the <em>Anaconda</em> python distribution, installed locally (<em>miniconda</em> should also work).</p>
-<p>First you should create a virtual environment in which to do your developement (this will allow you to control the dependency libraries independently of other projects). You can use either python 3.4 or python 3.5. Here we will create a virtualenv called &#8220;cta&#8221; (but you can choose another name if you like)</p>
+<p>First you should create a virtual environment in which to do your developement (this will allow you to control the dependency libraries independently of other projects). You can use either python 3.4 or python 3.5. Here we will create a virtualenv called &quot;cta&quot; (but you can choose another name if you like)</p>
 <div class="section" id="set-up-your-environment">
 <h2>Set up your environment<a class="headerlink" href="#set-up-your-environment" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>conda create -n cta <span class="nv">python</span><span class="o">=</span>3.5 astropy matplotlib scipy scikit-learn numba cython
@@ -188,7 +188,7 @@ repository (cta-observatory/ctapipe).</p>
 <h3>Step 1: Fork<a class="headerlink" href="#step-1-fork" title="Permalink to this headline">¶</a></h3>
 <p>Follow the instructions in the link above to make a <em>fork</em> of the
 ctapipe repo in your own GitHub userspace. That fork will be then
-called <em>yourusername</em>/ctapipe (it&#8217;s as simple as clicking the fork button on <a class="reference external" href="https://github.com/cta-observatory/ctapipe">main ctapipe github page</a>.</p>
+called <em>yourusername</em>/ctapipe (it's as simple as clicking the fork button on <a class="reference external" href="https://github.com/cta-observatory/ctapipe">main ctapipe github page</a>.</p>
 </div>
 <div class="section" id="step-2-clone">
 <h3>Step 2: clone<a class="headerlink" href="#step-2-clone" title="Permalink to this headline">¶</a></h3>
@@ -243,9 +243,9 @@ to your local working copy):</p>
 <p>More information on how to develop code using the GitHub-FLow workflow
 (which is what we are using) can be found in the AstroPy documentation
 <a class="reference external" href="http://astropy.readthedocs.org/en/latest/development/workflow/get_devel_version.html#get-devel">http://astropy.readthedocs.org/en/latest/development/workflow/get_devel_version.html#get-devel</a>
-.  You would need to of course change any reference to &#8220;astropy&#8221; the
-package to &#8220;ctapipe&#8221; and &#8220;astropy&#8221; the organization to
-&#8220;cta-observatory&#8221;, but the instructions should work.</p>
+.  You would need to of course change any reference to &quot;astropy&quot; the
+package to &quot;ctapipe&quot; and &quot;astropy&quot; the organization to
+&quot;cta-observatory&quot;, but the instructions should work.</p>
 <p>Even easier (if you are on a Mac computer) is to use the
 <a class="reference external" href="https://desktop.github.com/">github-desktop GUI</a>, which can do most
 of the fork/clone and remote git commands above automatically. It
@@ -276,7 +276,7 @@ issue pull-requests.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 05 Aug 2016.
+      Last updated on 16 Sep 2016.
 
     </p>
   </div>
@@ -298,7 +298,7 @@ issue pull-requests.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.0.dev793',
+            VERSION:'0.0.dev907',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

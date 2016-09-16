@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CameraGeometry &mdash; ctapipe v0.0.dev793</title>
+  <title>CameraGeometry &mdash; ctapipe v0.0.dev907</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.0.dev793" href="../index.html"/>
+    <link rel="top" title="ctapipe v0.0.dev907" href="../index.html"/>
         <link rel="up" title="Input/Output" href="../io/index.html"/>
         <link rel="next" title="hessio_event_source" href="ctapipe.io.hessio.hessio_event_source.html"/>
         <link rel="prev" title="make_rectangular_camera_geometry" href="ctapipe.io.camera.make_rectangular_camera_geometry.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.0.dev793
+                0.0.dev907
               </div>
             
           
@@ -93,6 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../coordinates/index.html">Coordinates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/index.html">Core Data Structures and Base Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../datasets/index.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../flow/index.html">Flow-based framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../instrument/index.html">Instrument</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../io/index.html">Input/Output</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../io/index.html#introduction">Introduction</a></li>
@@ -109,7 +110,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Pipeline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reco/index.html">Reconstruction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
 </ul>
@@ -205,11 +205,11 @@ pixels, gaps between pixels, etc.</p>
 </div></blockquote>
 <p><strong>pix_type: string</strong></p>
 <blockquote>
-<div><p>either &#8216;rectangular&#8217; or &#8216;hexagonal&#8217;</p>
+<div><p>either 'rectangular' or 'hexagonal'</p>
 </div></blockquote>
 <p><strong>pix_rotation: value convertable to an `astropy.coordinates.Angle`</strong></p>
 <blockquote>
-<div><p>rotation angle with unit (e.g. 12 * u.deg), or &#8220;12d&#8221;</p>
+<div><p>rotation angle with unit (e.g. 12 * u.deg), or &quot;12d&quot;</p>
 </div></blockquote>
 <p class="last"><strong>cam_rotation: overall camera rotation with units</strong></p>
 </td>
@@ -274,7 +274,7 @@ rotated.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>angle: value convertable to an `astropy.coordinates.Angle`</strong></p>
 <blockquote class="last">
-<div><p>rotation angle with unit (e.g. 12 * u.deg), or &#8220;12d&#8221;</p>
+<div><p>rotation angle with unit (e.g. 12 * u.deg), or &quot;12d&quot;</p>
 </div></blockquote>
 </td>
 </tr>
@@ -312,7 +312,7 @@ rotated.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 05 Aug 2016.
+      Last updated on 16 Sep 2016.
 
     </p>
   </div>
@@ -334,7 +334,7 @@ rotated.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.0.dev793',
+            VERSION:'0.0.dev907',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

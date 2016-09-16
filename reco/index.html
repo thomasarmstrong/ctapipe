@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Reconstruction &mdash; ctapipe v0.0.dev793</title>
+  <title>Reconstruction &mdash; ctapipe v0.0.dev907</title>
   
 
   
@@ -32,9 +32,9 @@
   
 
   
-    <link rel="top" title="ctapipe v0.0.dev793" href="../index.html"/>
+    <link rel="top" title="ctapipe v0.0.dev907" href="../index.html"/>
         <link rel="next" title="generate_2d_shower_model" href="../api/ctapipe.reco.generate_2d_shower_model.html"/>
-        <link rel="prev" title="Pipeline" href="../pipeline/index.html"/> 
+        <link rel="prev" title="CalibratedCameraData" href="../api/ctapipe.io.containers.CalibratedCameraData.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.0.dev793
+                0.0.dev907
               </div>
             
           
@@ -92,9 +92,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../coordinates/index.html">Coordinates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/index.html">Core Data Structures and Base Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../datasets/index.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../flow/index.html">Flow-based framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../instrument/index.html">Instrument</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/index.html">Input/Output</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pipeline/index.html">Pipeline</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Reconstruction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
@@ -257,10 +257,13 @@ define the columns somehow: in a class? a namedtiple?)</li>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="../api/ctapipe.reco.HighOrderMomentParameters.html#ctapipe.reco.HighOrderMomentParameters" title="ctapipe.reco.HighOrderMomentParameters"><code class="xref py py-obj docutils literal"><span class="pre">HighOrderMomentParameters</span></code></a>(skewness,&nbsp;...)</td>
-<td>Shower moment parameters of third order.</td>
+<tr class="row-odd"><td><a class="reference internal" href="../api/ctapipe.reco.HighOrderMomentParameters.html#ctapipe.reco.HighOrderMomentParameters" title="ctapipe.reco.HighOrderMomentParameters"><code class="xref py py-obj docutils literal"><span class="pre">HighOrderMomentParameters</span></code></a>(Skewness,&nbsp;...)</td>
+<td>Shower moment parameters of third and fourth order.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="../api/ctapipe.reco.MomentParameters.html#ctapipe.reco.MomentParameters" title="ctapipe.reco.MomentParameters"><code class="xref py py-obj docutils literal"><span class="pre">MomentParameters</span></code></a>(size,&nbsp;cen_x,&nbsp;cen_y,&nbsp;length,&nbsp;...)</td>
+<tr class="row-even"><td><a class="reference internal" href="../api/ctapipe.reco.HillasParameterizationError.html#ctapipe.reco.HillasParameterizationError" title="ctapipe.reco.HillasParameterizationError"><code class="xref py py-obj docutils literal"><span class="pre">HillasParameterizationError</span></code></a></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../api/ctapipe.reco.MomentParameters.html#ctapipe.reco.MomentParameters" title="ctapipe.reco.MomentParameters"><code class="xref py py-obj docutils literal"><span class="pre">MomentParameters</span></code></a>(size,&nbsp;cen_x,&nbsp;cen_y,&nbsp;length,&nbsp;...)</td>
 <td>Shower moment parameters up to second order.</td>
 </tr>
 </tbody>
@@ -310,7 +313,7 @@ define the columns somehow: in a class? a namedtiple?)</li>
         <a href="../api/ctapipe.reco.generate_2d_shower_model.html" class="btn btn-neutral float-right" title="generate_2d_shower_model" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../pipeline/index.html" class="btn btn-neutral" title="Pipeline" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../api/ctapipe.io.containers.CalibratedCameraData.html" class="btn btn-neutral" title="CalibratedCameraData" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -320,7 +323,7 @@ define the columns somehow: in a class? a namedtiple?)</li>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 05 Aug 2016.
+      Last updated on 16 Sep 2016.
 
     </p>
   </div>
@@ -342,7 +345,7 @@ define the columns somehow: in a class? a namedtiple?)</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.0.dev793',
+            VERSION:'0.0.dev907',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

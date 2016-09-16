@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Future Plans &mdash; ctapipe v0.0.dev907</title>
+  <title>HillasParameterizationError &mdash; ctapipe v0.0.dev907</title>
   
 
   
@@ -33,9 +33,9 @@
 
   
     <link rel="top" title="ctapipe v0.0.dev907" href="../index.html"/>
-        <link rel="up" title="Development Resources" href="index.html"/>
-        <link rel="next" title="Maintainer info" href="maintainer-info.html"/>
-        <link rel="prev" title="Support Libraries" href="support-libraries.html"/> 
+        <link rel="up" title="Reconstruction" href="../reco/index.html"/>
+        <link rel="next" title="MomentParameters" href="ctapipe.reco.MomentParameters.html"/>
+        <link rel="prev" title="HighOrderMomentParameters" href="ctapipe.reco.HighOrderMomentParameters.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -86,17 +86,7 @@
             
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started For Developers</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Development Resources</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="style-guide.html">Style Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="code-guidelines.html">Code Guidelines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="support-libraries.html">Support Libraries</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Future Plans</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#parallelization">Parallelization</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="maintainer-info.html">Maintainer info</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Command line tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../analysis/index.html">Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../calib/index.html">Calibration</a></li>
@@ -106,7 +96,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../flow/index.html">Flow-based framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../instrument/index.html">Instrument</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/index.html">Input/Output</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../reco/index.html">Reconstruction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../reco/index.html">Reconstruction</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../reco/index.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reco/index.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../reco/index.html#reference-api">Reference/API</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../reco/index.html#module-ctapipe.reco">ctapipe.reco Package</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../reco/index.html#functions">Functions</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../reco/index.html#classes">Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../reco/index.html#module-ctapipe.reco.mock">ctapipe.reco.mock Module</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
 </ul>
 
@@ -138,13 +141,13 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="index.html">Development Resources</a> &raquo;</li>
+          <li><a href="../reco/index.html">Reconstruction</a> &raquo;</li>
       
-    <li>Future Plans</li>
+    <li>HillasParameterizationError</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/development/futureplans.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/api/ctapipe.reco.HillasParameterizationError.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -154,20 +157,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="future-plans">
-<h1>Future Plans<a class="headerlink" href="#future-plans" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="parallelization">
-<h2>Parallelization<a class="headerlink" href="#parallelization" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Explore tools like  <a class="reference external" href="https://pythonhosted.org/joblib/parallel.html#common-usage">joblib</a> for
-very simple parallelization of streams</li>
-<li>More complex parallelization may be achieved via <a class="reference external" href="http://codespeak.net/execnet/">Execnet</a>, which can to turn a function into
-a remote processing system.</li>
-<li>more complex systems like <a class="reference external" href="http://celeryproject.org">Celery</a> may
-be explored for use with map-reduce style parallelization.</li>
-<li>Fast distributed file access with the <a class="reference external" href="http://hdfs3.readthedocs.org/en/latest">HDFS3</a> library</li>
-</ul>
-</div>
+  <div class="section" id="hillasparameterizationerror">
+<h1>HillasParameterizationError<a class="headerlink" href="#hillasparameterizationerror" title="Permalink to this headline">¶</a></h1>
+<dl class="exception">
+<dt id="ctapipe.reco.HillasParameterizationError">
+<em class="property">exception </em><code class="descclassname">ctapipe.reco.</code><code class="descname">HillasParameterizationError</code><a class="headerlink" href="#ctapipe.reco.HillasParameterizationError" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 
 
@@ -177,10 +173,10 @@ be explored for use with map-reduce style parallelization.</li>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="maintainer-info.html" class="btn btn-neutral float-right" title="Maintainer info" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ctapipe.reco.MomentParameters.html" class="btn btn-neutral float-right" title="MomentParameters" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="support-libraries.html" class="btn btn-neutral" title="Support Libraries" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="ctapipe.reco.HighOrderMomentParameters.html" class="btn btn-neutral" title="HighOrderMomentParameters" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
