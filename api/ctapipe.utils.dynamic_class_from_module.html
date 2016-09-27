@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Overview: module code &mdash; ctapipe v0.0.dev926</title>
+  <title>dynamic_class_from_module &mdash; ctapipe v0.0.dev926</title>
   
 
   
@@ -32,7 +32,10 @@
   
 
   
-    <link rel="top" title="ctapipe v0.0.dev926" href="../index.html"/> 
+    <link rel="top" title="ctapipe v0.0.dev926" href="../index.html"/>
+        <link rel="up" title="Utilities" href="../utils/index.html"/>
+        <link rel="next" title="json_to_fits" href="ctapipe.utils.json_to_fits.html"/>
+        <link rel="prev" title="Utilities" href="../utils/index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -81,7 +84,7 @@
           
             
             
-                <ul>
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started For Developers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Command line tools</a></li>
@@ -94,7 +97,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../instrument/index.html">Instrument</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/index.html">Input/Output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reco/index.html">Reconstruction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Utilities</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../utils/index.html">Utilities</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../utils/index.html#introduction">Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../utils/index.html#reference-api">Reference/API</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../utils/index.html#module-ctapipe.utils">ctapipe.utils Package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../utils/index.html#functions">Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../utils/index.html#classes">Classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
 </ul>
 
@@ -118,7 +132,7 @@
         <div class="rst-content">
           
 
-
+ 
 
 
 
@@ -126,9 +140,13 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>Overview: module code</li>
+          <li><a href="../utils/index.html">Utilities</a> &raquo;</li>
+      
+    <li>dynamic_class_from_module</li>
       <li class="wy-breadcrumbs-aside">
         
+          
+            <a href="../_sources/api/ctapipe.utils.dynamic_class_from_module.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -138,30 +156,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>All modules for which code is available</h1>
-<ul><li><a href="astropy/units/quantity.html">astropy.units.quantity</a></li>
-<li><a href="ctapipe/configuration/core.html">ctapipe.configuration.core</a></li>
-<li><a href="ctapipe/coordinates/frames.html">ctapipe.coordinates.frames</a></li>
-<li><a href="ctapipe/core.html">ctapipe.core</a></li>
-<ul><li><a href="ctapipe/core/container.html">ctapipe.core.container</a></li>
-<li><a href="ctapipe/core/tool.html">ctapipe.core.tool</a></li>
-</ul><li><a href="ctapipe/instrument/obsconfig.html">ctapipe.instrument.obsconfig</a></li>
-<li><a href="ctapipe/io/camera.html">ctapipe.io.camera</a></li>
-<li><a href="ctapipe/io/containers.html">ctapipe.io.containers</a></li>
-<li><a href="ctapipe/io/hessio.html">ctapipe.io.hessio</a></li>
-<li><a href="ctapipe/reco/hillas.html">ctapipe.reco.hillas</a></li>
-<li><a href="ctapipe/reco/mock.html">ctapipe.reco.mock</a></li>
-<li><a href="ctapipe/tools/info.html">ctapipe.tools.info</a></li>
-<li><a href="ctapipe/utils/dynamic_class.html">ctapipe.utils.dynamic_class</a></li>
-<li><a href="ctapipe/utils/fitshistogram.html">ctapipe.utils.fitshistogram</a></li>
-<li><a href="ctapipe/utils/json2fits.html">ctapipe.utils.json2fits</a></li>
-<li><a href="ctapipe/visualization/mpl.html">ctapipe.visualization.mpl</a></li>
-<li><a href="traitlets/traitlets.html">traitlets.traitlets</a></li>
-</ul>
+  <div class="section" id="dynamic-class-from-module">
+<h1>dynamic_class_from_module<a class="headerlink" href="#dynamic-class-from-module" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="ctapipe.utils.dynamic_class_from_module">
+<code class="descclassname">ctapipe.utils.</code><code class="descname">dynamic_class_from_module</code><span class="sig-paren">(</span><em>class_name</em>, <em>module</em>, <em>tool=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/utils/dynamic_class.html#dynamic_class_from_module"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.utils.dynamic_class_from_module" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an instance of a class from a configuration service section name</p>
+</dd></dl>
+
+</div>
+
 
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ctapipe.utils.json_to_fits.html" class="btn btn-neutral float-right" title="json_to_fits" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../utils/index.html" class="btn btn-neutral" title="Utilities" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
