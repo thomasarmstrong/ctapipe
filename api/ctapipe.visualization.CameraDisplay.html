@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CameraDisplay &mdash; ctapipe v0.0.dev915</title>
+  <title>CameraDisplay &mdash; ctapipe v0.0.dev926</title>
   
 
   
@@ -32,7 +32,9 @@
   
 
   
-    <link rel="top" title="ctapipe v0.0.dev915" href="../index.html"/> 
+    <link rel="top" title="ctapipe v0.0.dev926" href="../index.html"/>
+        <link rel="up" title="Visualization" href="../visualization/index.html"/>
+        <link rel="prev" title="ArrayDisplay" href="ctapipe.visualization.ArrayDisplay.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -60,7 +62,7 @@
             
             
               <div class="version">
-                0.0.dev915
+                0.0.dev926
               </div>
             
           
@@ -81,7 +83,7 @@
           
             
             
-                <ul>
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started For Developers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Command line tools</a></li>
@@ -94,7 +96,19 @@
 <li class="toctree-l1"><a class="reference internal" href="../instrument/index.html">Instrument</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/index.html">Input/Output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reco/index.html">Reconstruction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Utilities</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../visualization/index.html">Visualization</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../visualization/index.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/index.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../visualization/index.html#reference-api">Reference/API</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../visualization/index.html#module-ctapipe.visualization">ctapipe.visualization Package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../visualization/index.html#classes">Classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
             
@@ -125,6 +139,8 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
+          <li><a href="../visualization/index.html">Visualization</a> &raquo;</li>
+      
     <li>CameraDisplay</li>
       <li class="wy-breadcrumbs-aside">
         
@@ -141,6 +157,275 @@
             
   <div class="section" id="cameradisplay">
 <h1>CameraDisplay<a class="headerlink" href="#cameradisplay" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="ctapipe.visualization.CameraDisplay">
+<em class="property">class </em><code class="descclassname">ctapipe.visualization.</code><code class="descname">CameraDisplay</code><span class="sig-paren">(</span><em>geometry</em>, <em>image=None</em>, <em>ax=None</em>, <em>title='Camera'</em>, <em>norm='lin'</em>, <em>cmap='hot'</em>, <em>allow_pick=False</em>, <em>autoupdate=True</em>, <em>autoscale=True</em>, <em>antialiased=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/visualization/mpl.html#CameraDisplay"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.visualization.CameraDisplay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/3/library/functions.html#object" title="(in Python v3.4)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Camera Display using matplotlib.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>geometry</strong> : <code class="xref py py-obj docutils literal"><span class="pre">CameraGeometry</span></code></p>
+<blockquote>
+<div><p>Definition of the Camera/Image</p>
+</div></blockquote>
+<p><strong>image: array_like</strong></p>
+<blockquote>
+<div><p>array of values corresponding to the pixels in the CameraGeometry.</p>
+</div></blockquote>
+<p><strong>ax</strong> : <a class="reference external" href="http://matplotlib.org/api/axes_api.html#matplotlib.axes.Axes" title="(in Matplotlib v1.5.3)"><code class="xref py py-obj docutils literal"><span class="pre">matplotlib.axes.Axes</span></code></a></p>
+<blockquote>
+<div><p>A matplotlib axes object to plot on, or None to create a new one</p>
+</div></blockquote>
+<p><strong>title</strong> : str (default &quot;Camera&quot;)</p>
+<blockquote>
+<div><p>Title to put on camera plot</p>
+</div></blockquote>
+<p><strong>norm</strong> : str or <code class="xref py py-obj docutils literal"><span class="pre">matplotlib.color.Normalize</span></code> instance (default 'lin')</p>
+<blockquote>
+<div><p>Normalization for the color scale.
+Supported str arguments are
+- 'lin': linear scale
+- 'log': logarithmic scale (base 10)</p>
+</div></blockquote>
+<p><strong>cmap</strong> : str or <a class="reference external" href="http://matplotlib.org/api/colors_api.html#matplotlib.colors.Colormap" title="(in Matplotlib v1.5.3)"><code class="xref py py-obj docutils literal"><span class="pre">matplotlib.colors.Colormap</span></code></a> (default 'hot')</p>
+<blockquote>
+<div><p>Color map to use (see <a class="reference external" href="http://matplotlib.org/api/cm_api.html#module-matplotlib.cm" title="(in Matplotlib v1.5.3)"><code class="xref py py-obj docutils literal"><span class="pre">matplotlib.cm</span></code></a>)</p>
+</div></blockquote>
+<p><strong>allow_pick</strong> : bool (default False)</p>
+<blockquote>
+<div><p>if True, allow user to click and select a pixel</p>
+</div></blockquote>
+<p><strong>autoupdate</strong> : bool (default True)</p>
+<blockquote>
+<div><p>redraw automatically (otherwise need to call plt.draw())</p>
+</div></blockquote>
+<p><strong>autoscale</strong> : bool (default True)</p>
+<blockquote>
+<div><p>rescale the vmin/vmax values when the image changes.
+This is set to False if <code class="xref py py-obj docutils literal"><span class="pre">set_limits_*</span></code> is called to explicity
+set data limits.</p>
+</div></blockquote>
+<p><strong>antialiased</strong> : bool  (default True)</p>
+<blockquote class="last">
+<div><p>whether to draw in antialiased mode or not.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<dl class="docutils">
+<dt>Speed:</dt>
+<dd>CameraDisplay is not intended to be very fast (matplotlib
+is not a very speed performant graphics library, it is
+intended for nice output plots). However, most of the
+slowness of CameraDisplay is in the constructor.  Once one is
+displayed, changing the image that is displayed is relatively
+fast and efficient. Therefore it is best to initialize an
+instance, and change the data, rather than generating new
+CameraDisplays.</dd>
+<dt>Pixel Implementation:</dt>
+<dd>Pixels are rendered as a
+<a class="reference external" href="http://matplotlib.org/api/collections_api.html#matplotlib.collections.PatchCollection" title="(in Matplotlib v1.5.3)"><code class="xref py py-obj docutils literal"><span class="pre">matplotlib.collections.PatchCollection</span></code></a> of Polygons (either 6
+or 4 sided).  You can access the PatchCollection directly (to
+e.g. change low-level style parameters) via
+<code class="xref py py-obj docutils literal"><span class="pre">CameraDisplay.pixels</span></code></dd>
+<dt>Output:</dt>
+<dd>Since CameraDisplay uses matplotlib, any display can be
+saved to any output file supported via
+plt.savefig(filename). This includes <code class="xref py py-obj docutils literal"><span class="pre">pdf</span></code> and <code class="xref py py-obj docutils literal"><span class="pre">png</span></code>.</dd>
+</dl>
+<p class="rubric">Attributes Summary</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.cmap" title="ctapipe.visualization.CameraDisplay.cmap"><code class="xref py py-obj docutils literal"><span class="pre">cmap</span></code></a></td>
+<td>Color map to use.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.image" title="ctapipe.visualization.CameraDisplay.image"><code class="xref py py-obj docutils literal"><span class="pre">image</span></code></a></td>
+<td>The image displayed on the camera (1D array of pixel values)</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.norm" title="ctapipe.visualization.CameraDisplay.norm"><code class="xref py py-obj docutils literal"><span class="pre">norm</span></code></a></td>
+<td>The norm instance of the Display</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Summary</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.add_colorbar" title="ctapipe.visualization.CameraDisplay.add_colorbar"><code class="xref py py-obj docutils literal"><span class="pre">add_colorbar</span></code></a>(**kwargs)</td>
+<td>add a colobar to the camera plot</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.add_ellipse" title="ctapipe.visualization.CameraDisplay.add_ellipse"><code class="xref py py-obj docutils literal"><span class="pre">add_ellipse</span></code></a>(centroid,&nbsp;length,&nbsp;width,&nbsp;angle)</td>
+<td>plot an ellipse on top of the camera</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.enable_pixel_picker" title="ctapipe.visualization.CameraDisplay.enable_pixel_picker"><code class="xref py py-obj docutils literal"><span class="pre">enable_pixel_picker</span></code></a>()</td>
+<td>enable ability to click on pixels</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.on_pixel_clicked" title="ctapipe.visualization.CameraDisplay.on_pixel_clicked"><code class="xref py py-obj docutils literal"><span class="pre">on_pixel_clicked</span></code></a>(pix_id)</td>
+<td>virtual function to overide in sub-classes to do something special</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.overlay_moments" title="ctapipe.visualization.CameraDisplay.overlay_moments"><code class="xref py py-obj docutils literal"><span class="pre">overlay_moments</span></code></a>(momparams,&nbsp;**kwargs)</td>
+<td>helper to overlay ellipse from a <code class="xref py py-obj docutils literal"><span class="pre">reco.MomentParameters</span></code> structure</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.set_limits_minmax" title="ctapipe.visualization.CameraDisplay.set_limits_minmax"><code class="xref py py-obj docutils literal"><span class="pre">set_limits_minmax</span></code></a>(zmin,&nbsp;zmax)</td>
+<td>set the color scale limits from min to max</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.set_limits_percent" title="ctapipe.visualization.CameraDisplay.set_limits_percent"><code class="xref py py-obj docutils literal"><span class="pre">set_limits_percent</span></code></a>([percent])</td>
+<td>auto-scale the color range to percent of maximum</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.show" title="ctapipe.visualization.CameraDisplay.show"><code class="xref py py-obj docutils literal"><span class="pre">show</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.update" title="ctapipe.visualization.CameraDisplay.update"><code class="xref py py-obj docutils literal"><span class="pre">update</span></code></a>([force])</td>
+<td>signal a redraw if necessary</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes Documentation</p>
+<dl class="attribute">
+<dt id="ctapipe.visualization.CameraDisplay.cmap">
+<code class="descname">cmap</code><a class="headerlink" href="#ctapipe.visualization.CameraDisplay.cmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Color map to use. Either a name or  <code class="xref py py-obj docutils literal"><span class="pre">matplotlib.colors.ColorMap</span></code>
+instance, e.g. from <code class="xref py py-obj docutils literal"><span class="pre">matplotlib.pyplot.cm</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ctapipe.visualization.CameraDisplay.image">
+<code class="descname">image</code><a class="headerlink" href="#ctapipe.visualization.CameraDisplay.image" title="Permalink to this definition">¶</a></dt>
+<dd><p>The image displayed on the camera (1D array of pixel values)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ctapipe.visualization.CameraDisplay.norm">
+<code class="descname">norm</code><a class="headerlink" href="#ctapipe.visualization.CameraDisplay.norm" title="Permalink to this definition">¶</a></dt>
+<dd><p>The norm instance of the Display</p>
+<p>Possible values:</p>
+<ul class="simple">
+<li>&quot;lin&quot;: linear scale</li>
+<li>&quot;log&quot;: log scale</li>
+<li>any matplotlib.colors.Normalize instance, e. g. PowerNorm(gamma=-2)</li>
+</ul>
+</dd></dl>
+
+<p class="rubric">Methods Documentation</p>
+<dl class="method">
+<dt id="ctapipe.visualization.CameraDisplay.add_colorbar">
+<code class="descname">add_colorbar</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/visualization/mpl.html#CameraDisplay.add_colorbar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.visualization.CameraDisplay.add_colorbar" title="Permalink to this definition">¶</a></dt>
+<dd><p>add a colobar to the camera plot
+kwargs are passed to figure.colorbar(self.pixels, <a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs)
+See matplotlib documentation for the supported kwargs:
+<a class="reference external" href="http://matplotlib.org/api/figure_api.html#matplotlib.figure.Figure.colorbar">http://matplotlib.org/api/figure_api.html#matplotlib.figure.Figure.colorbar</a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ctapipe.visualization.CameraDisplay.add_ellipse">
+<code class="descname">add_ellipse</code><span class="sig-paren">(</span><em>centroid</em>, <em>length</em>, <em>width</em>, <em>angle</em>, <em>asymmetry=0.0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/visualization/mpl.html#CameraDisplay.add_ellipse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.visualization.CameraDisplay.add_ellipse" title="Permalink to this definition">¶</a></dt>
+<dd><p>plot an ellipse on top of the camera</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>centroid: (float, float)</strong></p>
+<blockquote>
+<div><p>position of centroid</p>
+</div></blockquote>
+<p><strong>length: float</strong></p>
+<blockquote>
+<div><p>major axis</p>
+</div></blockquote>
+<p><strong>width: float</strong></p>
+<blockquote>
+<div><p>minor axis</p>
+</div></blockquote>
+<p><strong>angle: float</strong></p>
+<blockquote>
+<div><p>rotation angle wrt &quot;up&quot; about the centroid, clockwise, in radians</p>
+</div></blockquote>
+<p><strong>asymmetry: float</strong></p>
+<blockquote>
+<div><p>3rd-order moment for directionality if known</p>
+</div></blockquote>
+<p><strong>kwargs:</strong></p>
+<blockquote class="last">
+<div><p>any MatPlotLib style arguments to pass to the Ellipse patch</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ctapipe.visualization.CameraDisplay.enable_pixel_picker">
+<code class="descname">enable_pixel_picker</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/visualization/mpl.html#CameraDisplay.enable_pixel_picker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.visualization.CameraDisplay.enable_pixel_picker" title="Permalink to this definition">¶</a></dt>
+<dd><p>enable ability to click on pixels</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ctapipe.visualization.CameraDisplay.on_pixel_clicked">
+<code class="descname">on_pixel_clicked</code><span class="sig-paren">(</span><em>pix_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/visualization/mpl.html#CameraDisplay.on_pixel_clicked"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.visualization.CameraDisplay.on_pixel_clicked" title="Permalink to this definition">¶</a></dt>
+<dd><p>virtual function to overide in sub-classes to do something special
+when a pixel is clicked</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ctapipe.visualization.CameraDisplay.overlay_moments">
+<code class="descname">overlay_moments</code><span class="sig-paren">(</span><em>momparams</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/visualization/mpl.html#CameraDisplay.overlay_moments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.visualization.CameraDisplay.overlay_moments" title="Permalink to this definition">¶</a></dt>
+<dd><p>helper to overlay ellipse from a <code class="xref py py-obj docutils literal"><span class="pre">reco.MomentParameters</span></code> structure</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>momparams: `reco.MomentParameters`</strong></p>
+<blockquote>
+<div><p>structuring containing Hillas-style parameterization</p>
+</div></blockquote>
+<p><strong>kwargs: key=value</strong></p>
+<blockquote class="last">
+<div><p>any style keywords to pass to matplotlib (e.g. color='red'
+or linewidth=6)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ctapipe.visualization.CameraDisplay.set_limits_minmax">
+<code class="descname">set_limits_minmax</code><span class="sig-paren">(</span><em>zmin</em>, <em>zmax</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/visualization/mpl.html#CameraDisplay.set_limits_minmax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.visualization.CameraDisplay.set_limits_minmax" title="Permalink to this definition">¶</a></dt>
+<dd><p>set the color scale limits from min to max</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ctapipe.visualization.CameraDisplay.set_limits_percent">
+<code class="descname">set_limits_percent</code><span class="sig-paren">(</span><em>percent=95</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/visualization/mpl.html#CameraDisplay.set_limits_percent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.visualization.CameraDisplay.set_limits_percent" title="Permalink to this definition">¶</a></dt>
+<dd><p>auto-scale the color range to percent of maximum</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ctapipe.visualization.CameraDisplay.show">
+<code class="descname">show</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/visualization/mpl.html#CameraDisplay.show"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.visualization.CameraDisplay.show" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ctapipe.visualization.CameraDisplay.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>force=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/visualization/mpl.html#CameraDisplay.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.visualization.CameraDisplay.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>signal a redraw if necessary</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -148,13 +433,20 @@
           </div>
           <footer>
   
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="ctapipe.visualization.ArrayDisplay.html" class="btn btn-neutral" title="ArrayDisplay" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 16 Sep 2016.
+      Last updated on 27 Sep 2016.
 
     </p>
   </div>
@@ -176,7 +468,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.0.dev915',
+            VERSION:'0.0.dev926',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

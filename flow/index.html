@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Flow-based framework &mdash; ctapipe v0.0.dev915</title>
+  <title>Flow-based framework &mdash; ctapipe v0.0.dev926</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.0.dev915" href="../index.html"/>
+    <link rel="top" title="ctapipe v0.0.dev926" href="../index.html"/>
         <link rel="next" title="Instrument" href="../instrument/index.html"/>
         <link rel="prev" title="Datasets" href="../datasets/index.html"/> 
 
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.0.dev915
+                0.0.dev926
               </div>
             
           
@@ -147,6 +147,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../instrument/index.html">Instrument</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/index.html">Input/Output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reco/index.html">Reconstruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
 </ul>
 
@@ -209,9 +210,9 @@ critical sections semaphores, while being thread safe.
 Passing data between steps is managed by the router thanks to Pickle serialization.
 A Step can be executed by several process, in this case the router uses LRU pattern (least recently used ) to
 choose the step that will receive next data. The router also manage Queue for each step.</p>
-<div class="figure" id="id1">
+<div class="figure" id="id3">
 <a class="reference internal image-reference" href="../_images/pipeline.png"><img alt="flow based framework  example" src="../_images/pipeline.png" style="width: 419.29999999999995px; height: 438.9px;" /></a>
-<p class="caption"><span class="caption-text">ctapipe-guiflow application. It displays a complete flow based framework  instance containing:
+<p class="caption"><span class="caption-text">python ctapipe/flow/gui/guiflow.py  application. It displays a complete flow based framework  instance containing:
 A producer step (SimTelArrayReader) that reads events in a SimTelArray MC file and sends them one by one to next step.
 A stager step (ShuntTelescope) that receives event and guides it to the next step according to it type (LST or other)
 A stager step (LSTDump) that receives LST telescope raw data, and sends a string with LST tag and raw data string representation.
@@ -384,7 +385,7 @@ the choosen solution is:
 This GUI can be launch on the same system than the flow based framework  or on a different one.
 By default GUI is binded to port 5565. You can change it with --PipeGui.port option</p>
 <blockquote>
-<div><em>prompt$&gt; ctapipe-guiflow</em></div></blockquote>
+<div><a href="#id1"><span class="problematic" id="id2">*</span></a>prompt$&gt; python ctapipe/flow/gui/guiflow.py *</div></blockquote>
 <div class="section" id="optional-packages-for-gui">
 <h3>Optional packages for GUI<a class="headerlink" href="#optional-packages-for-gui" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="pyqt4-installation">
@@ -394,7 +395,7 @@ By default GUI is binded to port 5565. You can change it with --PipeGui.port opt
 </div>
 <div class="section" id="graphviz-installation">
 <h4>graphviz installation<a class="headerlink" href="#graphviz-installation" title="Permalink to this headline">¶</a></h4>
-<p><em>prompt$&gt; conda install graphviz</em></p>
+<p><em>prompt$&gt; pip install graphviz</em></p>
 </div>
 </div>
 </div>
@@ -556,7 +557,7 @@ Anyway, theses traitlets parameters are take into account by these classes.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 16 Sep 2016.
+      Last updated on 27 Sep 2016.
 
     </p>
   </div>
@@ -578,7 +579,7 @@ Anyway, theses traitlets parameters are take into account by these classes.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.0.dev915',
+            VERSION:'0.0.dev926',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

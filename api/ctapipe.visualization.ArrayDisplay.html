@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ArrayDisplay &mdash; ctapipe v0.0.dev915</title>
+  <title>ArrayDisplay &mdash; ctapipe v0.0.dev926</title>
   
 
   
@@ -32,7 +32,10 @@
   
 
   
-    <link rel="top" title="ctapipe v0.0.dev915" href="../index.html"/> 
+    <link rel="top" title="ctapipe v0.0.dev926" href="../index.html"/>
+        <link rel="up" title="Visualization" href="../visualization/index.html"/>
+        <link rel="next" title="CameraDisplay" href="ctapipe.visualization.CameraDisplay.html"/>
+        <link rel="prev" title="Visualization" href="../visualization/index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -60,7 +63,7 @@
             
             
               <div class="version">
-                0.0.dev915
+                0.0.dev926
               </div>
             
           
@@ -81,7 +84,7 @@
           
             
             
-                <ul>
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started For Developers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Command line tools</a></li>
@@ -94,7 +97,19 @@
 <li class="toctree-l1"><a class="reference internal" href="../instrument/index.html">Instrument</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../io/index.html">Input/Output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reco/index.html">Reconstruction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Utilities</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../visualization/index.html">Visualization</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../visualization/index.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/index.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../visualization/index.html#reference-api">Reference/API</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../visualization/index.html#module-ctapipe.visualization">ctapipe.visualization Package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../visualization/index.html#classes">Classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
             
@@ -125,6 +140,8 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
+          <li><a href="../visualization/index.html">Visualization</a> &raquo;</li>
+      
     <li>ArrayDisplay</li>
       <li class="wy-breadcrumbs-aside">
         
@@ -141,6 +158,32 @@
             
   <div class="section" id="arraydisplay">
 <h1>ArrayDisplay<a class="headerlink" href="#arraydisplay" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="ctapipe.visualization.ArrayDisplay">
+<em class="property">class </em><code class="descclassname">ctapipe.visualization.</code><code class="descname">ArrayDisplay</code><span class="sig-paren">(</span><em>telx</em>, <em>tely</em>, <em>mirrorarea</em>, <em>axes=None</em>, <em>title='Array'</em>, <em>autoupdate=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/visualization/mpl.html#ArrayDisplay"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.visualization.ArrayDisplay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/3/library/functions.html#object" title="(in Python v3.4)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Display a top-town view of a telescope array</p>
+<p class="rubric">Attributes Summary</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#ctapipe.visualization.ArrayDisplay.values" title="ctapipe.visualization.ArrayDisplay.values"><code class="xref py py-obj docutils literal"><span class="pre">values</span></code></a></td>
+<td>An array containing a value per telescope</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes Documentation</p>
+<dl class="attribute">
+<dt id="ctapipe.visualization.ArrayDisplay.values">
+<code class="descname">values</code><a class="headerlink" href="#ctapipe.visualization.ArrayDisplay.values" title="Permalink to this definition">¶</a></dt>
+<dd><p>An array containing a value per telescope</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -148,13 +191,22 @@
           </div>
           <footer>
   
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ctapipe.visualization.CameraDisplay.html" class="btn btn-neutral float-right" title="CameraDisplay" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../visualization/index.html" class="btn btn-neutral" title="Visualization" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 16 Sep 2016.
+      Last updated on 27 Sep 2016.
 
     </p>
   </div>
@@ -176,7 +228,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.0.dev915',
+            VERSION:'0.0.dev926',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

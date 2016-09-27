@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Reconstruction &mdash; ctapipe v0.0.dev915</title>
+  <title>Reconstruction &mdash; ctapipe v0.0.dev926</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.0.dev915" href="../index.html"/>
+    <link rel="top" title="ctapipe v0.0.dev926" href="../index.html"/>
         <link rel="next" title="generate_2d_shower_model" href="../api/ctapipe.reco.generate_2d_shower_model.html"/>
         <link rel="prev" title="CalibratedCameraData" href="../api/ctapipe.io.containers.CalibratedCameraData.html"/> 
 
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.0.dev915
+                0.0.dev926
               </div>
             
           
@@ -112,6 +112,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
 </ul>
 
@@ -170,6 +171,51 @@ This will include two levels:</p>
 </div>
 <div class="section" id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Example how to make a mock shower image and plot it.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">ctapipe.io.camera</span> <span class="kn">import</span> <span class="n">make_rectangular_camera_geometry</span>
+<span class="kn">from</span> <span class="nn">ctapipe.reco</span> <span class="kn">import</span> <span class="n">generate_2d_shower_model</span><span class="p">,</span> <span class="n">make_mock_shower_image</span>
+
+<span class="n">NX</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">NY</span> <span class="o">=</span> <span class="mi">40</span>
+
+<span class="n">geom</span> <span class="o">=</span> <span class="n">make_rectangular_camera_geometry</span><span class="p">(</span><span class="n">NX</span><span class="p">,</span> <span class="n">NY</span><span class="p">)</span>
+
+<span class="n">showermodel</span> <span class="o">=</span> <span class="n">generate_2d_shower_model</span><span class="p">(</span><span class="n">centroid</span><span class="o">=</span><span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="n">length</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                                       <span class="n">width</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">psi</span><span class="o">=</span><span class="s1">&#39;40d&#39;</span><span class="p">)</span>
+
+<span class="n">image</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">noise</span> <span class="o">=</span> <span class="n">make_mock_shower_image</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span> <span class="n">showermodel</span><span class="o">.</span><span class="n">pdf</span><span class="p">,</span>
+                                              <span class="n">intensity</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">nsb_level_pe</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="c1"># make them into 2D arrays so we can plot them with imshow</span>
+<span class="n">image</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">NX</span><span class="p">,</span> <span class="n">NY</span><span class="p">)</span>
+<span class="n">signal</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">NX</span><span class="p">,</span> <span class="n">NY</span><span class="p">)</span>
+<span class="n">noise</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">NX</span><span class="p">,</span> <span class="n">NY</span><span class="p">)</span>
+
+<span class="c1"># here we just plot the images using imshow().  For a more general</span>
+<span class="c1"># case, one should use a ctapipe.visualization.CameraDisplay</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Signal&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">noise</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Noise&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Image&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+
+<span class="c1">#plt.show()</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href="../reco/shower_example.py">Source code</a>, <a class="reference external" href="../reco/shower_example.png">png</a>, <a class="reference external" href="../reco/shower_example.hires.png">hires.png</a>, <a class="reference external" href="../reco/shower_example.pdf">pdf</a>)</p>
+<div class="figure">
+<img alt="../_images/shower_example.png" src="../_images/shower_example.png" />
+</div>
 </div>
 <div class="section" id="reference-api">
 <h2>Reference/API<a class="headerlink" href="#reference-api" title="Permalink to this headline">¶</a></h2>
@@ -278,7 +324,7 @@ define the columns somehow: in a class? a namedtiple?)</li>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 16 Sep 2016.
+      Last updated on 27 Sep 2016.
 
     </p>
   </div>
@@ -300,7 +346,7 @@ define the columns somehow: in a class? a namedtiple?)</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.0.dev915',
+            VERSION:'0.0.dev926',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
