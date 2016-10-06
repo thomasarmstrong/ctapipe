@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ctapipe.visualization.mpl &mdash; ctapipe v0.0.dev926</title>
+  <title>ctapipe.visualization.mpl &mdash; ctapipe v0.1.dev939</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.0.dev926" href="../../../index.html"/>
+    <link rel="top" title="ctapipe v0.1.dev939" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.0.dev926
+                0.1.dev939
               </div>
             
           
@@ -156,7 +156,6 @@
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
-<span class="kn">from</span> <span class="nn">ctapipe.coordinates</span> <span class="kn">import</span> <span class="n">CameraFrame</span><span class="p">,</span> <span class="n">NominalFrame</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CameraDisplay&#39;</span><span class="p">,</span> <span class="s1">&#39;ArrayDisplay&#39;</span><span class="p">]</span>
 
@@ -165,7 +164,8 @@
 
 <div class="viewcode-block" id="CameraDisplay"><a class="viewcode-back" href="../../../api/ctapipe.visualization.CameraDisplay.html#ctapipe.visualization.CameraDisplay">[docs]</a><span class="k">class</span> <span class="nc">CameraDisplay</span><span class="p">:</span>
 
-    <span class="sd">&quot;&quot;&quot;Camera Display using matplotlib.</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Camera Display using matplotlib.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -180,8 +180,8 @@
 <span class="sd">    norm : str or `matplotlib.color.Normalize` instance (default &#39;lin&#39;)</span>
 <span class="sd">        Normalization for the color scale.</span>
 <span class="sd">        Supported str arguments are</span>
-<span class="sd">           &#39;lin&#39;: linear scale</span>
-<span class="sd">           &#39;log&#39;: logarithmic scale (base 10)</span>
+<span class="sd">        - &#39;lin&#39;: linear scale</span>
+<span class="sd">        - &#39;log&#39;: logarithmic scale (base 10)</span>
 <span class="sd">    cmap : str or `matplotlib.colors.Colormap` (default &#39;hot&#39;)</span>
 <span class="sd">        Color map to use (see `matplotlib.cm`)</span>
 <span class="sd">    allow_pick : bool (default False)</span>
@@ -262,7 +262,7 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">rr</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">aa</span><span class="p">)</span>
                 <span class="n">poly</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span>
-                    <span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">),</span>
+                    <span class="p">(</span><span class="n">xx</span><span class="o">-</span><span class="n">rr</span><span class="o">/</span><span class="mf">2.</span><span class="p">,</span> <span class="n">yy</span><span class="o">-</span><span class="n">rr</span><span class="o">/</span><span class="mf">2.</span><span class="p">),</span>
                     <span class="n">width</span><span class="o">=</span><span class="n">rr</span><span class="p">,</span>
                     <span class="n">height</span><span class="o">=</span><span class="n">rr</span><span class="p">,</span>
                     <span class="n">angle</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">pix_rotation</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span>
@@ -273,6 +273,11 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">pixels</span> <span class="o">=</span> <span class="n">PatchCollection</span><span class="p">(</span><span class="n">patches</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">add_collection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pixels</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pixel_highlighting</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pixels</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pixel_highlighting</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pixel_highlighting</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">add_collection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pixel_highlighting</span><span class="p">)</span>
 
         <span class="c1"># Set up some nice plot defaults</span>
 
@@ -292,11 +297,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_active_pixel</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_active_pixel</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_active_pixel_label</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_active_pixel</span><span class="o">.</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                                            <span class="bp">self</span><span class="o">.</span><span class="n">_active_pixel</span><span class="o">.</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-                                            <span class="s2">&quot;0&quot;</span><span class="p">,</span>
-                                            <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
-                                            <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_active_pixel_label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_active_pixel</span><span class="o">.</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                                  <span class="bp">self</span><span class="o">.</span><span class="n">_active_pixel</span><span class="o">.</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                                  <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                                                  <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                                                  <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_active_pixel_label</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
 
         <span class="c1"># enable ability to click on pixel and do something (can be</span>
@@ -311,6 +316,31 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">pix_id</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">norm</span> <span class="o">=</span> <span class="n">norm</span>
+
+<div class="viewcode-block" id="CameraDisplay.highlight_pixels"><a class="viewcode-back" href="../../../api/ctapipe.visualization.CameraDisplay.html#ctapipe.visualization.CameraDisplay.highlight_pixels">[docs]</a>    <span class="k">def</span> <span class="nf">highlight_pixels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pixels</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Highlight the given pixels with a colored line around them</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        pixels : index-like</span>
+<span class="sd">            The pixels to highlight.</span>
+<span class="sd">            Can either be a list or array of integers or a</span>
+<span class="sd">            boolean mask of length number of pixels</span>
+<span class="sd">        color: a matplotlib conform color</span>
+<span class="sd">            the color for the pixel highlighting</span>
+<span class="sd">        linewidth: float</span>
+<span class="sd">            linewidth of the highlighting in points</span>
+<span class="sd">        alpha: 0 &lt;= alpha &lt;= 1</span>
+<span class="sd">            The transparency</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">l</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">)</span>
+        <span class="n">l</span><span class="p">[</span><span class="n">pixels</span><span class="p">]</span> <span class="o">=</span> <span class="n">linewidth</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pixel_highlighting</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pixel_highlighting</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pixel_highlighting</span><span class="o">.</span><span class="n">set_edgecolor</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="CameraDisplay.enable_pixel_picker"><a class="viewcode-back" href="../../../api/ctapipe.visualization.CameraDisplay.html#ctapipe.visualization.CameraDisplay.enable_pixel_picker">[docs]</a>    <span class="k">def</span> <span class="nf">enable_pixel_picker</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; enable ability to click on pixels &quot;&quot;&quot;</span>
@@ -339,10 +369,12 @@
     <span class="k">def</span> <span class="nf">norm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        The norm instance of the Display</span>
+
 <span class="sd">        Possible values:</span>
-<span class="sd">            &quot;lin&quot;: linear scale</span>
-<span class="sd">            &quot;log&quot;: log scale</span>
-<span class="sd">            any matplotlib.colors.Normalize instance, e. g. PowerNorm(gamma=-2)</span>
+
+<span class="sd">        - &quot;lin&quot;: linear scale</span>
+<span class="sd">        - &quot;log&quot;: log scale</span>
+<span class="sd">        -  any matplotlib.colors.Normalize instance, e. g. PowerNorm(gamma=-2)</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pixels</span><span class="o">.</span><span class="n">norm</span>
 
@@ -364,24 +396,20 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">cmap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Color map to use. Either a name or  `matplotlib.colors.ColorMap`</span>
+<span class="sd">        instance, e.g. from `matplotlib.pyplot.cm`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pixels</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">()</span>
 
     <span class="nd">@cmap.setter</span>
     <span class="k">def</span> <span class="nf">cmap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmap</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Change the color map</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        self: type</span>
-<span class="sd">            description</span>
-<span class="sd">        cmap: `matplotlib.colors.ColorMap`</span>
-<span class="sd">            a color map, e.g. from `matplotlib.pyplot.cm.*`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pixels</span><span class="o">.</span><span class="n">set_cmap</span><span class="p">(</span><span class="n">cmap</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">image</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The image displayed on the camera (1D array of pixel values)&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pixels</span><span class="o">.</span><span class="n">get_array</span><span class="p">()</span>
 
     <span class="nd">@image.setter</span>
@@ -472,7 +500,7 @@
 <span class="sd">            any style keywords to pass to matplotlib (e.g. color=&#39;red&#39;</span>
 <span class="sd">            or linewidth=6)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">el</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_ellipse</span><span class="p">(</span><span class="n">centroid</span><span class="o">=</span><span class="p">(</span><span class="n">momparams</span><span class="o">.</span><span class="n">cen_x</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">momparams</span><span class="o">.</span><span class="n">cen_x</span><span class="o">.</span><span class="n">value</span><span class="p">),</span>
+        <span class="n">el</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_ellipse</span><span class="p">(</span><span class="n">centroid</span><span class="o">=</span><span class="p">(</span><span class="n">momparams</span><span class="o">.</span><span class="n">cen_x</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">momparams</span><span class="o">.</span><span class="n">cen_y</span><span class="o">.</span><span class="n">value</span><span class="p">),</span>
                               <span class="n">length</span><span class="o">=</span><span class="n">momparams</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
                               <span class="n">width</span><span class="o">=</span><span class="n">momparams</span><span class="o">.</span><span class="n">width</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="n">momparams</span><span class="o">.</span><span class="n">psi</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">rad</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
                               <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -486,10 +514,15 @@
 
     <span class="k">def</span> <span class="nf">_on_pick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; handler for when a pixel is clicked &quot;&quot;&quot;</span>
-        <span class="n">pix_id</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">ind</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-        <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">pix_x</span><span class="p">[</span><span class="n">pix_id</span><span class="p">])</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>\
-                 <span class="n">u</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">pix_y</span><span class="p">[</span><span class="n">pix_id</span><span class="p">])</span><span class="o">.</span><span class="n">value</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_active_pixel</span><span class="o">.</span><span class="n">xy</span> <span class="o">=</span> <span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">)</span>
+        <span class="n">pix_id</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">ind</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">aa</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">pix_x</span><span class="p">[</span><span class="n">pix_id</span><span class="p">])</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> \
+                     <span class="n">u</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">pix_y</span><span class="p">[</span><span class="n">pix_id</span><span class="p">])</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> \
+                     <span class="n">u</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">pix_area</span><span class="p">)[</span><span class="n">pix_id</span><span class="p">])</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">pix_type</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;hex&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_active_pixel</span><span class="o">.</span><span class="n">xy</span> <span class="o">=</span> <span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rr</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">aa</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_active_pixel</span><span class="o">.</span><span class="n">xy</span> <span class="o">=</span> <span class="p">(</span><span class="n">xx</span> <span class="o">-</span> <span class="n">rr</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">,</span> <span class="n">yy</span> <span class="o">-</span> <span class="n">rr</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_active_pixel</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_active_pixel_label</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_active_pixel_label</span><span class="o">.</span><span class="n">set_y</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span>
@@ -539,6 +572,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;An array containing a value per telescope&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">telescopes</span><span class="o">.</span><span class="n">get_array</span><span class="p">()</span>
 
     <span class="nd">@values.setter</span>
@@ -563,7 +597,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 27 Sep 2016.
+      Last updated on 06 Oct 2016.
 
     </p>
   </div>
@@ -585,7 +619,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.0.dev926',
+            VERSION:'0.1.dev939',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

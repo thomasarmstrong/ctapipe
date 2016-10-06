@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CameraDisplay &mdash; ctapipe v0.0.dev926</title>
+  <title>CameraDisplay &mdash; ctapipe v0.1.dev939</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.0.dev926" href="../index.html"/>
+    <link rel="top" title="ctapipe v0.1.dev939" href="../index.html"/>
         <link rel="up" title="Visualization" href="../visualization/index.html"/>
         <link rel="prev" title="ArrayDisplay" href="ctapipe.visualization.ArrayDisplay.html"/> 
 
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.0.dev926
+                0.1.dev939
               </div>
             
           
@@ -271,22 +271,25 @@ plt.savefig(filename). This includes <code class="xref py py-obj docutils litera
 <tr class="row-odd"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.enable_pixel_picker" title="ctapipe.visualization.CameraDisplay.enable_pixel_picker"><code class="xref py py-obj docutils literal"><span class="pre">enable_pixel_picker</span></code></a>()</td>
 <td>enable ability to click on pixels</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.on_pixel_clicked" title="ctapipe.visualization.CameraDisplay.on_pixel_clicked"><code class="xref py py-obj docutils literal"><span class="pre">on_pixel_clicked</span></code></a>(pix_id)</td>
+<tr class="row-even"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.highlight_pixels" title="ctapipe.visualization.CameraDisplay.highlight_pixels"><code class="xref py py-obj docutils literal"><span class="pre">highlight_pixels</span></code></a>(pixels[,&nbsp;color,&nbsp;linewidth,&nbsp;...])</td>
+<td>Highlight the given pixels with a colored line around them</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.on_pixel_clicked" title="ctapipe.visualization.CameraDisplay.on_pixel_clicked"><code class="xref py py-obj docutils literal"><span class="pre">on_pixel_clicked</span></code></a>(pix_id)</td>
 <td>virtual function to overide in sub-classes to do something special</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.overlay_moments" title="ctapipe.visualization.CameraDisplay.overlay_moments"><code class="xref py py-obj docutils literal"><span class="pre">overlay_moments</span></code></a>(momparams,&nbsp;**kwargs)</td>
+<tr class="row-even"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.overlay_moments" title="ctapipe.visualization.CameraDisplay.overlay_moments"><code class="xref py py-obj docutils literal"><span class="pre">overlay_moments</span></code></a>(momparams,&nbsp;**kwargs)</td>
 <td>helper to overlay ellipse from a <code class="xref py py-obj docutils literal"><span class="pre">reco.MomentParameters</span></code> structure</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.set_limits_minmax" title="ctapipe.visualization.CameraDisplay.set_limits_minmax"><code class="xref py py-obj docutils literal"><span class="pre">set_limits_minmax</span></code></a>(zmin,&nbsp;zmax)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.set_limits_minmax" title="ctapipe.visualization.CameraDisplay.set_limits_minmax"><code class="xref py py-obj docutils literal"><span class="pre">set_limits_minmax</span></code></a>(zmin,&nbsp;zmax)</td>
 <td>set the color scale limits from min to max</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.set_limits_percent" title="ctapipe.visualization.CameraDisplay.set_limits_percent"><code class="xref py py-obj docutils literal"><span class="pre">set_limits_percent</span></code></a>([percent])</td>
+<tr class="row-even"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.set_limits_percent" title="ctapipe.visualization.CameraDisplay.set_limits_percent"><code class="xref py py-obj docutils literal"><span class="pre">set_limits_percent</span></code></a>([percent])</td>
 <td>auto-scale the color range to percent of maximum</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.show" title="ctapipe.visualization.CameraDisplay.show"><code class="xref py py-obj docutils literal"><span class="pre">show</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.show" title="ctapipe.visualization.CameraDisplay.show"><code class="xref py py-obj docutils literal"><span class="pre">show</span></code></a>()</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.update" title="ctapipe.visualization.CameraDisplay.update"><code class="xref py py-obj docutils literal"><span class="pre">update</span></code></a>([force])</td>
+<tr class="row-even"><td><a class="reference internal" href="#ctapipe.visualization.CameraDisplay.update" title="ctapipe.visualization.CameraDisplay.update"><code class="xref py py-obj docutils literal"><span class="pre">update</span></code></a>([force])</td>
 <td>signal a redraw if necessary</td>
 </tr>
 </tbody>
@@ -372,6 +375,38 @@ See matplotlib documentation for the supported kwargs:
 </dd></dl>
 
 <dl class="method">
+<dt id="ctapipe.visualization.CameraDisplay.highlight_pixels">
+<code class="descname">highlight_pixels</code><span class="sig-paren">(</span><em>pixels</em>, <em>color='g'</em>, <em>linewidth=1</em>, <em>alpha=0.75</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/visualization/mpl.html#CameraDisplay.highlight_pixels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.visualization.CameraDisplay.highlight_pixels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Highlight the given pixels with a colored line around them</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>pixels</strong> : index-like</p>
+<blockquote>
+<div><p>The pixels to highlight.
+Can either be a list or array of integers or a
+boolean mask of length number of pixels</p>
+</div></blockquote>
+<p><strong>color: a matplotlib conform color</strong></p>
+<blockquote>
+<div><p>the color for the pixel highlighting</p>
+</div></blockquote>
+<p><strong>linewidth: float</strong></p>
+<blockquote>
+<div><p>linewidth of the highlighting in points</p>
+</div></blockquote>
+<p><strong>alpha: 0 &lt;= alpha &lt;= 1</strong></p>
+<blockquote class="last">
+<div><p>The transparency</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="ctapipe.visualization.CameraDisplay.on_pixel_clicked">
 <code class="descname">on_pixel_clicked</code><span class="sig-paren">(</span><em>pix_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/visualization/mpl.html#CameraDisplay.on_pixel_clicked"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.visualization.CameraDisplay.on_pixel_clicked" title="Permalink to this definition">¶</a></dt>
 <dd><p>virtual function to overide in sub-classes to do something special
@@ -446,7 +481,7 @@ or linewidth=6)</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 27 Sep 2016.
+      Last updated on 06 Oct 2016.
 
     </p>
   </div>
@@ -468,7 +503,7 @@ or linewidth=6)</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.0.dev926',
+            VERSION:'0.1.dev939',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

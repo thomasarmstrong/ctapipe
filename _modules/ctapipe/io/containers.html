@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ctapipe.io.containers &mdash; ctapipe v0.0.dev926</title>
+  <title>ctapipe.io.containers &mdash; ctapipe v0.1.dev939</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.0.dev926" href="../../../index.html"/>
+    <link rel="top" title="ctapipe v0.1.dev939" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.0.dev926
+                0.1.dev939
               </div>
             
           
@@ -187,6 +187,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;az&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;core_x&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;core_y&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;h_first_int&#39;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">return_string</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="o">+</span><span class="s2">&quot;:</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="n">return_string</span> <span class="o">+=</span> <span class="s2">&quot;energy:   {0:.2}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">)</span>
@@ -237,7 +238,13 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tel_id</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="s2">&quot;CT{:03d}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tel_id</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;photo_electrons&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;photo_electrons&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
+        <span class="c1"># Some parameters used in calibration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;refshapes&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;refstep&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;lrefshape&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;time_slice&#39;</span><span class="p">)</span></div>
+
 
 
 <div class="viewcode-block" id="RawCameraData"><a class="viewcode-back" href="../../../api/ctapipe.io.containers.RawCameraData.html#ctapipe.io.containers.RawCameraData">[docs]</a><span class="k">class</span> <span class="nc">RawCameraData</span><span class="p">(</span><span class="n">Container</span><span class="p">):</span>
@@ -253,35 +260,55 @@
 <span class="sd">        (masked) arrays of non-integrated ADC sample data (n_pixels, n_samples)</span>
 <span class="sd">    num_channels : int</span>
 <span class="sd">        number of gain channels in camera</span>
+<span class="sd">    num_pixels : int</span>
+<span class="sd">        number of pixels in camera</span>
+<span class="sd">    num_samples : int</span>
+<span class="sd">        number of samples for camera</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tel_id</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="s2">&quot;CT{:03d}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tel_id</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;adc_sums&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;adc_samples&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;num_channels&#39;</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;calibration&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;pedestal&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;num_channels&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;num_pixels&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;num_samples&#39;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="CalibratedCameraData"><a class="viewcode-back" href="../../../api/ctapipe.io.containers.CalibratedCameraData.html#ctapipe.io.containers.CalibratedCameraData">[docs]</a><span class="k">class</span> <span class="nc">CalibratedCameraData</span><span class="p">(</span><span class="n">RawData</span><span class="p">):</span>
+<div class="viewcode-block" id="CalibratedCameraData"><a class="viewcode-back" href="../../../api/ctapipe.io.containers.CalibratedCameraData.html#ctapipe.io.containers.CalibratedCameraData">[docs]</a><span class="k">class</span> <span class="nc">CalibratedCameraData</span><span class="p">(</span><span class="n">Container</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Storage of calibrated (p.e.) data from a single telescope</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 
-<span class="sd">    pe_charge : dict (only one channel)</span>
-<span class="sd">        arrays of all calibrated data (n_pixels)</span>
-<span class="sd">    tom : time of maximum</span>
-
+<span class="sd">    pe_charge : dict</span>
+<span class="sd">        ndarrays of all calibrated data (npix)</span>
+<span class="sd">    integration_window : dict</span>
+<span class="sd">        bool ndarrays of shape [npix][nsamples] indicating the samples used in</span>
+<span class="sd">        the obtaining of the charge, dependant on the integration method used</span>
+<span class="sd">    pedestal_subtracted_adc : dict</span>
+<span class="sd">    peakpos : dict</span>
+<span class="sd">        position of the peak as determined by the peak-finding algorithm</span>
+<span class="sd">        for each pixel and channel</span>
+<span class="sd">    num_channels : int</span>
+<span class="sd">        number of gain channels in camera</span>
+<span class="sd">    num_pixels : int</span>
+<span class="sd">        number of pixels in camera</span>
+<span class="sd">    calibration_parameters : dict</span>
+<span class="sd">        the calibration parameters used to calbrate the event</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tel_id</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">CalibratedCameraData</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="s2">&quot;CT{:03d}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tel_id</span><span class="p">))</span>
-        <span class="c1">#super().__init__(&quot;CT{:03d}&quot;.format(tel_id))</span>
-        <span class="c1">#self.add_item(&#39;run_id&#39;)</span>
-        <span class="c1">#self.add_item(&#39;event_id&#39;)</span>
-        <span class="c1">#self.add_item(&#39;tels_with_data&#39;)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;pe_charge&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;tom&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="s2">&quot;CT{:03d}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tel_id</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;pe_charge&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;integration_window&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;pedestal_subtracted_adc&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;peakpos&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;num_channels&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;num_pixels&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;calibration_parameters&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span></div>
 </pre></div>
 
            </div>
@@ -294,7 +321,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 27 Sep 2016.
+      Last updated on 06 Oct 2016.
 
     </p>
   </div>
@@ -316,7 +343,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.0.dev926',
+            VERSION:'0.1.dev939',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

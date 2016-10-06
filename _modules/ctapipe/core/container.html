@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ctapipe.core.container &mdash; ctapipe v0.0.dev926</title>
+  <title>ctapipe.core.container &mdash; ctapipe v0.1.dev939</title>
   
 
   
@@ -32,8 +32,8 @@
   
 
   
-    <link rel="top" title="ctapipe v0.0.dev926" href="../../../index.html"/>
-        <link rel="up" title="ctapipe.core" href="../core.html"/> 
+    <link rel="top" title="ctapipe v0.1.dev939" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
 
   
   <script src="../../../_static/js/modernizr.min.js"></script>
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.0.dev926
+                0.1.dev939
               </div>
             
           
@@ -128,8 +128,6 @@
     <li><a href="../../../index.html">Docs</a> &raquo;</li>
       
           <li><a href="../../index.html">Module code</a> &raquo;</li>
-      
-          <li><a href="../core.html">ctapipe.core</a> &raquo;</li>
       
     <li>ctapipe.core.container</li>
       <li class="wy-breadcrumbs-aside">
@@ -236,7 +234,7 @@
         <span class="c1"># allow iterating over item names</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">as_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Container.as_dict"><a class="viewcode-back" href="../../../api/ctapipe.core.Container.html#ctapipe.core.Container.as_dict">[docs]</a>    <span class="k">def</span> <span class="nf">as_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Creates a dictionary of Container items unrolling recursively</span>
 <span class="sd">        nested containers.&#39;&#39;&#39;</span>
         <span class="n">d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
@@ -245,15 +243,15 @@
                 <span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">as_dict</span><span class="p">()</span>
                 <span class="k">continue</span>
             <span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
-        <span class="k">return</span> <span class="n">d</span>
+        <span class="k">return</span> <span class="n">d</span></div>
 
-    <span class="k">def</span> <span class="nf">items</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Container.items"><a class="viewcode-back" href="../../../api/ctapipe.core.Container.html#ctapipe.core.Container.items">[docs]</a>    <span class="k">def</span> <span class="nf">items</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Iterate over pairs of key, value. Just like the dictionary method&#39;&#39;&#39;</span>
         <span class="c1"># allow iterating over item names</span>
         <span class="k">return</span> <span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">))</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">))</span></div>
 
-    <span class="k">def</span> <span class="nf">to_table</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Container.to_table"><a class="viewcode-back" href="../../../api/ctapipe.core.Container.html#ctapipe.core.Container.to_table">[docs]</a>    <span class="k">def</span> <span class="nf">to_table</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Create Table from Container&#39;&#39;&#39;</span>
         <span class="c1"># Scalar `Quantity` objects do not have __len__ method which is</span>
         <span class="c1"># needed by Table.write. We artificially change their shape</span>
@@ -272,9 +270,9 @@
         <span class="k">return</span> <span class="n">Table</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
                      <span class="n">names</span><span class="o">=</span><span class="n">names</span><span class="p">,</span>
                      <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
-                     <span class="n">meta</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">as_dict</span><span class="p">())</span>
+                     <span class="n">meta</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">as_dict</span><span class="p">())</span></div>
 
-    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Container.write"><a class="viewcode-back" href="../../../api/ctapipe.core.Container.html#ctapipe.core.Container.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Write table using astropy.table write method&#39;&#39;&#39;</span>
 
         <span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_table</span><span class="p">()</span>
@@ -282,7 +280,7 @@
         <span class="n">table</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s2">&quot;EXTNAME&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
         <span class="n">table</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">table</span></div>
+        <span class="k">return</span> <span class="n">table</span></div></div>
 </pre></div>
 
            </div>
@@ -295,7 +293,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 27 Sep 2016.
+      Last updated on 06 Oct 2016.
 
     </p>
   </div>
@@ -317,7 +315,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.0.dev926',
+            VERSION:'0.1.dev939',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

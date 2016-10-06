@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; ctapipe v0.0.dev926</title>
+  <title>Index &mdash; ctapipe v0.1.dev939</title>
   
 
   
@@ -33,7 +33,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.0.dev926" href="index.html"/> 
+    <link rel="top" title="ctapipe v0.1.dev939" href="index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.0.dev926
+                0.1.dev939
               </div>
             
           
@@ -163,6 +163,7 @@
  | <a href="#T"><strong>T</strong></a>
  | <a href="#U"><strong>U</strong></a>
  | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
  
 </div>
 <h2 id="A">A</h2>
@@ -196,6 +197,10 @@
 
       
   <dt><a href="api/ctapipe.instrument.obsconfig.ArrayTriggerConfig.html#ctapipe.instrument.obsconfig.ArrayTriggerConfig">ArrayTriggerConfig (class in ctapipe.instrument.obsconfig)</a>
+  </dt>
+
+      
+  <dt><a href="api/ctapipe.core.Container.html#ctapipe.core.Container.as_dict">as_dict() (ctapipe.core.Container method)</a>
   </dt>
 
   </dl></td>
@@ -253,7 +258,7 @@
   </dt>
 
       
-  <dt><a href="api/ctapipe.core.component.html#ctapipe.core.component">component() (in module ctapipe.core)</a>
+  <dt><a href="api/ctapipe.core.Component.html#ctapipe.core.Component">Component (class in ctapipe.core)</a>
   </dt>
 
       
@@ -509,15 +514,19 @@
   </dt>
 
       
-  <dt><a href="api/ctapipe.reco.HighOrderMomentParameters.html#ctapipe.reco.HighOrderMomentParameters">HighOrderMomentParameters (class in ctapipe.reco)</a>
+  <dt><a href="api/ctapipe.visualization.CameraDisplay.html#ctapipe.visualization.CameraDisplay.highlight_pixels">highlight_pixels() (ctapipe.visualization.CameraDisplay method)</a>
   </dt>
 
       
-  <dt><a href="api/ctapipe.reco.hillas_parameters.html#ctapipe.reco.hillas_parameters">hillas_parameters() (in module ctapipe.reco)</a>
+  <dt><a href="api/ctapipe.reco.HighOrderMomentParameters.html#ctapipe.reco.HighOrderMomentParameters">HighOrderMomentParameters (class in ctapipe.reco)</a>
   </dt>
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="api/ctapipe.reco.hillas_parameters.html#ctapipe.reco.hillas_parameters">hillas_parameters() (in module ctapipe.reco)</a>
+  </dt>
+
       
   <dt><a href="api/ctapipe.reco.HillasParameterizationError.html#ctapipe.reco.HillasParameterizationError">HillasParameterizationError</a>
   </dt>
@@ -540,14 +549,18 @@
   <dt><a href="api/ctapipe.tools.info.html#ctapipe.tools.info">info() (in module ctapipe.tools)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="api/ctapipe.core.Tool.html#ctapipe.core.Tool.initialize">initialize() (ctapipe.core.Tool method)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="api/ctapipe.utils.Histogram.html#ctapipe.utils.Histogram.interpolate">interpolate() (ctapipe.utils.Histogram method)</a>
+  </dt>
+
+      
+  <dt><a href="api/ctapipe.core.Container.html#ctapipe.core.Container.items">items() (ctapipe.core.Container method)</a>
   </dt>
 
   </dl></td>
@@ -693,10 +706,18 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="api/ctapipe.coordinates.NominalFrame.html#ctapipe.coordinates.NominalFrame.pointing_direction">pointing_direction (ctapipe.coordinates.NominalFrame attribute)</a>
+  <dt><a href="api/ctapipe.coordinates.GroundFrame.html#ctapipe.coordinates.GroundFrame.pointing_direction">pointing_direction (ctapipe.coordinates.GroundFrame attribute)</a>
   </dt>
 
       <dd><dl>
+        
+  <dt><a href="api/ctapipe.coordinates.NominalFrame.html#ctapipe.coordinates.NominalFrame.pointing_direction">(ctapipe.coordinates.NominalFrame attribute)</a>
+  </dt>
+
+        
+  <dt><a href="api/ctapipe.coordinates.TelescopeFrame.html#ctapipe.coordinates.TelescopeFrame.pointing_direction">(ctapipe.coordinates.TelescopeFrame attribute)</a>
+  </dt>
+
         
   <dt><a href="api/ctapipe.coordinates.TiltedGroundFrame.html#ctapipe.coordinates.TiltedGroundFrame.pointing_direction">(ctapipe.coordinates.TiltedGroundFrame attribute)</a>
   </dt>
@@ -736,6 +757,12 @@
   <dt><a href="api/ctapipe.coordinates.NominalFrame.html#ctapipe.coordinates.NominalFrame.rotation">rotation (ctapipe.coordinates.NominalFrame attribute)</a>
   </dt>
 
+      <dd><dl>
+        
+  <dt><a href="api/ctapipe.coordinates.TelescopeFrame.html#ctapipe.coordinates.TelescopeFrame.rotation">(ctapipe.coordinates.TelescopeFrame attribute)</a>
+  </dt>
+
+      </dl></dd>
       
   <dt><a href="api/ctapipe.core.Tool.html#ctapipe.core.Tool.run">run() (ctapipe.core.Tool method)</a>
   </dt>
@@ -809,9 +836,15 @@
   </dt>
 
       
-  <dt><a href="api/ctapipe.io.camera.CameraGeometry.html#ctapipe.io.camera.CameraGeometry.to_table">to_table() (ctapipe.io.camera.CameraGeometry method)</a>
+  <dt><a href="api/ctapipe.core.Container.html#ctapipe.core.Container.to_table">to_table() (ctapipe.core.Container method)</a>
   </dt>
 
+      <dd><dl>
+        
+  <dt><a href="api/ctapipe.io.camera.CameraGeometry.html#ctapipe.io.camera.CameraGeometry.to_table">(ctapipe.io.camera.CameraGeometry method)</a>
+  </dt>
+
+      </dl></dd>
       
   <dt><a href="api/ctapipe.core.Tool.html#ctapipe.core.Tool">Tool (class in ctapipe.core)</a>
   </dt>
@@ -849,6 +882,16 @@
   </dl></td>
 </tr></table>
 
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="api/ctapipe.core.Container.html#ctapipe.core.Container.write">write() (ctapipe.core.Container method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
 
 
            </div>
@@ -861,7 +904,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 27 Sep 2016.
+      Last updated on 06 Oct 2016.
 
     </p>
   </div>
@@ -883,7 +926,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.0.dev926',
+            VERSION:'0.1.dev939',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

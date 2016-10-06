@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Tool &mdash; ctapipe v0.0.dev926</title>
+  <title>Tool &mdash; ctapipe v0.1.dev939</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.0.dev926" href="../index.html"/>
+    <link rel="top" title="ctapipe v0.1.dev939" href="../index.html"/>
         <link rel="up" title="Core Data Structures and Base Classes" href="../core/index.html"/>
         <link rel="next" title="Datasets" href="../datasets/index.html"/>
         <link rel="prev" title="Container" href="ctapipe.core.Container.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.0.dev926
+                0.1.dev939
               </div>
             
           
@@ -166,17 +166,17 @@
 configuration loading/saving, logging, command-line processing,
 and provenance meta-data handling. It is based on
 <code class="xref py py-obj docutils literal"><span class="pre">traitlets.config.Application</span></code>. Tools may contain configurable
-<code class="xref py py-obj docutils literal"><span class="pre">ctapipe.core.Component</span></code> classes that do work, and their
+<a class="reference internal" href="ctapipe.core.Component.html#ctapipe.core.Component" title="ctapipe.core.Component"><code class="xref py py-obj docutils literal"><span class="pre">ctapipe.core.Component</span></code></a> classes that do work, and their
 configuration parameters will propegate automatically to the
 <a class="reference internal" href="#ctapipe.core.Tool" title="ctapipe.core.Tool"><code class="xref py py-obj docutils literal"><span class="pre">Tool</span></code></a>.</p>
 <p>Tool developers should create sub-classes, and a name,
 description, usage examples should be added by defining the
 <code class="xref py py-obj docutils literal"><span class="pre">name</span></code>, <code class="xref py py-obj docutils literal"><span class="pre">description</span></code> and <code class="xref py py-obj docutils literal"><span class="pre">examples</span></code> class attributes as
 strings. The <code class="xref py py-obj docutils literal"><span class="pre">aliases</span></code> attribute can be set to cause a lower-level
-<code class="xref py py-obj docutils literal"><span class="pre">Component</span></code> parameter to become a high-plevel command-line
+<a class="reference internal" href="ctapipe.core.Component.html#ctapipe.core.Component" title="ctapipe.core.Component"><code class="xref py py-obj docutils literal"><span class="pre">Component</span></code></a> parameter to become a high-plevel command-line
 parameter (See example below). The <a class="reference internal" href="#ctapipe.core.Tool.setup" title="ctapipe.core.Tool.setup"><code class="xref py py-obj docutils literal"><span class="pre">setup()</span></code></a>, <a class="reference internal" href="#ctapipe.core.Tool.start" title="ctapipe.core.Tool.start"><code class="xref py py-obj docutils literal"><span class="pre">start()</span></code></a>, and
 <a class="reference internal" href="#ctapipe.core.Tool.finish" title="ctapipe.core.Tool.finish"><code class="xref py py-obj docutils literal"><span class="pre">finish()</span></code></a> methods should be defined in the sub-class.</p>
-<p>Additionally, any <code class="xref py py-obj docutils literal"><span class="pre">ctapipe.core.Component</span></code> used within the <a class="reference internal" href="#ctapipe.core.Tool" title="ctapipe.core.Tool"><code class="xref py py-obj docutils literal"><span class="pre">Tool</span></code></a>
+<p>Additionally, any <a class="reference internal" href="ctapipe.core.Component.html#ctapipe.core.Component" title="ctapipe.core.Component"><code class="xref py py-obj docutils literal"><span class="pre">ctapipe.core.Component</span></code></a> used within the <a class="reference internal" href="#ctapipe.core.Tool" title="ctapipe.core.Tool"><code class="xref py py-obj docutils literal"><span class="pre">Tool</span></code></a>
 should have their class in a list in the <code class="xref py py-obj docutils literal"><span class="pre">classes</span></code> attribute,
 which will automatically add their configuration parameters to the
 tool.</p>
@@ -343,7 +343,7 @@ called after <a class="reference internal" href="#ctapipe.core.Tool.initialize" 
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 27 Sep 2016.
+      Last updated on 06 Oct 2016.
 
     </p>
   </div>
@@ -365,7 +365,7 @@ called after <a class="reference internal" href="#ctapipe.core.Tool.initialize" 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.0.dev926',
+            VERSION:'0.1.dev939',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

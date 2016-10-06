@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Core Data Structures and Base Classes &mdash; ctapipe v0.0.dev926</title>
+  <title>Core Data Structures and Base Classes &mdash; ctapipe v0.1.dev939</title>
   
 
   
@@ -32,7 +32,8 @@
   
 
   
-    <link rel="top" title="ctapipe v0.0.dev926" href="../index.html"/>
+    <link rel="top" title="ctapipe v0.1.dev939" href="../index.html"/>
+        <link rel="next" title="Component" href="../api/ctapipe.core.Component.html"/>
         <link rel="prev" title="TiltedGroundFrame" href="../api/ctapipe.coordinates.TiltedGroundFrame.html"/> 
 
   
@@ -61,7 +62,7 @@
             
             
               <div class="version">
-                0.0.dev926
+                0.1.dev939
               </div>
             
           
@@ -160,7 +161,7 @@
 with the core functionality to implement an application that processes
 data.</p>
 <p><a class="reference internal" href="../api/ctapipe.core.Container.html#ctapipe.core.Container" title="ctapipe.core.Container"><code class="xref py py-obj docutils literal"><span class="pre">Container</span></code></a> provides a common data class,
-<code class="xref py py-obj docutils literal"><span class="pre">Component</span></code> lets one define a modules (worker, maker,
+<a class="reference internal" href="../api/ctapipe.core.Component.html#ctapipe.core.Component" title="ctapipe.core.Component"><code class="xref py py-obj docutils literal"><span class="pre">Component</span></code></a> lets one define a modules (worker, maker,
 etc.) for a particular algorithm along with its user-editable
 configuration parameters, and <a class="reference internal" href="../api/ctapipe.core.Tool.html#ctapipe.core.Tool" title="ctapipe.core.Tool"><code class="xref py py-obj docutils literal"><span class="pre">Tool</span></code></a> defines a
 command-line application, complete with configuration file or
@@ -207,7 +208,7 @@ to provide a common interface.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">Component</span></code>(parent,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><a class="reference internal" href="../api/ctapipe.core.Component.html#ctapipe.core.Component" title="ctapipe.core.Component"><code class="xref py py-obj docutils literal"><span class="pre">Component</span></code></a>(parent,&nbsp;**kwargs)</td>
 <td>Base class of all Components (sometimes called workers, makers, etc).</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="../api/ctapipe.core.Container.html#ctapipe.core.Container" title="ctapipe.core.Container"><code class="xref py py-obj docutils literal"><span class="pre">Container</span></code></a>([name])</td>
@@ -221,7 +222,7 @@ to provide a common interface.</p>
 </div>
 <div class="section" id="class-inheritance-diagram">
 <h4>Class Inheritance Diagram<a class="headerlink" href="#class-inheritance-diagram" title="Permalink to this headline">¶</a></h4>
-<object data="../_images/inheritance-bce1734b6920b92b67a4547125fad89adf69e0f1.svg" type="image/svg+xml">
+<object data="../_images/inheritance-57fa81ee12b9b596790868a98cf9633a75995dd2.svg" type="image/svg+xml">
             <p class="warning">Inheritance diagram of ctapipe.core.component.Component, ctapipe.core.container.Container, ctapipe.core.tool.Tool</p></object>
 </div>
 </div>
@@ -235,6 +236,8 @@ to provide a common interface.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../api/ctapipe.core.Component.html" class="btn btn-neutral float-right" title="Component" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
       
         <a href="../api/ctapipe.coordinates.TiltedGroundFrame.html" class="btn btn-neutral" title="TiltedGroundFrame" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
@@ -246,7 +249,7 @@ to provide a common interface.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 27 Sep 2016.
+      Last updated on 06 Oct 2016.
 
     </p>
   </div>
@@ -268,7 +271,7 @@ to provide a common interface.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.0.dev926',
+            VERSION:'0.1.dev939',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
