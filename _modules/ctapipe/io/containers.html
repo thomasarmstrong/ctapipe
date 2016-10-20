@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ctapipe.io.containers &mdash; ctapipe v0.1.dev1016</title>
+  <title>ctapipe.io.containers &mdash; ctapipe v0.1.dev1023</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.1.dev1016" href="../../../index.html"/>
+    <link rel="top" title="ctapipe v0.1.dev1023" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.1.dev1016
+                0.1.dev1023
               </div>
             
           
@@ -146,8 +146,8 @@
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">ctapipe.core</span> <span class="kn">import</span> <span class="n">Container</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">ctapipe.core</span> <span class="k">import</span> <span class="n">Container</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;RawData&#39;</span><span class="p">,</span> <span class="s1">&#39;RawCameraData&#39;</span><span class="p">,</span> <span class="s1">&#39;MCShowerData&#39;</span><span class="p">,</span> <span class="s1">&#39;MCEvent&#39;</span><span class="p">,</span> <span class="s1">&#39;MCCamera&#39;</span><span class="p">,</span> <span class="s1">&#39;CalibratedCameraData&#39;</span><span class="p">]</span>
@@ -206,11 +206,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;h_first_int&#39;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">return_string</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="o">+</span><span class="s2">&quot;:</span><span class="se">\n</span><span class="s2">&quot;</span>
-        <span class="n">return_string</span> <span class="o">+=</span> <span class="s2">&quot;energy:   {0:.2}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">)</span>
-        <span class="n">return_string</span> <span class="o">+=</span> <span class="s2">&quot;altitude: {0:.2}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alt</span><span class="p">)</span>
-        <span class="n">return_string</span> <span class="o">+=</span> <span class="s2">&quot;azimuth:  {0:.2}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">az</span><span class="p">)</span>
-        <span class="n">return_string</span> <span class="o">+=</span> <span class="s2">&quot;core x:   {0:.4}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">core_x</span><span class="p">)</span>
-        <span class="n">return_string</span> <span class="o">+=</span> <span class="s2">&quot;core y:   {0:.4}&quot;</span>  <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">core_y</span><span class="p">)</span>
+        <span class="n">return_string</span> <span class="o">+=</span> <span class="s2">&quot;energy:   </span><span class="si">{0:.2}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">)</span>
+        <span class="n">return_string</span> <span class="o">+=</span> <span class="s2">&quot;altitude: </span><span class="si">{0:.2}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alt</span><span class="p">)</span>
+        <span class="n">return_string</span> <span class="o">+=</span> <span class="s2">&quot;azimuth:  </span><span class="si">{0:.2}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">az</span><span class="p">)</span>
+        <span class="n">return_string</span> <span class="o">+=</span> <span class="s2">&quot;core x:   </span><span class="si">{0:.4}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">core_x</span><span class="p">)</span>
+        <span class="n">return_string</span> <span class="o">+=</span> <span class="s2">&quot;core y:   </span><span class="si">{0:.4}</span><span class="s2">&quot;</span>  <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">core_y</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">return_string</span></div>
 
 <div class="viewcode-block" id="MCEvent"><a class="viewcode-back" href="../../../api/ctapipe.io.containers.MCEvent.html#ctapipe.io.containers.MCEvent">[docs]</a><span class="k">class</span> <span class="nc">MCEvent</span><span class="p">(</span><span class="n">MCShowerData</span><span class="p">):</span>
@@ -230,7 +230,7 @@
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">return_string</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__str__</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="n">npix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">photo_electrons</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tel</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span>
-        <span class="n">return_string</span> <span class="o">+=</span> <span class="s2">&quot;total photo_electrons: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">npix</span> <span class="p">)</span>
+        <span class="n">return_string</span> <span class="o">+=</span> <span class="s2">&quot;total photo_electrons: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">npix</span> <span class="p">)</span>
         <span class="k">return</span> <span class="n">return_string</span></div>
 
 
@@ -253,7 +253,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tel_id</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="s2">&quot;CT{:03d}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tel_id</span><span class="p">))</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="s2">&quot;CT</span><span class="si">{:03d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tel_id</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;photo_electrons&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
         <span class="c1"># Some parameters used in calibration</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;refshapes&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
@@ -283,7 +283,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tel_id</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="s2">&quot;CT{:03d}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tel_id</span><span class="p">))</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="s2">&quot;CT</span><span class="si">{:03d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tel_id</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;adc_sums&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;adc_samples&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;calibration&#39;</span><span class="p">)</span>
@@ -317,7 +317,7 @@
 <span class="sd">        the calibration parameters used to calbrate the event</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tel_id</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="s2">&quot;CT{:03d}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tel_id</span><span class="p">))</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="s2">&quot;CT</span><span class="si">{:03d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tel_id</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;pe_charge&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;integration_window&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="s1">&#39;pedestal_subtracted_adc&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
@@ -337,7 +337,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 19 Oct 2016.
+      Last updated on 20 Oct 2016.
 
     </p>
   </div>
@@ -359,7 +359,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.1.dev1016',
+            VERSION:'0.1.dev1023',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

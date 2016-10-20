@@ -1,0 +1,48 @@
+
+
+Camera
+===========================================
+
+.. currentmodule:: ctapipe.instrument.CameraDescription
+
+.. autoclass:: Camera
+   :show-inheritance:
+
+   
+     
+   
+
+   
+   
+   
+
+   
+   
+
+   .. rubric:: Methods Summary
+
+   .. autosummary::
+   
+      ~Camera.guess
+      ~Camera.rotate
+      ~Camera.to_table
+
+   
+   
+
+   
+   
+   
+
+   
+   
+
+   .. rubric:: Methods Documentation
+
+   
+   .. automethod:: guess
+   .. automethod:: rotate
+   .. automethod:: to_table
+
+   
+   

@@ -1,0 +1,8 @@
+
+
+make_rectangular_camera_geometry
+=====================================================================
+
+.. currentmodule:: ctapipe.instrument.CameraDescription
+
+.. autofunction:: make_rectangular_camera_geometry

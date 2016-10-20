@@ -1,0 +1,8 @@
+
+
+load_fits
+==================================================
+
+.. currentmodule:: ctapipe.instrument.InstrumentDescription
+
+.. autofunction:: load_fits

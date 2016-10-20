@@ -1,0 +1,1229 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ctapipe.instrument.InstrumentDescription &mdash; ctapipe v0.1.dev1023</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/astropy_logo.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="ctapipe v0.1.dev1023" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> ctapipe
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.dev1023
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started For Developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Development Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools/index.html">Command line tools (<code class="docutils literal"><span class="pre">tools</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../analysis/index.html">Analysis (<code class="docutils literal"><span class="pre">analysis</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../calib/index.html">Calibration (<code class="docutils literal"><span class="pre">calib</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../coordinates/index.html">Coordinates (<code class="docutils literal"><span class="pre">coordinates</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">Core Structures and Base Classes (<code class="docutils literal"><span class="pre">core</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../datasets/index.html">Datasets (<code class="docutils literal"><span class="pre">datasets</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../flow/index.html">Flow-based framework (<code class="docutils literal"><span class="pre">flow</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../image/index.html">Imaging (<code class="docutils literal"><span class="pre">image</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../instrument/index.html">Instrument (<code class="docutils literal"><span class="pre">instrument</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../io/index.html">Input/Output (<code class="docutils literal"><span class="pre">io</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reco/index.html">Reconstruction (<code class="docutils literal"><span class="pre">reco</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utils/index.html">Utilities (<code class="docutils literal"><span class="pre">utils</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../visualization/index.html">Visualization (<code class="docutils literal"><span class="pre">visualization</span></code>)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">ctapipe</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>ctapipe.instrument.InstrumentDescription</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for ctapipe.instrument.InstrumentDescription</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">ctapipe.instrument</span> <span class="k">import</span> <span class="n">CameraDescription</span> <span class="k">as</span> <span class="n">CD</span>
+<span class="kn">from</span> <span class="nn">ctapipe.io.files</span> <span class="k">import</span> <span class="n">get_file_type</span>
+<span class="kn">from</span> <span class="nn">astropy</span> <span class="k">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+<span class="kn">import</span> <span class="nn">pyhessio</span> <span class="k">as</span> <span class="nn">h</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">astropy.table</span> <span class="k">import</span> <span class="n">Table</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">imp</span>
+<span class="kn">import</span> <span class="nn">textwrap</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;load&#39;</span><span class="p">,</span><span class="s1">&#39;load_fakedata&#39;</span><span class="p">,</span><span class="s1">&#39;load_hessio&#39;</span><span class="p">,</span><span class="s1">&#39;load_fits&#39;</span><span class="p">,</span><span class="s1">&#39;load_config&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;read_config_data&#39;</span><span class="p">,</span><span class="s1">&#39;get_var_from_file&#39;</span><span class="p">,</span><span class="s1">&#39;write_fits&#39;</span><span class="p">]</span>
+
+<span class="k">class</span> <span class="nc">Atmosphere</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Atmosphere is a class that provides data about the atmosphere. This</span>
+<span class="sd">    data is stored in different files which are read by member functions&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">thickness</span><span class="p">,</span><span class="n">ext_coeff</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rho</span> <span class="o">=</span> <span class="n">rho</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">thickness</span> <span class="o">=</span> <span class="n">thickness</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ext_coeff</span> <span class="o">=</span> <span class="n">ext_coeff</span>
+    
+    <span class="k">def</span> <span class="nf">load_profile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load atmosphere profile from file</span>
+<span class="sd">        </span>
+<span class="sd">        Parameter</span>
+<span class="sd">        ---------</span>
+<span class="sd">        filename: string</span>
+<span class="sd">            name of file</span>
+<span class="sd">        --------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">altitude</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">thickness</span><span class="p">,</span><span class="n">n_minus_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                      <span class="n">delimeter</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+        <span class="n">altitude</span> <span class="o">=</span> <span class="n">altitude</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span>
+        <span class="n">rho</span> <span class="o">=</span> <span class="n">rho</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">g</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">cm</span><span class="o">**-</span><span class="mi">3</span>
+        <span class="n">thickness</span> <span class="o">=</span> <span class="n">thickness</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">g</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">cm</span><span class="o">**-</span><span class="mi">2</span>
+        <span class="k">return</span> <span class="n">altitude</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">thickness</span>
+    
+    <span class="k">def</span> <span class="nf">load_extinction_coeff</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load atmosphere extinction profile from file</span>
+<span class="sd">        </span>
+<span class="sd">        Parameter</span>
+<span class="sd">        ---------</span>
+<span class="sd">        filename: string</span>
+<span class="sd">            name of file</span>
+<span class="sd">        --------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="c1"># still work to do</span>
+           
+
+<div class="viewcode-block" id="load"><a class="viewcode-back" href="../../../api/ctapipe.instrument.InstrumentDescription.load.html#ctapipe.instrument.InstrumentDescription.load">[docs]</a><span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">path</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">instr_item</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">telID</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to load instrument data from a file</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename: string</span>
+<span class="sd">        name of the file</span>
+<span class="sd">    path: string</span>
+<span class="sd">        name of the path, where the file(s) are located</span>
+<span class="sd">        - when already given as part of the filename, nothing to be entered</span>
+<span class="sd">        - when file(s) is located in current directory, nothing to be entered</span>
+<span class="sd">    version: string</span>
+<span class="sd">        needed if no filename is given and if files with a given version should</span>
+<span class="sd">        be looked for</span>
+<span class="sd">    instr_item: string</span>
+<span class="sd">        item of the instrument (Telescope,Camera or Optics) whose data</span>
+<span class="sd">        should be loaded, can be either a list, e.g. (&#39;Camera&#39;,&#39;Telescope&#39;) or</span>
+<span class="sd">        just one string, e.g. &#39;Camera&#39;</span>
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    possibility 0:</span>
+<span class="sd">    telescope,camera,optics = load_fakedata(filename)</span>
+<span class="sd">    </span>
+<span class="sd">    possibility 1:</span>
+<span class="sd">    telescope,camera,optics = load_hessio(filename)</span>
+<span class="sd">    </span>
+<span class="sd">    possibility 2:</span>
+<span class="sd">    telescope,camera,optics = load_fits(filename = &#39;&#39;,path = None,</span>
+<span class="sd">                                        version = &#39;&#39;,instr_item = &#39;&#39;)</span>
+<span class="sd">    possibility 3:</span>
+<span class="sd">    telescope,camera,optics = load_config(filename)</span>
+<span class="sd">    </span>
+<span class="sd">    all dictionaries contain astropy.table Tables</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">filetype</span> <span class="o">=</span> <span class="n">get_file_type</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">filename</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span> <span class="ow">and</span> <span class="n">version</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">load_fakedata</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">filetype</span> <span class="o">==</span> <span class="s1">&#39;fits&#39;</span> <span class="ow">or</span> <span class="n">version</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span> <span class="p">:</span>
+        <span class="k">return</span> <span class="n">load_fits</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">filetype</span> <span class="o">==</span> <span class="s1">&#39;cfg&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">load_config</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">filetype</span> <span class="o">==</span> <span class="s1">&#39;simtel&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">load_hessio</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;File type </span><span class="si">{}</span><span class="s2"> not supported&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filetype</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="load_fakedata"><a class="viewcode-back" href="../../../api/ctapipe.instrument.InstrumentDescription.load_fakedata.html#ctapipe.instrument.InstrumentDescription.load_fakedata">[docs]</a><span class="k">def</span> <span class="nf">load_fakedata</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function writing faked date into an astropy.table Table</span>
+<span class="sd">    </span>
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    telescope,camera,optics: 3 dictionaries</span>
+<span class="sd">        all dictionaries contain astropy.table Tables</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Faked data will be produced.&#39;</span><span class="p">)</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;Feb2016&#39;</span>
+    <span class="n">tel_num</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">tel_id</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">124</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">tel_num</span><span class="p">)]</span>
+    
+    <span class="n">telescope</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">camera</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">optics</span> <span class="o">=</span> <span class="p">{}</span>  
+    
+    <span class="n">tel_table_prime</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span>
+    <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;TelID&#39;</span><span class="p">]</span><span class="o">=</span> <span class="n">tel_id</span>
+    
+    <span class="n">tel_posX</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tel_num</span><span class="p">)]</span>
+    <span class="n">tel_posY</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tel_num</span><span class="p">)]</span>
+    <span class="n">tel_posZ</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tel_num</span><span class="p">)]</span>
+    <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;TelX&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tel_posX</span>
+    <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;TelX&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span>
+    <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;TelY&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tel_posY</span>
+    <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;TelY&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span>
+    <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;TelZ&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tel_posZ</span>
+    <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;TelZ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span>
+    <span class="n">mirror_area</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tel_num</span><span class="p">)]</span>
+    <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;MirA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mirror_area</span>
+    <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;MirA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">mirror_num</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">124</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tel_num</span><span class="p">)]</span>
+    <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;MirN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mirror_num</span>
+    <span class="n">foclen</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tel_num</span><span class="p">)]</span>
+    <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;FL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">foclen</span>
+    <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;FL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span>
+    
+    <span class="n">telescope</span><span class="p">[</span><span class="s1">&#39;TelescopeTable_Version</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">version</span><span class="p">]</span> <span class="o">=</span> <span class="n">tel_table_prime</span>    
+    
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tel_id</span><span class="p">)):</span>       
+        
+        <span class="n">cam_table_prime</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span>
+        <span class="n">opt_table_prime</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span>
+        <span class="n">pixel_num</span> <span class="o">=</span> <span class="mi">128</span>
+        <span class="n">pix_posX</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tel_num</span><span class="o">*</span><span class="n">pixel_num</span><span class="p">)]</span>
+        <span class="n">pix_posY</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tel_num</span><span class="o">*</span><span class="n">pixel_num</span><span class="p">)]</span>       
+        <span class="n">pix_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pix_posX</span><span class="p">))</span>
+        <span class="n">pix_area</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tel_num</span><span class="o">*</span><span class="n">pixel_num</span><span class="p">)]</span>
+         
+        <span class="n">cam_table_prime</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;TELID&#39;</span><span class="p">:</span> <span class="n">tel_id</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="s1">&#39;VERSION&#39;</span><span class="p">:</span> <span class="n">version</span><span class="p">,</span> \
+        <span class="s1">&#39;PIXX_DES&#39;</span><span class="p">:</span> <span class="s1">&#39;x-position of the pixel measured by...&#39;</span><span class="p">}</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pix_id</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixX&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pix_posX</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixX&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixY&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pix_posY</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixY&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pix_area</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">mm</span><span class="o">**</span><span class="mi">2</span>
+        
+        <span class="n">opt_table_prime</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;TELID&#39;</span><span class="p">:</span> <span class="n">tel_id</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="s1">&#39;VERSION&#39;</span><span class="p">:</span> <span class="n">version</span><span class="p">,</span> \
+        <span class="s1">&#39;MIRN&#39;</span><span class="p">:</span> <span class="n">mirror_num</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="s1">&#39;MIRA&#39;</span><span class="p">:</span> <span class="n">mirror_area</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> \
+        <span class="s1">&#39;FL&#39;</span><span class="p">:</span> <span class="n">foclen</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> \
+        <span class="s1">&#39;MIRA_DES&#39;</span><span class="p">:</span> <span class="s1">&#39;Area of all mirrors&#39;</span><span class="p">}</span>
+        <span class="n">tab_mirrefl</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span>
+        <span class="n">tab_mirrefl</span><span class="p">[</span><span class="s1">&#39;wavel&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">700</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">tab_mirrefl</span><span class="p">[</span><span class="s1">&#39;wavel&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">nm</span>
+        <span class="n">tab_mirrefl</span><span class="p">[</span><span class="s1">&#39;refl&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> \
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tab_mirrefl</span><span class="p">[</span><span class="s1">&#39;wavel&#39;</span><span class="p">]))]</span>
+        
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tab_mirrefl</span>
+        
+        <span class="n">camera</span><span class="p">[</span><span class="s1">&#39;CameraTable_Version</span><span class="si">%s</span><span class="s1">_TelID</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">version</span><span class="p">,</span><span class="n">tel_id</span><span class="p">[</span><span class="n">t</span><span class="p">])]</span> \
+        <span class="o">=</span> <span class="n">cam_table_prime</span>
+        <span class="n">optics</span><span class="p">[</span><span class="s1">&#39;OpticsTable_Version</span><span class="si">%s</span><span class="s1">_TelID</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">version</span><span class="p">,</span><span class="n">tel_id</span><span class="p">[</span><span class="n">t</span><span class="p">])]</span> \
+        <span class="o">=</span> <span class="n">opt_table_prime</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Astropy tables have been created.&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">telescope</span><span class="p">,</span><span class="n">camera</span><span class="p">,</span><span class="n">optics</span></div>
+    
+<div class="viewcode-block" id="load_hessio"><a class="viewcode-back" href="../../../api/ctapipe.instrument.InstrumentDescription.load_hessio.html#ctapipe.instrument.InstrumentDescription.load_hessio">[docs]</a><span class="k">def</span> <span class="nf">load_hessio</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to open and load a hessio file</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename: string</span>
+<span class="sd">        name of the file</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hessio file will be opened.&quot;</span><span class="p">)</span>    
+    <span class="n">h</span><span class="o">.</span><span class="n">file_open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="nb">next</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">move_to_next_event</span><span class="p">())</span>
+    <span class="c1">#version = h.get...</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;Feb2016&#39;</span>
+    
+    <span class="c1">#Creating 3 dictionaries where the instrument configuration will be stored</span>
+    <span class="c1">#The dictionaries themselves contain astropy.table.Table objects</span>
+    <span class="n">telescope</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">camera</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">optics</span> <span class="o">=</span> <span class="p">{}</span>  
+    
+    <span class="c1">#--------------------------------------------------------------------------</span>
+    <span class="c1">#Telescope configuration</span>
+    <span class="n">tel_table_prime</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span>
+    <span class="n">tel_table_prime</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;VERSION&#39;</span><span class="p">:</span> <span class="n">version</span><span class="p">}</span>    
+    
+    <span class="k">try</span><span class="p">:</span> 
+        <span class="n">tel_id</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">get_telescope_ids</span><span class="p">()</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;TelID&#39;</span><span class="p">]</span><span class="o">=</span> <span class="n">tel_id</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tel_posX</span> <span class="o">=</span> <span class="p">[</span><span class="n">h</span><span class="o">.</span><span class="n">get_telescope_position</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tel_id</span><span class="p">]</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;TelX&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tel_posX</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;TelX&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span>
+        <span class="n">tel_table_prime</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;TelX_description&#39;</span><span class="p">]</span> <span class="o">=</span>\
+        <span class="s1">&#39;x-position of the telescope measured by...&#39;</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tel_posY</span> <span class="o">=</span> <span class="p">[</span><span class="n">h</span><span class="o">.</span><span class="n">get_telescope_position</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tel_id</span><span class="p">]</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;TelY&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tel_posY</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;TelY&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tel_posZ</span> <span class="o">=</span> <span class="p">[</span><span class="n">h</span><span class="o">.</span><span class="n">get_telescope_position</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tel_id</span><span class="p">]</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;TelZ&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tel_posZ</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;TelZ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;CameraClass&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">h</span><span class="o">.</span><span class="n">get_camera_class</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tel_id</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;MirA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">h</span><span class="o">.</span><span class="n">get_mirror_area</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tel_id</span><span class="p">]</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;MirA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>  <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;MirN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">h</span><span class="o">.</span><span class="n">get_mirror_number</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tel_id</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>    
+    <span class="k">try</span><span class="p">:</span> 
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;FL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">h</span><span class="o">.</span><span class="n">get_optical_foclen</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tel_id</span><span class="p">]</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;FL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">tel_table_prime</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;TelNum&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="nb">len</span><span class="p">(</span><span class="n">tel_posX</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    
+    <span class="c1">#Beside other tables containimng telescope configuration data, the main</span>
+    <span class="c1">#telescope table is written into the telescope dictionary.</span>
+    <span class="n">telescope</span><span class="p">[</span><span class="s1">&#39;TelescopeTable_Version</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">version</span><span class="p">]</span> <span class="o">=</span> <span class="n">tel_table_prime</span>
+    
+    <span class="c1">#--------------------------------------------------------------------------</span>
+    <span class="c1">#Camera and Optics configuration</span>
+    <span class="k">try</span><span class="p">:</span>    
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tel_id</span><span class="p">)):</span>       
+            
+            <span class="n">cam_table_prime</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span>
+            <span class="n">cam_table_prime</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;TELID&#39;</span><span class="p">:</span> <span class="n">tel_id</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="s1">&#39;VERSION&#39;</span><span class="p">:</span> <span class="n">version</span><span class="p">}</span>
+            <span class="n">opt_table_prime</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span>
+            <span class="n">opt_table_prime</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;TELID&#39;</span><span class="p">:</span> <span class="n">tel_id</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="s1">&#39;VERSION&#39;</span><span class="p">:</span> <span class="n">version</span><span class="p">}</span>
+            
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">pix_posX</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">get_pixel_position</span><span class="p">(</span><span class="n">tel_id</span><span class="p">[</span><span class="n">t</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">pix_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pix_posX</span><span class="p">))</span>
+                <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pix_id</span>                
+                <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixX&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pix_posX</span>
+                <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixX&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span>
+                <span class="n">cam_table_prime</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;PixXDescription&#39;</span><span class="p">]</span> <span class="o">=</span>\
+                <span class="s1">&#39;x-position of the pixel measured by...&#39;</span>
+            <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">pix_posY</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">get_pixel_position</span><span class="p">(</span><span class="n">tel_id</span><span class="p">[</span><span class="n">t</span><span class="p">])[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixY&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pix_posY</span>
+                <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixY&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span>
+            <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">camera_class</span> <span class="o">=</span> <span class="n">CD</span><span class="o">.</span><span class="n">guess_camera_geometry</span><span class="p">(</span><span class="n">pix_posX</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">,</span><span class="n">pix_posY</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span>
+                <span class="n">pix_area_prime</span> <span class="o">=</span> <span class="n">camera_class</span><span class="o">.</span><span class="n">pix_area</span>
+                <span class="n">pix_type_prime</span> <span class="o">=</span> <span class="n">camera_class</span><span class="o">.</span><span class="n">pix_type</span>
+                <span class="n">pix_neighbors_prime</span> <span class="o">=</span> <span class="n">camera_class</span><span class="o">.</span><span class="n">pix_neighbors</span>
+            <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>        
+    
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">pix_area</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">get_pixel_area</span><span class="p">(</span><span class="n">tel_id</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>
+                <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pix_area</span>
+                <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">mm</span><span class="o">**</span><span class="mi">2</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pix_area_prime</span>
+                    <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">mm</span><span class="o">**</span><span class="mi">2</span>
+                <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+            <span class="k">try</span><span class="p">:</span> <span class="n">pix_type</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">get_pixel_type</span><span class="p">(</span><span class="n">tel_id</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span> <span class="n">pix_type</span> <span class="o">=</span> <span class="n">pix_type_prime</span>
+                <span class="k">except</span><span class="p">:</span> <span class="n">pix_type</span> <span class="o">=</span> <span class="s1">&#39;unknown&#39;</span>
+            <span class="n">cam_table_prime</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;PixType&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pix_type</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">pix_neighbors</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">get_pixel_neighbor</span><span class="p">(</span><span class="n">tel_id</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>
+                <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixNeig&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pix_neighbors</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span> <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixNeig&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pix_neighbors_prime</span>
+                <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>       
+            
+            <span class="c1">#as long as no mirror IDs are given, use the following:</span>
+            <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirrID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">opt_table_prime</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;MirNum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">get_mirror_number</span><span class="p">(</span><span class="n">tel_id</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>
+            <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirArea&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">get_mirror_area</span><span class="p">(</span><span class="n">tel_id</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>
+                <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirArea&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="o">**</span><span class="mi">2</span>
+                <span class="n">opt_table_prime</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;MirAreaDescription&#39;</span><span class="p">]</span> <span class="o">=</span>\
+                <span class="s1">&#39;Area of all mirrors&#39;</span>
+            <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;OptFocLen&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">get_optical_foclen</span><span class="p">(</span><span class="n">tel_id</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>
+                <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;OptFocLen&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span>
+            <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+            
+            <span class="c1">#Beside other tables containing camera and optics configuration</span>
+            <span class="c1">#data, the main  tables are written into the camera and optics</span>
+            <span class="c1">#dictionary.</span>
+            <span class="n">camera</span><span class="p">[</span><span class="s1">&#39;CameraTable_Version</span><span class="si">%s</span><span class="s1">_TelID</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">version</span><span class="p">,</span><span class="n">tel_id</span><span class="p">[</span><span class="n">t</span><span class="p">])]</span> \
+            <span class="o">=</span> <span class="n">cam_table_prime</span>
+            <span class="n">optics</span><span class="p">[</span><span class="s1">&#39;OpticsTable_Version</span><span class="si">%s</span><span class="s1">_TelID</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">version</span><span class="p">,</span><span class="n">tel_id</span><span class="p">[</span><span class="n">t</span><span class="p">])]</span> \
+            <span class="o">=</span> <span class="n">opt_table_prime</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+        
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Astropy tables have been created.&#39;</span><span class="p">)</span>
+    <span class="n">h</span><span class="o">.</span><span class="n">close_file</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hessio file has been closed.&quot;</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">telescope</span><span class="p">,</span><span class="n">camera</span><span class="p">,</span><span class="n">optics</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="load_fits"><a class="viewcode-back" href="../../../api/ctapipe.instrument.InstrumentDescription.load_fits.html#ctapipe.instrument.InstrumentDescription.load_fits">[docs]</a><span class="k">def</span> <span class="nf">load_fits</span><span class="p">(</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">path</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">instr_item</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to load data from a fits file</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename: string</span>
+<span class="sd">        name of the file</span>
+<span class="sd">    path: string</span>
+<span class="sd">        name of the path, where the file(s) are located</span>
+<span class="sd">        - when already given as part of the filename, nothing to be entered</span>
+<span class="sd">        - when file(s) is located in current directory, nothing to be entered</span>
+<span class="sd">    version: string</span>
+<span class="sd">        needed if no filename is given and if files with a given version should</span>
+<span class="sd">        be looked for</span>
+<span class="sd">    instr_item: string</span>
+<span class="sd">        item of the instrument (Telescope,Camera or Optics) whose data</span>
+<span class="sd">        should be loaded, can be either a list, e.g. (&#39;Camera&#39;,&#39;Telescope&#39;) or</span>
+<span class="sd">        just one string, e.g. &#39;Camera&#39;</span>
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    telescope,camera,optics: 3 dictionaries</span>
+<span class="sd">        all dictionaries contain astropy.table Tables</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fits file will be opened.&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">filename</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">dirListing</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">instr_item</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span> <span class="n">instr_item</span> <span class="o">=</span> <span class="p">(</span><span class="n">instr_item</span><span class="p">,)</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">dirListing</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">item2</span> <span class="ow">in</span> <span class="n">instr_item</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">item2</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">version</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+                        <span class="n">filename</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="p">[</span><span class="n">filename</span><span class="p">]</span>
+    
+    <span class="c1">#Creating 3 dictionaries where the instrument configuration will be stored</span>
+    <span class="c1">#The dictionaries themselves contain astropy.table.Table objects</span>
+    <span class="n">telescope</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">camera</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">optics</span> <span class="o">=</span> <span class="p">{}</span>
+    
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">filename</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;Telescope&#39;</span> <span class="ow">or</span> <span class="s1">&#39;Tel&#39;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+            <span class="n">telescope</span><span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">item</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="s1">&#39;Camera&#39;</span> <span class="ow">or</span> <span class="s1">&#39;Cam&#39;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+            <span class="n">camera</span><span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">item</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="s1">&#39;Optics&#39;</span> <span class="ow">or</span> <span class="s1">&#39;Opt&#39;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+            <span class="n">optics</span><span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">item</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1">#If in the fits file not the same nomenclature is used as in the</span>
+            <span class="c1">#&#39;write_fits&#39; function or if it contains more than one HDU object,</span>
+            <span class="c1">#just suppose that the HDUs are in the order of:</span>
+            <span class="c1">#first HDU: telescope data,</span>
+            <span class="c1">#second HDU: camera data,</span>
+            <span class="c1">#third HDU: optics data</span>
+            <span class="c1">#all other HDUs are written to the telescope data with numbers as</span>
+            <span class="c1">#names</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">h</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span> <span class="n">telescope</span><span class="p">[</span><span class="s1">&#39;TelescopeTable&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">item</span><span class="p">,</span><span class="n">hdu</span><span class="o">=</span><span class="n">h</span><span class="p">)</span>
+                    <span class="k">except</span><span class="p">:</span> <span class="k">break</span>
+                <span class="k">elif</span> <span class="n">h</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span> <span class="n">camera</span><span class="p">[</span><span class="s1">&#39;CameraTable&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">item</span><span class="p">,</span><span class="n">hdu</span><span class="o">=</span><span class="n">h</span><span class="p">)</span>
+                    <span class="k">except</span><span class="p">:</span> <span class="k">break</span>
+                <span class="k">elif</span> <span class="n">h</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span> <span class="n">optics</span><span class="p">[</span><span class="s1">&#39;OpticsTable&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">item</span><span class="p">,</span><span class="n">hdu</span><span class="o">=</span><span class="n">h</span><span class="p">)</span>
+                    <span class="k">except</span><span class="p">:</span> <span class="k">break</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span> <span class="n">telescope</span><span class="p">[</span><span class="s1">&#39;</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">h</span><span class="p">]</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">item</span><span class="p">,</span><span class="n">hdu</span><span class="o">=</span><span class="n">h</span><span class="p">)</span>
+                    <span class="k">except</span><span class="p">:</span> <span class="k">break</span>
+                <span class="n">h</span><span class="o">+=</span><span class="mi">1</span>
+                <span class="k">if</span> <span class="n">h</span><span class="o">&gt;</span><span class="mi">100</span><span class="p">:</span>
+                    <span class="k">break</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Astropy tables have been created.&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">telescope</span><span class="p">,</span><span class="n">camera</span><span class="p">,</span><span class="n">optics</span></div>
+    
+<div class="viewcode-block" id="load_config"><a class="viewcode-back" href="../../../api/ctapipe.instrument.InstrumentDescription.load_config.html#ctapipe.instrument.InstrumentDescription.load_config">[docs]</a><span class="k">def</span> <span class="nf">load_config</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to load config file data into a table</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename: string</span>
+<span class="sd">        name of the file</span>
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    telescope,camera,optics: 3 dictionaries</span>
+<span class="sd">        all dictionaries contain astropy.table Tables</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">read_config_data</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">dirname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">filename</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="c1">#Creating 3 dictionaries where the instrument configuration will be stored</span>
+    <span class="c1">#The dictionaries themselves contain astropy.table.Table objects</span>
+    <span class="n">telescope</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">camera</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">optics</span> <span class="o">=</span> <span class="p">{}</span> 
+    
+    <span class="c1">#--------------------------------------------------------------------------</span>
+    <span class="c1">#Telescope configuration</span>
+    <span class="n">tel_table_prime</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span>
+    <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;TelID&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">tel_table_prime</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;VERSION&#39;</span><span class="p">:</span> <span class="n">version</span><span class="p">}</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;TriggerDelayComp&#39;</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">data</span><span class="o">.</span><span class="n">trigger_delay_compensation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;DefaultTrigger&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">default_trigger</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;TriggerDiscBins&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">disc_bins</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;TriggerDiscStart&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">disc_start</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;DiscriminatorPulseShape&#39;</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">data</span><span class="o">.</span><span class="n">discriminator_pulse_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">pulseshape_table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span>        
+        <span class="n">pulseshape_filename</span> <span class="o">=</span> \
+        <span class="n">dirname</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">discriminator_pulse_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">pulseshape_version</span> <span class="o">=</span> \
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">pulseshape_filename</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">time</span><span class="p">,</span><span class="n">amplitude</span> <span class="o">=</span> \
+        <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">pulseshape_filename</span><span class="p">,</span><span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">pulseshape_table</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;Discriminator pulse shape&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;VERSION&#39;</span><span class="p">:</span> <span class="n">pulseshape_version</span> <span class="p">}</span>
+        <span class="n">pulseshape_table</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span>
+        <span class="n">pulseshape_table</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">ns</span>
+        <span class="n">pulseshape_table</span><span class="p">[</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">amplitude</span>
+        <span class="n">telescope</span><span class="p">[</span><span class="s1">&#39;Tel_DiscriminatorPulseShape&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pulseshape_table</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;DiscriminatorAmplitude&#39;</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">data</span><span class="o">.</span><span class="n">discriminator_amplitude</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;DiscriminatorAmplitude&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">mV</span>
+    <span class="k">except</span><span class="p">:</span><span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;NumTriggerPixels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">trigger_pixels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;DiscriminatorThreshold&#39;</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">discriminator_threshold</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;DefaultTrig&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">default_trigger</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;TelTrigMinTime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">teltrig_min_time</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;TelTrigMinTime&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">ns</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;TelTrigMinSigSum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">teltrig_min_sigsum</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;TelTrigMinSigSum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">pV</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;TrigDelayComp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">trigger_delay_compensation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;DiscriminatorVarThreshold&#39;</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">discriminator_var_threshold</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;SamplingRate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fadc_MHz</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;SamplingRate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">MHz</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;SamplingRate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fadc_mhz</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;SamplingRate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">MHz</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;FADCPulseShape&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fadc_pulse_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">fadc_pulseshape_table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span>        
+        <span class="n">fadc_pulseshape_filename</span> <span class="o">=</span> \
+        <span class="n">dirname</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">fadc_pulse_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">pulseshape_version</span> <span class="o">=</span> \
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">fadc_pulseshape_filename</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">time</span><span class="p">,</span><span class="n">amplitude</span> <span class="o">=</span> \
+        <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fadc_pulseshape_filename</span><span class="p">,</span><span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">fadc_pulseshape_table</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;FADC pulse shape&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;VERSION&#39;</span><span class="p">:</span> <span class="n">pulseshape_version</span> <span class="p">}</span>
+        <span class="n">fadc_pulseshape_table</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span>
+        <span class="n">fadc_pulseshape_table</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">ns</span>
+        <span class="n">fadc_pulseshape_table</span><span class="p">[</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">amplitude</span>
+        <span class="n">telescope</span><span class="p">[</span><span class="s1">&#39;Tel_FADCPulseShape&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pulseshape_table</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;FADCBins&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fadc_bins</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;FADCSumBins&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fadc_sum_bins</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;FADCSumOffset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fadc_sum_offset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;FADCPedestal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fadc_pedestal</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;FADCAmplitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fadc_amplitude</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;FADCNoise&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fadc_noise</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;NumGains&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">num_gains</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;FADCLowGainPedestal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fadc_lg_pedestal</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;FADCLowGainAmplitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fadc_lg_amplitude</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;FADCLowGainNoise&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fadc_lg_noise</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;FADCMaxSignal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fadc_max_signal</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;FADCMaxSum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fadc_max_sum</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;CamBodyDiam&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">camera_body_diameter</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;CamBodyDiam&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;CamDepth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">camera_depth</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;CamDepth&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;CamConfig&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">camera_config_file</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span><span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">tel_table_prime</span><span class="p">[</span><span class="s1">&#39;PixNum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">camera_pixels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+
+    <span class="c1">#Beside other tables containimng telescope configuration data, the main</span>
+    <span class="c1">#telescope table is written into the telescope dictionary.</span>
+    <span class="n">telescope</span><span class="p">[</span><span class="s1">&#39;TelescopeTable_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">version</span><span class="p">]</span> <span class="o">=</span> <span class="n">tel_table_prime</span>
+    
+    
+    <span class="c1">#--------------------------------------------------------------------------</span>
+    <span class="c1">#Camera configuration</span>
+    <span class="n">cam_table_prime</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span>
+    <span class="n">cam_table_prime</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;VERSION&#39;</span><span class="p">:</span> <span class="n">version</span><span class="p">}</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cam_table_prime</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;CamBodyDiam&#39;</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">data</span><span class="o">.</span><span class="n">camera_body_diameter</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">cam_table_prime</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;CamDepth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">camera_depth</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+    <span class="k">except</span><span class="p">:</span><span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">cam_table_prime</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;CamConfig&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">camera_config_file</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span><span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cam_config_filename</span> <span class="o">=</span> \
+        <span class="n">dirname</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">camera_config_file</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">pix_posX</span><span class="p">,</span><span class="n">pix_posY</span> <span class="o">=</span>\
+        <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">cam_config_filename</span><span class="p">,</span>
+                   <span class="n">comments</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">,</span><span class="s1">&#39;M&#39;</span><span class="p">,</span><span class="s1">&#39;PixType&#39;</span><span class="p">,</span><span class="s1">&#39;AnalogSumTrigger&#39;</span><span class="p">,</span><span class="s1">&#39;Rotate&#39;</span><span class="p">,</span>\
+                   <span class="s1">&#39;Trigger&#39;</span><span class="p">,</span><span class="s1">&#39;DigitalSumTrigger&#39;</span><span class="p">),</span>
+                   <span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">board_ID</span> <span class="o">=</span>\
+        <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">cam_config_filename</span><span class="p">,</span>
+                   <span class="n">comments</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">,</span><span class="s1">&#39;M&#39;</span><span class="p">,</span><span class="s1">&#39;PixType&#39;</span><span class="p">,</span><span class="s1">&#39;AnalogSumTrigger&#39;</span><span class="p">,</span><span class="s1">&#39;Rotate&#39;</span><span class="p">,</span>\
+                   <span class="s1">&#39;Trigger&#39;</span><span class="p">,</span><span class="s1">&#39;DigitalSumTrigger&#39;</span><span class="p">),</span>
+                   <span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,),</span><span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>            
+            <span class="n">pix_ID</span><span class="p">,</span><span class="n">module_number</span><span class="p">,</span><span class="n">board_number</span><span class="p">,</span><span class="n">channel_number</span><span class="p">,</span><span class="n">pixel_on</span> <span class="o">=</span> \
+            <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">cam_config_filename</span><span class="p">,</span>
+                    <span class="n">comments</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">,</span><span class="s1">&#39;M&#39;</span><span class="p">,</span><span class="s1">&#39;PixType&#39;</span><span class="p">,</span><span class="s1">&#39;AnalogSumTrigger&#39;</span><span class="p">,</span><span class="s1">&#39;Rotate&#39;</span><span class="p">,</span>\
+                    <span class="s1">&#39;Trigger&#39;</span><span class="p">,</span><span class="s1">&#39;DigitalSumTrigger&#39;</span><span class="p">),</span>
+                    <span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span><span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+            
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">pix_ID</span><span class="p">,</span><span class="n">module_number</span><span class="p">,</span><span class="n">board_number</span><span class="p">,</span><span class="n">channel_number</span> <span class="o">=</span> \
+            <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">cam_config_filename</span><span class="p">,</span>
+                    <span class="n">comments</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">,</span><span class="s1">&#39;M&#39;</span><span class="p">,</span><span class="s1">&#39;PixType&#39;</span><span class="p">,</span><span class="s1">&#39;AnalogSumTrigger&#39;</span><span class="p">,</span><span class="s1">&#39;Rotate&#39;</span><span class="p">,</span>\
+                    <span class="s1">&#39;Trigger&#39;</span><span class="p">,</span><span class="s1">&#39;DigitalSumTrigger&#39;</span><span class="p">),</span>
+                    <span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span><span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+            <span class="n">pixel_on</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pix_ID</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixX&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pix_posX</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixX&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixY&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pix_posY</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixY&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;ModuleNum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">module_number</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;BoardNum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">board_number</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;ChannelNum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">channel_number</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;BoardID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">board_ID</span>
+        <span class="k">if</span> <span class="n">pixel_on</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixelON&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pixel_on</span>
+    <span class="k">except</span><span class="p">:</span> <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cam_config_filename</span> <span class="o">=</span> \
+        <span class="n">dirname</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">camera_config_file</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">pix_type</span><span class="p">,</span><span class="n">pmt_type</span><span class="p">,</span><span class="n">cathode_shape_type</span><span class="p">,</span><span class="n">visible_cathode_diameter</span><span class="p">,</span>\
+            <span class="n">funnel_shape_type</span><span class="p">,</span><span class="n">funnel_diameter</span><span class="p">,</span><span class="n">funnel_depth</span> <span class="o">=</span>\
+            <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">cam_config_filename</span><span class="p">,</span><span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span>\
+            <span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">max_rows</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">funnel_efficiency</span><span class="p">,</span><span class="n">funnel_wall_reflectivity</span> <span class="o">=</span>\
+            <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">cam_config_filename</span><span class="p">,</span><span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span><span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>\
+            <span class="n">max_rows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">pix_type</span><span class="p">,</span><span class="n">pmt_type</span><span class="p">,</span><span class="n">cathode_shape_type</span><span class="p">,</span><span class="n">visible_cathode_diameter</span><span class="p">,</span>\
+            <span class="n">funnel_shape_type</span><span class="p">,</span><span class="n">funnel_diameter</span><span class="p">,</span><span class="n">funnel_depth</span><span class="o">=</span>\
+            <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">cam_config_filename</span><span class="p">,</span><span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span>\
+            <span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">max_rows</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">funnel_efficiency</span> <span class="o">=</span>\
+            <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">cam_config_filename</span><span class="p">,</span><span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,),</span>\
+            <span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">max_rows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+            <span class="n">funnel_wall_reflectivity</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PixType&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pix_type</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PMTType&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pmt_type</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;CathType&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cathode_shape_type</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;CathDiam&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">visible_cathode_diameter</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;CathDiam&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;FunnelTzpe&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">funnel_shape_type</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;FunnelDiam&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">funnel_diameter</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;FunnelDiam&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;FunnelDepth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">funnel_depth</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;FunnelDepth&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+        <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;FunnelEff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">funnel_efficiency</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">funnel_wall_reflectivity</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;FunnelRefl&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">funnel_wall_reflectivity</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">funnel_eff_table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span>        
+        <span class="n">funnel_eff_filename</span> <span class="o">=</span> \
+        <span class="n">dirname</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">funnel_efficiency</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">funnel_eff_version</span> <span class="o">=</span> \
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">funnel_eff_filename</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">angle</span><span class="p">,</span><span class="n">transmission</span> <span class="o">=</span> \
+        <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">funnel_eff_filename</span><span class="p">,</span><span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">refl_table</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;Funnel efficiency&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;VERSION&#39;</span><span class="p">:</span> <span class="n">funnel_eff_version</span> <span class="p">}</span>
+        <span class="n">funnel_eff_table</span><span class="p">[</span><span class="s1">&#39;Angle&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wavel</span>
+        <span class="n">funnel_eff_table</span><span class="p">[</span><span class="s1">&#39;Angle&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">degree</span>
+        <span class="n">funnel_eff_table</span><span class="p">[</span><span class="s1">&#39;Transmission&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">transmission</span>
+        <span class="n">camera</span><span class="p">[</span><span class="s1">&#39;Cam_FunnelEfficiency&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">funnel_eff_table</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">cam_table_prime</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;PixNum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">camera_pixels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PhDetEff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">quantum_efficiency</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span><span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">quantumeff_table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span>        
+        <span class="n">cam_quantumeff_filename</span> <span class="o">=</span>\
+        <span class="n">dirname</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">quantum_efficiency</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">cam_quantumeff_version</span> <span class="o">=</span> \
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">cam_quantumeff_filename</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">wavel</span><span class="p">,</span><span class="n">ph_detection_eff</span> <span class="o">=</span> \
+        <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">cam_quantumeff_filename</span><span class="p">,</span><span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">quantumeff_table</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;Quantum efficiency&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;VERSION&#39;</span><span class="p">:</span> <span class="n">cam_quantumeff_version</span><span class="p">}</span>
+        <span class="n">quantumeff_table</span><span class="p">[</span><span class="s1">&#39;Wavelength&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wavel</span>
+        <span class="n">quantumeff_table</span><span class="p">[</span><span class="s1">&#39;Wavelength&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">nm</span>
+        <span class="n">quantumeff_table</span><span class="p">[</span><span class="s1">&#39;DetEfficiency&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ph_detection_eff</span>
+        <span class="n">camera</span><span class="p">[</span><span class="s1">&#39;Cam_PhotonDetectionEfficiency&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">quantumeff_table</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;PESpec&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">pm_photoelectron_spectrum</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">pespectrum_table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span>
+        <span class="n">pespectrum_filename</span> <span class="o">=</span>\
+        <span class="n">dirname</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">pm_photoelectron_spectrum</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">pespectrum_version</span> <span class="o">=</span> \
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">pespectrum_filename</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">amplitude</span><span class="p">,</span><span class="n">probability</span> <span class="o">=</span> \
+        <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">pespectrum_filename</span><span class="p">,</span><span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">pespectrum_table</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;Photoelectron spectrum&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;VERSION&#39;</span><span class="p">:</span> <span class="n">pespectrum_version</span><span class="p">}</span>
+        <span class="n">pespectrum_table</span><span class="p">[</span><span class="s1">&#39;Amplitude [PE]&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">amplitude</span>
+        <span class="n">pespectrum_table</span><span class="p">[</span><span class="s1">&#39;Probability&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">probability</span>
+        <span class="n">camera</span><span class="p">[</span><span class="s1">&#39;Cam_PhotoelectronSpectrum&#39;</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">pespectrum_table</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;TransTimeJitt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">transit_time_jitter</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;GainVar&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">gain_variation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;QEVar&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">qe_variation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">cam_table_prime</span><span class="p">[</span><span class="s1">&#39;CamFilter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">camera_filter</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">camfilter_table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span>        
+        <span class="n">camfilter_filename</span> <span class="o">=</span> \
+        <span class="n">dirname</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">camera_filter</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">camfilter_version</span> <span class="o">=</span> \
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">camfilter_filename</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">wavel</span><span class="p">,</span><span class="n">transmission</span> <span class="o">=</span> \
+        <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">camfilter_filename</span><span class="p">,</span><span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">camfilter_table</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;Camera window transmission&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;VERSION&#39;</span><span class="p">:</span> <span class="n">camfilter_version</span> <span class="p">}</span>
+        <span class="n">camfilter_table</span><span class="p">[</span><span class="s1">&#39;Wavelength&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wavel</span>
+        <span class="n">camfilter_table</span><span class="p">[</span><span class="s1">&#39;Wavelength&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">nm</span>
+        <span class="n">camfilter_table</span><span class="p">[</span><span class="s1">&#39;Transmission&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">transmission</span>
+        <span class="n">camera</span><span class="p">[</span><span class="s1">&#39;CameraWindowTransmission&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">camfilter_table</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    
+    <span class="c1">#some variables which are set for simulation --&gt; no real instrument data</span>
+    
+    <span class="c1">#try: cam_table_prime.meta[&#39;MINPH&#39;] = data.min_photons[0]</span>
+    <span class="c1">#except: pass</span>
+    <span class="c1">#try: cam_table_prime.meta[&#39;MIPE&#39;] = data.min_photoelectrons[0]</span>
+    <span class="c1">#except: pass</span>
+    <span class="c1">#try: cam_table_prime.meta[&#39;STOREPE&#39;] = data.store_photoelectrons[0]</span>
+    <span class="c1">#except: pass</span>
+    <span class="c1">#try: cam_table_prime.meta[&#39;NSB&#39;] = data.nightsky_background[0]</span>
+    <span class="c1">#except: pass</span>
+    
+    <span class="c1">#Beside other tables containimng camer configuration data, the main</span>
+    <span class="c1">#camera table is written into the camera dictionary.</span>
+    <span class="n">camera</span><span class="p">[</span><span class="s1">&#39;CameraTable_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">version</span><span class="p">]</span> <span class="o">=</span> <span class="n">cam_table_prime</span>
+    
+    
+    <span class="c1">#--------------------------------------------------------------------------</span>
+    <span class="c1">#Optics configuration</span>
+    <span class="n">opt_table_prime</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span>
+    <span class="n">opt_table_prime</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;VERSION&#39;</span><span class="p">:</span> <span class="n">version</span><span class="p">}</span>
+    
+    <span class="k">try</span><span class="p">:</span> <span class="n">opt_table_prime</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;MirrorList&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">mirror_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span><span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">opt_mirrorlist_filename</span> <span class="o">=</span> \
+        <span class="n">dirname</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mirror_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">opt_mirrorlist_filename</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+        <span class="n">temp_filename</span> <span class="o">=</span> <span class="s1">&#39;mirrorlist_temp.txt&#39;</span>
+        <span class="n">temp_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">temp_filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">&#39;#%&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;#%&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+            <span class="n">temp_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">temp_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>        
+        <span class="n">mirror_characs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">temp_filename</span><span class="p">,</span><span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">temp_filename</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">mir_ID</span> <span class="o">=</span> <span class="n">mirror_characs</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+            <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mir_ID</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">mir_posX</span> <span class="o">=</span> <span class="n">mirror_characs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirX&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mir_posX</span>
+            <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirX&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+        <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">mir_posY</span> <span class="o">=</span> <span class="n">mirror_characs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirY&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mir_posY</span>
+            <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirY&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+        <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">mir_posZ</span> <span class="o">=</span> <span class="n">mirror_characs</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+            <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirZ&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mir_posZ</span>
+            <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirZ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+        <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>       
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">mir_diam</span> <span class="o">=</span> <span class="n">mirror_characs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirDiam&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mir_diam</span>
+            <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirDiam&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+        <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">mir_FL</span> <span class="o">=</span> <span class="n">mirror_characs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+            <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirFL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mir_FL</span>
+            <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirFL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+        <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">mir_shape_code</span> <span class="o">=</span> <span class="n">mirror_characs</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+            <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirShCode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mir_shape_code</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">mir_nx</span> <span class="o">=</span> <span class="n">mirror_characs</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+            <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;n_x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mir_nx</span>
+        <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">mir_ny</span> <span class="o">=</span> <span class="n">mirror_characs</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+            <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;n_y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mir_ny</span>
+        <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">mir_nz</span> <span class="o">=</span> <span class="n">mirror_characs</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span>
+            <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;n_z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mir_nz</span>
+        <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">dist_optax_mirrorcentrum</span> <span class="o">=</span> <span class="n">mirror_characs</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+            <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;DistOptAxMirCent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist_optax_mirrorcentrum</span>
+            <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;DistOptAxMirCent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+        <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>    
+    <span class="k">try</span><span class="p">:</span> <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirClass&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">data</span><span class="o">.</span><span class="n">mirror_class</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span><span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;PrimMirParam&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">primary_mirror_parameters</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;PrimRefRad&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">primary_ref_radius</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;PrimRefRad&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;PrimDiam&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">primary_diameter</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;PrimDiam&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;PrimHoleDiam&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">primary_hole_diameter</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;PrimHoleDiam&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;SndMirParam&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">secondary_mirror_parameters</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;SndRefRad&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">secondary_ref_radius</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;SndRefRad&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;SndDiam&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">secondary_diameter</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;SndDiam&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;SndHoleDiam&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">secondary_hole_diameter</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;SndHoleDiam&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;FocalSurfParam&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">focal_surface_param</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;FL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">focal_length</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;FL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;FocalSurfRefRad&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">focal_surface_ref_radius</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;FocalSurfRefRad&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;RandmFocalLen&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">random_focal_length</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;RandmFocalLen&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirReflRndmAngle&#39;</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">data</span><span class="o">.</span><span class="n">mirror_reflection_random_angle</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirReflRndmAngle&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">degree</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirAlignRndmDist&#39;</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">data</span><span class="o">.</span><span class="n">mirror_align_random_distance</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirAlignRndmDist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirAlignRndmHoriz&#39;</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">data</span><span class="o">.</span><span class="n">mirror_align_random_horizontal</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirAlignRndmVert&#39;</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">data</span><span class="o">.</span><span class="n">mirror_align_random_vertical</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirRefl&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">mirror_reflectivity</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">refl_table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">()</span>        
+        <span class="n">mir_refl_filename</span> <span class="o">=</span> \
+        <span class="n">dirname</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mirror_reflectivity</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">mir_refl_version</span> <span class="o">=</span> \
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">mir_refl_filename</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">wavel</span><span class="p">,</span><span class="n">reflect</span> <span class="o">=</span> \
+        <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">mir_refl_filename</span><span class="p">,</span><span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">refl_table</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;Mirror reflectivity&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;VERSION&#39;</span><span class="p">:</span> <span class="n">mir_refl_version</span> <span class="p">}</span>
+        <span class="n">refl_table</span><span class="p">[</span><span class="s1">&#39;Wavelength&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wavel</span>
+        <span class="n">refl_table</span><span class="p">[</span><span class="s1">&#39;Wavelength&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">nm</span>
+        <span class="n">refl_table</span><span class="p">[</span><span class="s1">&#39;Reflectivity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">reflect</span>
+        <span class="n">optics</span><span class="p">[</span><span class="s1">&#39;Opt_MirrorRefelctivity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">refl_table</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirList&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">mirror_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;MirOffset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">mirror_offset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;FocusOffset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">focus_offset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;TelTrans&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">telescope_transmission</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;TelRndmAngle&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">telescope_random_angle</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span> <span class="n">opt_table_prime</span><span class="p">[</span><span class="s1">&#39;TelRndmErr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">telescope_random_error</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+
+    <span class="c1">#Beside other tables containimng optics configuration data, the main</span>
+    <span class="c1">#optics table is written into the optics dictionary.</span>
+    <span class="n">optics</span><span class="p">[</span><span class="s1">&#39;OpticsTable_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">version</span><span class="p">]</span> <span class="o">=</span> <span class="n">opt_table_prime</span>  
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Astropy tables have been created.&#39;</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">telescope</span><span class="p">,</span><span class="n">camera</span><span class="p">,</span><span class="n">optics</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="get_var_from_file"><a class="viewcode-back" href="../../../api/ctapipe.instrument.InstrumentDescription.get_var_from_file.html#ctapipe.instrument.InstrumentDescription.get_var_from_file">[docs]</a><span class="k">def</span> <span class="nf">get_var_from_file</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to load and initialize a module implemented as a Python source</span>
+<span class="sd">    file called `filename` and to return its module objects.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameter</span>
+<span class="sd">    ---------</span>
+<span class="sd">    filename: ASCII file</span>
+<span class="sd">        file in which the module objects are defined</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">global</span> <span class="n">data</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">imp</span><span class="o">.</span><span class="n">load_source</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+    
+<div class="viewcode-block" id="read_config_data"><a class="viewcode-back" href="../../../api/ctapipe.instrument.InstrumentDescription.read_config_data.html#ctapipe.instrument.InstrumentDescription.read_config_data">[docs]</a><span class="k">def</span> <span class="nf">read_config_data</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Function to open and load a config file&quot;&quot;&quot;</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Config file </span><span class="si">%s</span><span class="s2"> will be opened.&quot;</span> <span class="o">%</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="n">temp_filename</span> <span class="o">=</span>\
+    <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">_temp.txt&#39;</span> <span class="o">%</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">filename</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Temporary file &quot;</span><span class="p">,</span><span class="n">temp_filename</span><span class="p">,</span><span class="s2">&quot; created.&quot;</span><span class="p">)</span>
+    <span class="n">temp_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">temp_filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>    
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;echo&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;echo&#39;</span><span class="p">,</span><span class="s1">&#39;#&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;%&quot;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;%&#39;</span><span class="p">,</span><span class="s1">&#39;#&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">):</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">&#39;=&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="n">index1</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="s1">&#39;#&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                    <span class="n">index2</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">index2</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="p">[:</span><span class="n">index1</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;[&#39;</span><span class="o">+</span><span class="n">line</span><span class="p">[</span><span class="n">index1</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">index2</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">index1</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="n">index2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>                    
+                    <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39; &#39;</span> <span class="ow">or</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;e&#39;</span> <span class="ow">or</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;E&#39;</span><span class="p">:</span>
+                        <span class="n">x</span> <span class="o">=</span> <span class="kc">True</span>
+                        <span class="k">pass</span>
+                    <span class="k">elif</span> <span class="nb">ord</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">57</span><span class="p">:</span>
+                        <span class="n">x</span> <span class="o">=</span> <span class="kc">False</span>
+                        <span class="k">break</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">x</span> <span class="o">=</span> <span class="kc">True</span>
+                        <span class="k">pass</span>
+                <span class="k">if</span> <span class="n">x</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span>
+                    <span class="n">line</span> <span class="o">=</span>\
+                    <span class="n">line</span><span class="p">[:</span><span class="n">index1</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;&quot;&#39;</span><span class="o">+</span><span class="n">line</span><span class="p">[</span><span class="n">index1</span><span class="o">+</span><span class="mi">2</span><span class="p">:</span><span class="n">index2</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;&quot;&#39;</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="n">temp_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> 
+    <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Config file has been closed.&quot;</span><span class="p">)</span>
+    <span class="n">temp_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Temporaryly created file has been closed.&quot;</span><span class="p">)</span>
+    <span class="n">get_var_from_file</span><span class="p">(</span><span class="n">temp_filename</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">temp_filename</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Temporaryly created file has been removed.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data</span></div>
+
+
+    
+<div class="viewcode-block" id="write_fits"><a class="viewcode-back" href="../../../api/ctapipe.instrument.InstrumentDescription.write_fits.html#ctapipe.instrument.InstrumentDescription.write_fits">[docs]</a><span class="k">def</span> <span class="nf">write_fits</span><span class="p">(</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">instr_dict</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">table_name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>\
+    <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function writing data from the astropy.table Table into a fits file</span>
+<span class="sd">    Every table is written in an own file; fits files with multiple HDU objects</span>
+<span class="sd">    cannot be created!</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename: string</span>
+<span class="sd">        if filename is given, the table is written to the given filename</span>
+<span class="sd">        (path must be part of the filename!), only possible if one specific</span>
+<span class="sd">        table is given, i.e. table_name and instr_dict have to be given.</span>
+<span class="sd">        If no filename is given, it is generated automatically using the names</span>
+<span class="sd">        of the given tables amd instr_dict</span>
+<span class="sd">    path: string</span>
+<span class="sd">        pathname of the directory, where the file(s) should be wirtten to;</span>
+<span class="sd">        default: current directory</span>
+<span class="sd">    instr_dict: dictionary</span>
+<span class="sd">        dictionary containing tables with either telescope, camera, or optics</span>
+<span class="sd">        data; has to specified in every case</span>
+<span class="sd">    table_name: string</span>
+<span class="sd">        name of the table of the dictionary which should be written into</span>
+<span class="sd">        the file; if table_name is given, instr_dict must also be specified</span>
+<span class="sd">        default: all tables of the dictionary are wirtten to files</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">instr_dict</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+        <span class="k">return</span><span class="p">(</span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;instrument dictionary (instr_dict) must be specified.&#39;</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">table_name</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">instr_dict</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">filename</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+                <span class="n">write_name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s%s</span><span class="s1">.fits&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">key</span><span class="p">)</span>
+                <span class="n">instr_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">write_name</span><span class="p">,</span><span class="n">overwrite</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> has been created&#39;</span> <span class="o">%</span> <span class="n">write_name</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">write_name</span> <span class="o">=</span> <span class="n">filename</span>
+                <span class="n">instr_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">overwrite</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> has been created&#39;</span> <span class="o">%</span> <span class="n">write_name</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">filename</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">write_name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s%s</span><span class="s1">.fits&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">table_name</span><span class="p">)</span>
+            <span class="n">instr_dict</span><span class="p">[</span><span class="n">table_name</span><span class="p">]</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">write_name</span><span class="p">,</span><span class="n">overwrite</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> has been created&#39;</span> <span class="o">%</span> <span class="n">write_name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">write_name</span> <span class="o">=</span> <span class="n">filename</span>
+            <span class="n">instr_dict</span><span class="p">[</span><span class="n">table_name</span><span class="p">]</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">overwrite</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> has been created&#39;</span> <span class="o">%</span> <span class="n">write_name</span><span class="p">)</span>
+    
+    <span class="k">return</span><span class="p">(</span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Writing process finished.&#39;</span><span class="p">))</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, ctapipe developers.
+      Last updated on 20 Oct 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.dev1023',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

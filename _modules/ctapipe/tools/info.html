@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ctapipe.tools.info &mdash; ctapipe v0.1.dev1016</title>
+  <title>ctapipe.tools.info &mdash; ctapipe v0.1.dev1023</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.1.dev1016" href="../../../index.html"/>
+    <link rel="top" title="ctapipe v0.1.dev1023" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.1.dev1016
+                0.1.dev1023
               </div>
             
           
@@ -148,12 +148,12 @@
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">importlib</span>
-<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">get_parser</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="k">import</span> <span class="n">get_parser</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;info&#39;</span><span class="p">]</span>
 
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">get_parser</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--version&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
                         <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Print version number&#39;</span><span class="p">)</span>
@@ -170,13 +170,13 @@
     <span class="n">info</span><span class="p">(</span><span class="o">**</span><span class="nb">vars</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
 
 
-<div class="viewcode-block" id="info"><a class="viewcode-back" href="../../../api/ctapipe.tools.info.html#ctapipe.tools.info">[docs]</a><span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="viewcode-block" id="info"><a class="viewcode-back" href="../../../api/ctapipe.tools.info.html#ctapipe.tools.info">[docs]</a><span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Print various info to the console.</span>
 
 <span class="sd">    TODO: explain.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
-                        <span class="n">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">)</span>
+                        <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">version</span><span class="p">:</span>
         <span class="n">_info_version</span><span class="p">()</span>
@@ -190,42 +190,42 @@
 
 <span class="k">def</span> <span class="nf">_info_version</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Print version info.&quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">ctapipe</span> <span class="kn">import</span> <span class="n">version</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">*** ctapipe version info ***</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;version: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">version</span><span class="o">.</span><span class="n">version</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;release: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">version</span><span class="o">.</span><span class="n">release</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;githash: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">version</span><span class="o">.</span><span class="n">githash</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">ctapipe</span> <span class="k">import</span> <span class="n">version</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">*** ctapipe version info ***</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;version: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">version</span><span class="o">.</span><span class="n">version</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;release: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">version</span><span class="o">.</span><span class="n">release</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;githash: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">version</span><span class="o">.</span><span class="n">githash</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_info_tools</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Print info about command line tools.&quot;&quot;&quot;</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">*** ctapipe tools ***</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;the following can be executed by typing ctapipe-&lt;toolname&gt;:&#39;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">*** ctapipe tools ***</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;the following can be executed by typing ctapipe-&lt;toolname&gt;:&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 
     <span class="c1"># TODO: how to get a one-line description or</span>
     <span class="c1"># full help text from the docstring or ArgumentParser?</span>
     <span class="c1"># This is the function names, we want the command-line names</span>
     <span class="c1"># that are defined in setup.py !???</span>
-    <span class="kn">from</span> <span class="nn">ctapipe.tools.utils</span> <span class="kn">import</span> <span class="n">get_all_descriptions</span>
-    <span class="kn">from</span> <span class="nn">textwrap</span> <span class="kn">import</span> <span class="n">TextWrapper</span>
+    <span class="kn">from</span> <span class="nn">ctapipe.tools.utils</span> <span class="k">import</span> <span class="n">get_all_descriptions</span>
+    <span class="kn">from</span> <span class="nn">textwrap</span> <span class="k">import</span> <span class="n">TextWrapper</span>
     <span class="n">wrapper</span> <span class="o">=</span> <span class="n">TextWrapper</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>
                           <span class="n">subsequent_indent</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="o">*</span><span class="mi">35</span> <span class="p">)</span>
                           
     <span class="n">scripts</span> <span class="o">=</span> <span class="n">get_all_descriptions</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">desc</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">scripts</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
-        <span class="n">text</span> <span class="o">=</span><span class="s2">&quot;{:&lt;30s}  - {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">desc</span><span class="p">)</span> 
-        <span class="k">print</span><span class="p">(</span><span class="n">wrapper</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">text</span> <span class="o">=</span><span class="s2">&quot;</span><span class="si">{:&lt;30s}</span><span class="s2">  - </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">desc</span><span class="p">)</span> 
+        <span class="nb">print</span><span class="p">(</span><span class="n">wrapper</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 
 
 
 <span class="k">def</span> <span class="nf">_info_dependencies</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Print info about dependencies.&quot;&quot;&quot;</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">*** ctapipe dependencies ***</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="kn">from</span> <span class="nn">ctapipe.conftest</span> <span class="kn">import</span> <span class="n">PYTEST_HEADER_MODULES</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">*** ctapipe dependencies ***</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">ctapipe.conftest</span> <span class="k">import</span> <span class="n">PYTEST_HEADER_MODULES</span>
 
     <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">PYTEST_HEADER_MODULES</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">try</span><span class="p">:</span>
@@ -234,7 +234,7 @@
         <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
             <span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;not available&#39;</span>
 
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;{:&gt;20s} -- {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">version</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:&gt;20s}</span><span class="s1"> -- </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">version</span><span class="p">))</span>
 </pre></div>
 
            </div>
@@ -247,7 +247,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 19 Oct 2016.
+      Last updated on 20 Oct 2016.
 
     </p>
   </div>
@@ -269,7 +269,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.1.dev1016',
+            VERSION:'0.1.dev1023',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -1,0 +1,8 @@
+
+
+load_fakedata
+======================================================
+
+.. currentmodule:: ctapipe.instrument.InstrumentDescription
+
+.. autofunction:: load_fakedata

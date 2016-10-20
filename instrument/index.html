@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Instrument (instrument) &mdash; ctapipe v0.1.dev1016</title>
+  <title>Instrument (instrument) &mdash; ctapipe v0.1.dev1023</title>
   
 
   
@@ -32,8 +32,8 @@
   
 
   
-    <link rel="top" title="ctapipe v0.1.dev1016" href="../index.html"/>
-        <link rel="next" title="get_site_id_for_run" href="../api/ctapipe.instrument.obsconfig.get_site_id_for_run.html"/>
+    <link rel="top" title="ctapipe v0.1.dev1023" href="../index.html"/>
+        <link rel="next" title="find_neighbor_pixels" href="../api/ctapipe.instrument.CameraDescription.find_neighbor_pixels.html"/>
         <link rel="prev" title="make_mock_shower_image" href="../api/ctapipe.image.mock.make_mock_shower_image.html"/> 
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.1.dev1016
+                0.1.dev1023
               </div>
             
           
@@ -98,10 +98,14 @@
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#reference-api">Reference/API</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#module-ctapipe.instrument.obsconfig">ctapipe.instrument.obsconfig Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-ctapipe.instrument.CameraDescription">ctapipe.instrument.CameraDescription Module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#functions">Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-ctapipe.instrument.InstrumentDescription">ctapipe.instrument.InstrumentDescription Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -162,52 +166,16 @@
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="xref py py-obj docutils literal"><span class="pre">ctapipe.instrument</span></code> module contains classes and methods for
 describing the instrumental layout and configuration.</p>
+<p>This module is under heavy restructuring and should not be considered
+ready for general use.</p>
 </div>
 <div class="section" id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
-<p>Relationship between different configuration objects.  The arrows show
-what information is needed to look up the next level of configuration.
-In <strong>blue</strong> are items that change for every <em>run</em>, in <strong>green</strong> for every
-<em>run-type</em>, and in <strong>white</strong> for every <em>array version</em> (which is updated
-when there are changes to the array, telescope, or camera
-configurations associated with a site)</p>
-<object data="../_images/graphviz-063853e22c63c78e58ebc1e20d13f556a4114b2c.svg" type="image/svg+xml">
-            <p class="warning">digraph config {
-
-        node [shape=record fontsize=12 fontname=&quot;Arial&quot;];
-        edge [fontname = &quot;Arial&quot; fontsize = 10 dir=back]
-
-
-        ObsConfig [fillcolor=dodgerblue3, fontcolor=white, style=filled]
-        SubarrayConfig [fillcolor=dodgerblue3, fontcolor=white, style=filled] 
-        ArrayTriggerConfig [fillcolor=goldenrod4,
-                            fontcolor=white, style=filled]
-        TelescopeTriggerConfig [fillcolor=goldenrod4,
-                                fontcolor=white, style=filled]
-
-        ObsConfig -&gt; SubarrayConfig [label=&quot;run_id&quot;];
-        ObsConfig -&gt; ArrayTriggerConfig [label=&quot;run_type&quot;];
-        ArrayTriggerConfig -&gt; TelescopeTriggerConfig [label=&quot;run_type,\ntel_id&quot;];       
-        SubarrayConfig -&gt; ArrayConfig [label=&quot;site_id,\nversion&quot;]      
-        ArrayConfig -&gt; TelescopeConfig [label=&quot;tel_id&quot;];
-        TelescopeConfig -&gt; CameraConfig [label=&quot;tel_id&quot;];
-        TelescopeConfig -&gt; OpticsConfig [label=&quot;tel_id&quot;];
-
-
-}</p></object>
 </div>
 <div class="section" id="reference-api">
 <h2>Reference/API<a class="headerlink" href="#reference-api" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="module-ctapipe.instrument.obsconfig">
-<span id="ctapipe-instrument-obsconfig-module"></span><h3>ctapipe.instrument.obsconfig Module<a class="headerlink" href="#module-ctapipe.instrument.obsconfig" title="Permalink to this headline">¶</a></h3>
-<p>Definition of Observation Configurations.</p>
-<p>The ObsConfig class defines a hierarchy of classes that contain the
-configuration information related to an observation. Each sub-config
-should additionally be loadable on its own</p>
-<p>This may be extended later to make a SimObsConfig that also includes extra
-Monte-Carlo information</p>
-<p>When possible, items inside each class should be loaded dynamically
-(e.g. on first access)</p>
+<div class="section" id="module-ctapipe.instrument.CameraDescription">
+<span id="ctapipe-instrument-cameradescription-module"></span><h3>ctapipe.instrument.CameraDescription Module<a class="headerlink" href="#module-ctapipe.instrument.CameraDescription" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="functions">
 <h4>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="longtable docutils">
@@ -216,11 +184,20 @@ Monte-Carlo information</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="../api/ctapipe.instrument.obsconfig.get_site_id_for_run.html#ctapipe.instrument.obsconfig.get_site_id_for_run" title="ctapipe.instrument.obsconfig.get_site_id_for_run"><code class="xref py py-obj docutils literal"><span class="pre">get_site_id_for_run</span></code></a>(run_id)</td>
-<td>lookup which array and version was used for a given run</td>
+<tr class="row-odd"><td><a class="reference internal" href="../api/ctapipe.instrument.CameraDescription.find_neighbor_pixels.html#ctapipe.instrument.CameraDescription.find_neighbor_pixels" title="ctapipe.instrument.CameraDescription.find_neighbor_pixels"><code class="xref py py-obj docutils literal"><span class="pre">find_neighbor_pixels</span></code></a>(pix_x,&nbsp;pix_y,&nbsp;rad)</td>
+<td>uses a KD-Tree to quickly find nearest neighbors of the pixels in a</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="../api/ctapipe.instrument.obsconfig.get_site_id_for_time.html#ctapipe.instrument.obsconfig.get_site_id_for_time" title="ctapipe.instrument.obsconfig.get_site_id_for_time"><code class="xref py py-obj docutils literal"><span class="pre">get_site_id_for_time</span></code></a>(obstime)</td>
-<td>lookup which array and version was used for a given obstime</td>
+<tr class="row-even"><td><a class="reference internal" href="../api/ctapipe.instrument.CameraDescription.guess_camera_geometry.html#ctapipe.instrument.CameraDescription.guess_camera_geometry" title="ctapipe.instrument.CameraDescription.guess_camera_geometry"><code class="xref py py-obj docutils literal"><span class="pre">guess_camera_geometry</span></code></a>(pix_x:&nbsp;Unit(&quot;m&quot;),&nbsp;...)</td>
+<td>returns a the camera class, the pixel area, the pixel type and the</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../api/ctapipe.instrument.CameraDescription.guess_camera_type.html#ctapipe.instrument.CameraDescription.guess_camera_type" title="ctapipe.instrument.CameraDescription.guess_camera_type"><code class="xref py py-obj docutils literal"><span class="pre">guess_camera_type</span></code></a>(npix,&nbsp;pix_sep)</td>
+<td>guesses and returns the camera type using the number of pixels</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../api/ctapipe.instrument.CameraDescription.make_rectangular_camera_geometry.html#ctapipe.instrument.CameraDescription.make_rectangular_camera_geometry" title="ctapipe.instrument.CameraDescription.make_rectangular_camera_geometry"><code class="xref py py-obj docutils literal"><span class="pre">make_rectangular_camera_geometry</span></code></a>([npix_x,&nbsp;...])</td>
+<td>Generate a simple camera with 2D rectangular geometry.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../api/ctapipe.instrument.CameraDescription.rotate_camera.html#ctapipe.instrument.CameraDescription.rotate_camera" title="ctapipe.instrument.CameraDescription.rotate_camera"><code class="xref py py-obj docutils literal"><span class="pre">rotate_camera</span></code></a>(angle,&nbsp;pix_x:&nbsp;Unit(&quot;m&quot;),&nbsp;...)</td>
+<td>rotate the camera coordinates about the center of the camera by</td>
 </tr>
 </tbody>
 </table>
@@ -233,43 +210,54 @@ Monte-Carlo information</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="../api/ctapipe.instrument.obsconfig.BaseConfig.html#ctapipe.instrument.obsconfig.BaseConfig" title="ctapipe.instrument.obsconfig.BaseConfig"><code class="xref py py-obj docutils literal"><span class="pre">BaseConfig</span></code></a></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="../api/ctapipe.instrument.obsconfig.CameraConfig.html#ctapipe.instrument.obsconfig.CameraConfig" title="ctapipe.instrument.obsconfig.CameraConfig"><code class="xref py py-obj docutils literal"><span class="pre">CameraConfig</span></code></a>(site_id,&nbsp;version,&nbsp;tel_id)</td>
-<td>Definition of a Camera, including its pixel geometry and other</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="../api/ctapipe.instrument.obsconfig.ArrayTriggerConfig.html#ctapipe.instrument.obsconfig.ArrayTriggerConfig" title="ctapipe.instrument.obsconfig.ArrayTriggerConfig"><code class="xref py py-obj docutils literal"><span class="pre">ArrayTriggerConfig</span></code></a></td>
-<td>Contains trigger info for a given run_type</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="../api/ctapipe.instrument.obsconfig.TelescopeTriggerConfig.html#ctapipe.instrument.obsconfig.TelescopeTriggerConfig" title="ctapipe.instrument.obsconfig.TelescopeTriggerConfig"><code class="xref py py-obj docutils literal"><span class="pre">TelescopeTriggerConfig</span></code></a></td>
-<td>Contains trigger info for a given run_type</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="../api/ctapipe.instrument.obsconfig.TelescopeConfig.html#ctapipe.instrument.obsconfig.TelescopeConfig" title="ctapipe.instrument.obsconfig.TelescopeConfig"><code class="xref py py-obj docutils literal"><span class="pre">TelescopeConfig</span></code></a>(tel_id,&nbsp;site_id,&nbsp;version)</td>
-<td>Configuration of a single Telescope, including it's optics and</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="../api/ctapipe.instrument.obsconfig.ArrayConfig.html#ctapipe.instrument.obsconfig.ArrayConfig" title="ctapipe.instrument.obsconfig.ArrayConfig"><code class="xref py py-obj docutils literal"><span class="pre">ArrayConfig</span></code></a>(site_id,&nbsp;version)</td>
-<td>Overall description of an array (including all telescope that are built or forseen.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="../api/ctapipe.instrument.obsconfig.OpticsConfig.html#ctapipe.instrument.obsconfig.OpticsConfig" title="ctapipe.instrument.obsconfig.OpticsConfig"><code class="xref py py-obj docutils literal"><span class="pre">OpticsConfig</span></code></a>(site_id,&nbsp;version,&nbsp;tel_id)</td>
-<td>Definition of Telescope Optics, including information on the</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="../api/ctapipe.instrument.obsconfig.SubarrayConfig.html#ctapipe.instrument.obsconfig.SubarrayConfig" title="ctapipe.instrument.obsconfig.SubarrayConfig"><code class="xref py py-obj docutils literal"><span class="pre">SubarrayConfig</span></code></a>(run_id)</td>
-<td>Description of a particular Subarray used during an observation or</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="../api/ctapipe.instrument.obsconfig.ObsConfig.html#ctapipe.instrument.obsconfig.ObsConfig" title="ctapipe.instrument.obsconfig.ObsConfig"><code class="xref py py-obj docutils literal"><span class="pre">ObsConfig</span></code></a>(run_id)</td>
-<td>All configuration information related to an observation run.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="../api/ctapipe.instrument.obsconfig.SimObsConfig.html#ctapipe.instrument.obsconfig.SimObsConfig" title="ctapipe.instrument.obsconfig.SimObsConfig"><code class="xref py py-obj docutils literal"><span class="pre">SimObsConfig</span></code></a>(mc_run_id)</td>
-<td>ObsConfig from a simulation run.</td>
+<tr class="row-odd"><td><a class="reference internal" href="../api/ctapipe.instrument.CameraDescription.Camera.html#ctapipe.instrument.CameraDescription.Camera" title="ctapipe.instrument.CameraDescription.Camera"><code class="xref py py-obj docutils literal"><span class="pre">Camera</span></code></a>(pix_id,&nbsp;pix_X,&nbsp;pix_Y,&nbsp;pix_area,&nbsp;...)</td>
+<td><a class="reference internal" href="../api/ctapipe.instrument.CameraDescription.Camera.html#ctapipe.instrument.CameraDescription.Camera" title="ctapipe.instrument.CameraDescription.Camera"><code class="xref py py-obj docutils literal"><span class="pre">Camera</span></code></a> is a class that provides and gets all the information about</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="class-inheritance-diagram">
 <h4>Class Inheritance Diagram<a class="headerlink" href="#class-inheritance-diagram" title="Permalink to this headline">¶</a></h4>
-<object data="../_images/inheritance-f3886ece424edd1966da7f3accb796975247b510.svg" type="image/svg+xml">
-            <p class="warning">Inheritance diagram of ctapipe.instrument.obsconfig.BaseConfig, ctapipe.instrument.obsconfig.CameraConfig, ctapipe.instrument.obsconfig.ArrayTriggerConfig, ctapipe.instrument.obsconfig.TelescopeTriggerConfig, ctapipe.instrument.obsconfig.TelescopeConfig, ctapipe.instrument.obsconfig.ArrayConfig, ctapipe.instrument.obsconfig.OpticsConfig, ctapipe.instrument.obsconfig.SubarrayConfig, ctapipe.instrument.obsconfig.ObsConfig, ctapipe.instrument.obsconfig.SimObsConfig</p></object>
+<object data="../_images/inheritance-82d06ce3acbbdb8ca7d10d298a9f4476d9432179.svg" type="image/svg+xml">
+            <p class="warning">Inheritance diagram of ctapipe.instrument.CameraDescription.Camera</p></object>
+</div>
+</div>
+<div class="section" id="module-ctapipe.instrument.InstrumentDescription">
+<span id="ctapipe-instrument-instrumentdescription-module"></span><h3>ctapipe.instrument.InstrumentDescription Module<a class="headerlink" href="#module-ctapipe.instrument.InstrumentDescription" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h4>Functions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="../api/ctapipe.instrument.InstrumentDescription.load.html#ctapipe.instrument.InstrumentDescription.load" title="ctapipe.instrument.InstrumentDescription.load"><code class="xref py py-obj docutils literal"><span class="pre">load</span></code></a>([filename,&nbsp;path,&nbsp;version,&nbsp;instr_item,&nbsp;...])</td>
+<td>Function to load instrument data from a file</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../api/ctapipe.instrument.InstrumentDescription.load_fakedata.html#ctapipe.instrument.InstrumentDescription.load_fakedata" title="ctapipe.instrument.InstrumentDescription.load_fakedata"><code class="xref py py-obj docutils literal"><span class="pre">load_fakedata</span></code></a>()</td>
+<td>Function writing faked date into an astropy.table Table</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../api/ctapipe.instrument.InstrumentDescription.load_hessio.html#ctapipe.instrument.InstrumentDescription.load_hessio" title="ctapipe.instrument.InstrumentDescription.load_hessio"><code class="xref py py-obj docutils literal"><span class="pre">load_hessio</span></code></a>(filename)</td>
+<td>Function to open and load a hessio file</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../api/ctapipe.instrument.InstrumentDescription.load_fits.html#ctapipe.instrument.InstrumentDescription.load_fits" title="ctapipe.instrument.InstrumentDescription.load_fits"><code class="xref py py-obj docutils literal"><span class="pre">load_fits</span></code></a>([filename,&nbsp;path,&nbsp;version,&nbsp;instr_item])</td>
+<td>Function to load data from a fits file</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../api/ctapipe.instrument.InstrumentDescription.load_config.html#ctapipe.instrument.InstrumentDescription.load_config" title="ctapipe.instrument.InstrumentDescription.load_config"><code class="xref py py-obj docutils literal"><span class="pre">load_config</span></code></a>(filename)</td>
+<td>Function to load config file data into a table</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../api/ctapipe.instrument.InstrumentDescription.read_config_data.html#ctapipe.instrument.InstrumentDescription.read_config_data" title="ctapipe.instrument.InstrumentDescription.read_config_data"><code class="xref py py-obj docutils literal"><span class="pre">read_config_data</span></code></a>(filename)</td>
+<td>Function to open and load a config file</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../api/ctapipe.instrument.InstrumentDescription.get_var_from_file.html#ctapipe.instrument.InstrumentDescription.get_var_from_file" title="ctapipe.instrument.InstrumentDescription.get_var_from_file"><code class="xref py py-obj docutils literal"><span class="pre">get_var_from_file</span></code></a>(filename)</td>
+<td>Function to load and initialize a module implemented as a Python source file called <code class="xref py py-obj docutils literal"><span class="pre">filename</span></code> and to return its module objects.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../api/ctapipe.instrument.InstrumentDescription.write_fits.html#ctapipe.instrument.InstrumentDescription.write_fits" title="ctapipe.instrument.InstrumentDescription.write_fits"><code class="xref py py-obj docutils literal"><span class="pre">write_fits</span></code></a>([filename,&nbsp;path,&nbsp;instr_dict,&nbsp;...])</td>
+<td>Function writing data from the astropy.table Table into a fits file</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -282,7 +270,7 @@ Monte-Carlo information</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../api/ctapipe.instrument.obsconfig.get_site_id_for_run.html" class="btn btn-neutral float-right" title="get_site_id_for_run" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../api/ctapipe.instrument.CameraDescription.find_neighbor_pixels.html" class="btn btn-neutral float-right" title="find_neighbor_pixels" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../api/ctapipe.image.mock.make_mock_shower_image.html" class="btn btn-neutral" title="make_mock_shower_image" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -295,7 +283,7 @@ Monte-Carlo information</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 19 Oct 2016.
+      Last updated on 20 Oct 2016.
 
     </p>
   </div>
@@ -317,7 +305,7 @@ Monte-Carlo information</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.dev1016',
+            VERSION:'0.1.dev1023',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

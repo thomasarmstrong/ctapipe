@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ctapipe.coordinates.frames &mdash; ctapipe v0.1.dev1016</title>
+  <title>ctapipe.coordinates.frames &mdash; ctapipe v0.1.dev1023</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.1.dev1016" href="../../../index.html"/>
+    <link rel="top" title="ctapipe v0.1.dev1023" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.1.dev1016
+                0.1.dev1023
               </div>
             
           
@@ -163,16 +163,16 @@
 
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">astropy.units</span> <span class="kn">as</span> <span class="nn">u</span>
-<span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="kn">import</span> <span class="p">(</span><span class="n">BaseCoordinateFrame</span><span class="p">,</span> <span class="n">FrameAttribute</span><span class="p">,</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
+<span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="k">import</span> <span class="p">(</span><span class="n">BaseCoordinateFrame</span><span class="p">,</span> <span class="n">FrameAttribute</span><span class="p">,</span>
                                  <span class="n">SphericalRepresentation</span><span class="p">,</span>
                                  <span class="n">CartesianRepresentation</span><span class="p">,</span>
                                  <span class="n">RepresentationMapping</span><span class="p">,</span>
                                  <span class="n">FunctionTransform</span><span class="p">,</span> <span class="n">SkyCoord</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="kn">import</span> <span class="n">AltAz</span>
-<span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="kn">import</span> <span class="n">frame_transform_graph</span>
-<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">arctan</span><span class="p">,</span> <span class="n">arctan2</span><span class="p">,</span> <span class="n">arcsin</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">arccos</span><span class="p">,</span> <span class="n">tan</span>
+<span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="k">import</span> <span class="n">AltAz</span>
+<span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="k">import</span> <span class="n">frame_transform_graph</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">arctan</span><span class="p">,</span> <span class="n">arctan2</span><span class="p">,</span> <span class="n">arcsin</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">arccos</span><span class="p">,</span> <span class="n">tan</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;CameraFrame&#39;</span><span class="p">,</span>
@@ -215,9 +215,9 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">default_representation</span> <span class="o">=</span> <span class="n">CartesianRepresentation</span>
 
-    <span class="n">focal_length</span> <span class="o">=</span> <span class="n">FrameAttribute</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>  <span class="c1"># focal_length</span>
+    <span class="n">focal_length</span> <span class="o">=</span> <span class="n">FrameAttribute</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># focal_length</span>
     <span class="n">rotation</span> <span class="o">=</span> <span class="n">FrameAttribute</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span>
-    <span class="n">pointing_direction</span> <span class="o">=</span> <span class="n">FrameAttribute</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span></div>
+    <span class="n">pointing_direction</span> <span class="o">=</span> <span class="n">FrameAttribute</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="NominalFrame"><a class="viewcode-back" href="../../../api/ctapipe.coordinates.NominalFrame.html#ctapipe.coordinates.NominalFrame">[docs]</a><span class="k">class</span> <span class="nc">NominalFrame</span><span class="p">(</span><span class="n">BaseCoordinateFrame</span><span class="p">):</span>
@@ -245,11 +245,11 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">default_representation</span> <span class="o">=</span> <span class="n">CartesianRepresentation</span>
-    <span class="n">array_direction</span> <span class="o">=</span> <span class="n">FrameAttribute</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
-    <span class="n">pointing_direction</span> <span class="o">=</span> <span class="n">FrameAttribute</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+    <span class="n">array_direction</span> <span class="o">=</span> <span class="n">FrameAttribute</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">pointing_direction</span> <span class="o">=</span> <span class="n">FrameAttribute</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
     <span class="n">rotation</span> <span class="o">=</span> <span class="n">FrameAttribute</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span>
-    <span class="n">focal_length</span> <span class="o">=</span> <span class="n">FrameAttribute</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span></div>
+    <span class="n">focal_length</span> <span class="o">=</span> <span class="n">FrameAttribute</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
 
 
 <span class="k">def</span> <span class="nf">altaz_to_offset</span><span class="p">(</span><span class="n">obj_azimuth</span><span class="p">,</span> <span class="n">obj_altitude</span><span class="p">,</span> <span class="n">azimuth</span><span class="p">,</span> <span class="n">altitude</span><span class="p">):</span>
@@ -331,7 +331,7 @@
     <span class="n">d</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">xoff</span> <span class="o">*</span> <span class="n">xoff</span> <span class="o">+</span> <span class="n">yoff</span> <span class="o">*</span> <span class="n">yoff</span><span class="p">)</span>
     <span class="n">pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">d</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># find offset 0 positions</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">d</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-12</span>  <span class="c1"># add a very small offset to prevent math errors</span>
+        <span class="n">d</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">12</span>  <span class="c1"># add a very small offset to prevent math errors</span>
 
     <span class="n">q</span> <span class="o">=</span> <span class="n">arctan</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 
@@ -366,7 +366,7 @@
 <span class="c1"># Transformation between nominal and AltAz system</span>
 
 
-<span class="nd">@frame_transform_graph.transform</span><span class="p">(</span><span class="n">FunctionTransform</span><span class="p">,</span> <span class="n">NominalFrame</span><span class="p">,</span> <span class="n">AltAz</span><span class="p">)</span>
+<span class="nd">@frame_transform_graph</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">FunctionTransform</span><span class="p">,</span> <span class="n">NominalFrame</span><span class="p">,</span> <span class="n">AltAz</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">nominal_to_altaz</span><span class="p">(</span><span class="n">norm_coord</span><span class="p">,</span> <span class="n">altaz_coord</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Transformation from nominal system to astropy AltAz system</span>
@@ -401,7 +401,7 @@
     <span class="k">return</span> <span class="n">altaz_coord</span>
 
 
-<span class="nd">@frame_transform_graph.transform</span><span class="p">(</span><span class="n">FunctionTransform</span><span class="p">,</span> <span class="n">AltAz</span><span class="p">,</span> <span class="n">NominalFrame</span><span class="p">)</span>
+<span class="nd">@frame_transform_graph</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">FunctionTransform</span><span class="p">,</span> <span class="n">AltAz</span><span class="p">,</span> <span class="n">NominalFrame</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">nominal_to_altaz</span><span class="p">(</span><span class="n">altaz_coord</span><span class="p">,</span> <span class="n">norm_coord</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Transformation from astropy AltAz system to nominal system</span>
@@ -431,7 +431,7 @@
 <span class="c1"># Transformation between telescope and nominal frames</span>
 
 
-<span class="nd">@frame_transform_graph.transform</span><span class="p">(</span><span class="n">FunctionTransform</span><span class="p">,</span> <span class="n">TelescopeFrame</span><span class="p">,</span> <span class="n">NominalFrame</span><span class="p">)</span>
+<span class="nd">@frame_transform_graph</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">FunctionTransform</span><span class="p">,</span> <span class="n">TelescopeFrame</span><span class="p">,</span> <span class="n">NominalFrame</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">telescope_to_nominal</span><span class="p">(</span><span class="n">tel_coord</span><span class="p">,</span> <span class="n">norm_frame</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Coordinate transformation from telescope frame to nominal frame</span>
@@ -462,7 +462,7 @@
     <span class="k">return</span> <span class="n">norm_frame</span><span class="o">.</span><span class="n">realize_frame</span><span class="p">(</span><span class="n">representation</span><span class="p">)</span>
 
 
-<span class="nd">@frame_transform_graph.transform</span><span class="p">(</span><span class="n">FunctionTransform</span><span class="p">,</span> <span class="n">NominalFrame</span><span class="p">,</span> <span class="n">TelescopeFrame</span><span class="p">)</span>
+<span class="nd">@frame_transform_graph</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">FunctionTransform</span><span class="p">,</span> <span class="n">NominalFrame</span><span class="p">,</span> <span class="n">TelescopeFrame</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">nominal_to_telescope</span><span class="p">(</span><span class="n">norm_coord</span><span class="p">,</span> <span class="n">tel_frame</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Coordinate transformation from nominal to telescope system</span>
@@ -496,7 +496,7 @@
 
 
 <span class="c1"># Transformations between camera frame and telescope frame</span>
-<span class="nd">@frame_transform_graph.transform</span><span class="p">(</span><span class="n">FunctionTransform</span><span class="p">,</span> <span class="n">CameraFrame</span><span class="p">,</span> <span class="n">TelescopeFrame</span><span class="p">)</span>
+<span class="nd">@frame_transform_graph</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">FunctionTransform</span><span class="p">,</span> <span class="n">CameraFrame</span><span class="p">,</span> <span class="n">TelescopeFrame</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">camera_to_telescope</span><span class="p">(</span><span class="n">camera_coord</span><span class="p">,</span> <span class="n">telescope_frame</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Transformation between CameraFrame and TelescopeFrame</span>
@@ -531,7 +531,7 @@
     <span class="k">return</span> <span class="n">telescope_frame</span><span class="o">.</span><span class="n">realize_frame</span><span class="p">(</span><span class="n">representation</span><span class="p">)</span>
 
 
-<span class="nd">@frame_transform_graph.transform</span><span class="p">(</span><span class="n">FunctionTransform</span><span class="p">,</span> <span class="n">TelescopeFrame</span><span class="p">,</span> <span class="n">CameraFrame</span><span class="p">)</span>
+<span class="nd">@frame_transform_graph</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">FunctionTransform</span><span class="p">,</span> <span class="n">TelescopeFrame</span><span class="p">,</span> <span class="n">CameraFrame</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">telescope_to_camera</span><span class="p">(</span><span class="n">telescope_coord</span><span class="p">,</span> <span class="n">camera_frame</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Transformation between TelescopeFrame and CameraFrame</span>
@@ -586,7 +586,7 @@
     <span class="c1"># Pointing direction of the tilted system (alt,az),</span>
     <span class="c1"># could be the telescope pointing direction or the reconstructed shower</span>
     <span class="c1"># direction</span>
-    <span class="n">pointing_direction</span> <span class="o">=</span> <span class="n">FrameAttribute</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span></div>
+    <span class="n">pointing_direction</span> <span class="o">=</span> <span class="n">FrameAttribute</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TiltedGroundFrame"><a class="viewcode-back" href="../../../api/ctapipe.coordinates.TiltedGroundFrame.html#ctapipe.coordinates.TiltedGroundFrame">[docs]</a><span class="k">class</span> <span class="nc">TiltedGroundFrame</span><span class="p">(</span><span class="n">BaseCoordinateFrame</span><span class="p">):</span>
@@ -606,7 +606,7 @@
     <span class="c1"># Pointing direction of the tilted system (alt,az),</span>
     <span class="c1"># could be the telescope pointing direction or the reconstructed shower</span>
     <span class="c1"># direction</span>
-    <span class="n">pointing_direction</span> <span class="o">=</span> <span class="n">FrameAttribute</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span></div>
+    <span class="n">pointing_direction</span> <span class="o">=</span> <span class="n">FrameAttribute</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
 
 
 <span class="k">def</span> <span class="nf">get_shower_trans_matrix</span><span class="p">(</span><span class="n">azimuth</span><span class="p">,</span> <span class="n">altitude</span><span class="p">):</span>
@@ -648,7 +648,7 @@
     <span class="k">return</span> <span class="n">trans</span>
 
 
-<span class="nd">@frame_transform_graph.transform</span><span class="p">(</span><span class="n">FunctionTransform</span><span class="p">,</span> <span class="n">GroundFrame</span><span class="p">,</span>
+<span class="nd">@frame_transform_graph</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">FunctionTransform</span><span class="p">,</span> <span class="n">GroundFrame</span><span class="p">,</span>
                                  <span class="n">TiltedGroundFrame</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">ground_to_tilted</span><span class="p">(</span><span class="n">ground_coord</span><span class="p">,</span> <span class="n">tilted_coord</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -683,7 +683,7 @@
     <span class="k">return</span> <span class="n">tilted_coord</span><span class="o">.</span><span class="n">realize_frame</span><span class="p">(</span><span class="n">representation</span><span class="p">)</span>
 
 
-<span class="nd">@frame_transform_graph.transform</span><span class="p">(</span><span class="n">FunctionTransform</span><span class="p">,</span> <span class="n">TiltedGroundFrame</span><span class="p">,</span>
+<span class="nd">@frame_transform_graph</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">FunctionTransform</span><span class="p">,</span> <span class="n">TiltedGroundFrame</span><span class="p">,</span>
                                  <span class="n">GroundFrame</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">tilted_to_ground</span><span class="p">(</span><span class="n">tilted_coord</span><span class="p">,</span> <span class="n">ground_coord</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -762,7 +762,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 19 Oct 2016.
+      Last updated on 20 Oct 2016.
 
     </p>
   </div>
@@ -784,7 +784,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.1.dev1016',
+            VERSION:'0.1.dev1023',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

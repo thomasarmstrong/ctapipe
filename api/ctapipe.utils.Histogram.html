@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Histogram &mdash; ctapipe v0.1.dev1016</title>
+  <title>Histogram &mdash; ctapipe v0.1.dev1023</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.1.dev1016" href="../index.html"/>
+    <link rel="top" title="ctapipe v0.1.dev1023" href="../index.html"/>
         <link rel="up" title="Utilities (utils)" href="../utils/index.html"/>
         <link rel="next" title="Visualization (visualization)" href="../visualization/index.html"/>
         <link rel="prev" title="traitlets_config_to_fits" href="ctapipe.utils.traitlets_config_to_fits.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.1.dev1016
+                0.1.dev1023
               </div>
             
           
@@ -168,7 +168,7 @@
 associated WCS headers to describe the axes of the histogram.
 Thus, the output files should work correctly in any program
 capable of working with FITS datacubes (like SAOImage DS9).</p>
-<p>Internally, it uses <code class="xref py py-obj docutils literal"><span class="pre">numpy.histogramdd</span></code> to generate the histograms.</p>
+<p>Internally, it uses <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.histogramdd.html#numpy.histogramdd" title="(in NumPy v1.11)"><code class="xref py py-obj docutils literal"><span class="pre">numpy.histogramdd</span></code></a> to generate the histograms.</p>
 <p>All axes are assumed to be linear, with equally spaced bins
 (otherwise they could not be stored in a FITS image HDU)</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -335,11 +335,11 @@ multiple times to fill a single Histogram.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>datapoints: array_like</strong></p>
 <blockquote>
-<div><p>array of N-d points (see <code class="xref py py-obj docutils literal"><span class="pre">numpy.histogramdd</span></code> documentation)</p>
+<div><p>array of N-d points (see <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.histogramdd.html#numpy.histogramdd" title="(in NumPy v1.11)"><code class="xref py py-obj docutils literal"><span class="pre">numpy.histogramdd</span></code></a> documentation)</p>
 </div></blockquote>
 <p><strong>kwargs:</strong></p>
 <blockquote class="last">
-<div><p>any extra options to pass to <code class="xref py py-obj docutils literal"><span class="pre">numpy.histogramdd</span></code> when 
+<div><p>any extra options to pass to <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.histogramdd.html#numpy.histogramdd" title="(in NumPy v1.11)"><code class="xref py py-obj docutils literal"><span class="pre">numpy.histogramdd</span></code></a> when 
 creating the histogram</p>
 </div></blockquote>
 </td>
@@ -425,7 +425,7 @@ of the histogram is unmodified (and is &quot;counts&quot;)</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 19 Oct 2016.
+      Last updated on 20 Oct 2016.
 
     </p>
   </div>
@@ -447,7 +447,7 @@ of the histogram is unmodified (and is &quot;counts&quot;)</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.dev1016',
+            VERSION:'0.1.dev1023',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -1,0 +1,455 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ctapipe.instrument.CameraDescription &mdash; ctapipe v0.1.dev1023</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/astropy_logo.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="ctapipe v0.1.dev1023" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> ctapipe
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.dev1023
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started For Developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Development Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools/index.html">Command line tools (<code class="docutils literal"><span class="pre">tools</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../analysis/index.html">Analysis (<code class="docutils literal"><span class="pre">analysis</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../calib/index.html">Calibration (<code class="docutils literal"><span class="pre">calib</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../coordinates/index.html">Coordinates (<code class="docutils literal"><span class="pre">coordinates</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">Core Structures and Base Classes (<code class="docutils literal"><span class="pre">core</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../datasets/index.html">Datasets (<code class="docutils literal"><span class="pre">datasets</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../flow/index.html">Flow-based framework (<code class="docutils literal"><span class="pre">flow</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../image/index.html">Imaging (<code class="docutils literal"><span class="pre">image</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../instrument/index.html">Instrument (<code class="docutils literal"><span class="pre">instrument</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../io/index.html">Input/Output (<code class="docutils literal"><span class="pre">io</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reco/index.html">Reconstruction (<code class="docutils literal"><span class="pre">reco</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utils/index.html">Utilities (<code class="docutils literal"><span class="pre">utils</span></code>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../visualization/index.html">Visualization (<code class="docutils literal"><span class="pre">visualization</span></code>)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">ctapipe</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>ctapipe.instrument.CameraDescription</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for ctapipe.instrument.CameraDescription</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">astropy</span>
+<span class="kn">from</span> <span class="nn">astropy</span> <span class="k">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+<span class="kn">from</span> <span class="nn">astropy.table</span> <span class="k">import</span> <span class="n">Table</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="k">import</span> <span class="n">cKDTree</span> <span class="k">as</span> <span class="n">KDTree</span>
+<span class="kn">from</span> <span class="nn">ctapipe.utils.linalg</span> <span class="k">import</span> <span class="n">rotation_matrix_2d</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Camera&#39;</span><span class="p">,</span><span class="s1">&#39;npix_to_type&#39;</span><span class="p">,</span><span class="s1">&#39;find_neighbor_pixels&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;guess_camera_geometry&#39;</span><span class="p">,</span><span class="s1">&#39;guess_camera_type&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;make_rectangular_camera_geometry&#39;</span><span class="p">,</span><span class="s1">&#39;rotate_camera&#39;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="Camera"><a class="viewcode-back" href="../../../api/ctapipe.instrument.CameraDescription.Camera.html#ctapipe.instrument.CameraDescription.Camera">[docs]</a><span class="k">class</span> <span class="nc">Camera</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;`Camera` is a class that provides and gets all the information about</span>
+<span class="sd">    the camera of a specific telescope.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pix_id</span><span class="p">,</span><span class="n">pix_X</span><span class="p">,</span><span class="n">pix_Y</span><span class="p">,</span>
+                 <span class="n">pix_area</span><span class="p">,</span><span class="n">pix_type</span><span class="p">,</span><span class="n">pix_neighbors</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        self: type</span>
+<span class="sd">            description</span>
+<span class="sd">        pix_id: array (int)</span>
+<span class="sd">            pixel ids of the camera of the telescope</span>
+<span class="sd">        pix_X: array with units</span>
+<span class="sd">            position of each pixel (x-coordinate)</span>
+<span class="sd">        pix_Y: array with units</span>
+<span class="sd">            position of each pixel (y-coordinate)</span>
+<span class="sd">        pix_area: array with units</span>
+<span class="sd">            area of each pixel</span>
+<span class="sd">        pix_type: string</span>
+<span class="sd">            name of the pixel type (e.g. hexagonal)</span>
+<span class="sd">        pix_neighbors: ndarray (int)</span>
+<span class="sd">            nD-array with pixel IDs of neighboring</span>
+<span class="sd">            pixels of the pixels (n=number of pixels)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pix_id</span> <span class="o">=</span> <span class="n">pix_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pix_X</span> <span class="o">=</span> <span class="n">pix_X</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pix_Y</span> <span class="o">=</span> <span class="n">pix_Y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pix_area</span> <span class="o">=</span> <span class="n">pix_area</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pix_type</span> <span class="o">=</span> <span class="n">pix_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pix_neighbors</span> <span class="o">=</span> <span class="n">pix_neighbors</span>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Camera.guess"><a class="viewcode-back" href="../../../api/ctapipe.instrument.CameraDescription.Camera.html#ctapipe.instrument.CameraDescription.Camera.guess">[docs]</a>    <span class="k">def</span> <span class="nf">guess</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">pix_x</span><span class="p">,</span> <span class="n">pix_y</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Construct a `CameraGeometry` by guessing the appropriate quantities</span>
+<span class="sd">        from a list of pixel positions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">guess_camera_geometry</span><span class="p">(</span><span class="n">pix_x</span><span class="p">,</span> <span class="n">pix_y</span><span class="p">)</span></div>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Camera.rotate"><a class="viewcode-back" href="../../../api/ctapipe.instrument.CameraDescription.Camera.html#ctapipe.instrument.CameraDescription.Camera.rotate">[docs]</a>    <span class="k">def</span> <span class="nf">rotate</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span><span class="n">angle</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">rotate_camera</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span><span class="n">cls</span><span class="o">.</span><span class="n">pix_X</span><span class="p">,</span><span class="n">cls</span><span class="o">.</span><span class="n">pix_Y</span><span class="p">)</span></div>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Camera.to_table"><a class="viewcode-back" href="../../../api/ctapipe.instrument.CameraDescription.Camera.html#ctapipe.instrument.CameraDescription.Camera.to_table">[docs]</a>    <span class="k">def</span> <span class="nf">to_table</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;test&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; convert this to an `astropy.table.Table` &quot;&quot;&quot;</span>
+        <span class="c1"># currently the neighbor list is not supported, since</span>
+        <span class="c1"># var-length arrays are not supported by astropy.table.Table</span>
+        <span class="k">return</span> <span class="n">Table</span><span class="p">([</span><span class="n">cls</span><span class="o">.</span><span class="n">pix_id</span><span class="p">,</span> <span class="n">cls</span><span class="o">.</span><span class="n">pix_X</span><span class="p">,</span> <span class="n">cls</span><span class="o">.</span><span class="n">pix_Y</span><span class="p">,</span> <span class="n">cls</span><span class="o">.</span><span class="n">pix_area</span><span class="p">,</span>
+                      <span class="n">cls</span><span class="o">.</span><span class="n">pix_neighbors</span><span class="p">],</span>
+                      <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;PixID&#39;</span><span class="p">,</span> <span class="s1">&#39;PixX&#39;</span><span class="p">,</span> <span class="s1">&#39;PixY&#39;</span><span class="p">,</span> <span class="s1">&#39;PixA&#39;</span><span class="p">,</span> <span class="s1">&#39;PixNeig&#39;</span><span class="p">],</span>
+                      <span class="n">meta</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">VERSION</span><span class="o">=</span><span class="n">version</span><span class="p">))</span></div></div>
+
+
+<span class="n">npix_to_type</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">2048</span><span class="p">,</span> <span class="mf">0.006</span><span class="p">):</span> <span class="p">(</span><span class="s1">&#39;SST&#39;</span><span class="p">,</span> <span class="s1">&#39;GATE&#39;</span><span class="p">,</span> <span class="s1">&#39;rectangular&#39;</span><span class="p">),</span>
+                 <span class="p">(</span><span class="mi">2048</span><span class="p">,</span> <span class="mf">0.042</span><span class="p">):</span> <span class="p">(</span><span class="s1">&#39;LST&#39;</span><span class="p">,</span> <span class="s1">&#39;HESSII&#39;</span><span class="p">,</span> <span class="s1">&#39;hexagonal&#39;</span><span class="p">),</span>
+                 <span class="p">(</span><span class="mi">1141</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span> <span class="p">(</span><span class="s1">&#39;MST&#39;</span><span class="p">,</span> <span class="s1">&#39;NectarCam&#39;</span><span class="p">,</span> <span class="s1">&#39;hexagonal&#39;</span><span class="p">),</span>
+                 <span class="p">(</span><span class="mi">1855</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span> <span class="p">(</span><span class="s1">&#39;LST&#39;</span><span class="p">,</span> <span class="s1">&#39;LSTCam&#39;</span><span class="p">,</span> <span class="s1">&#39;hexagonal&#39;</span><span class="p">),</span>
+                 <span class="p">(</span><span class="mi">11328</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span> <span class="p">(</span><span class="s1">&#39;SCT&#39;</span><span class="p">,</span> <span class="s1">&#39;SCTCam&#39;</span><span class="p">,</span> <span class="s1">&#39;rectangular&#39;</span><span class="p">)}</span>
+
+<div class="viewcode-block" id="find_neighbor_pixels"><a class="viewcode-back" href="../../../api/ctapipe.instrument.CameraDescription.find_neighbor_pixels.html#ctapipe.instrument.CameraDescription.find_neighbor_pixels">[docs]</a><span class="k">def</span> <span class="nf">find_neighbor_pixels</span><span class="p">(</span><span class="n">pix_x</span><span class="p">,</span> <span class="n">pix_y</span><span class="p">,</span> <span class="n">rad</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;uses a KD-Tree to quickly find nearest neighbors of the pixels in a</span>
+<span class="sd">    camera. This function can be used to find the neighbor pixels if</span>
+<span class="sd">    such a list is not already present in the file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pix_x : array_like</span>
+<span class="sd">        x position of each pixel</span>
+<span class="sd">    pix_y : array_like</span>
+<span class="sd">        y position of each pixels</span>
+<span class="sd">    rad : float</span>
+<span class="sd">        radius to consider neighbor it should be slightly larger</span>
+<span class="sd">        than the pixel diameter.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    array of neighbor indices in a list for each pixel</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">pix_x</span><span class="p">,</span> <span class="n">pix_y</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pix_x</span><span class="p">))</span>
+    <span class="n">kdtree</span> <span class="o">=</span> <span class="n">KDTree</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+    <span class="n">neighbors</span> <span class="o">=</span> <span class="p">[</span><span class="n">kdtree</span><span class="o">.</span><span class="n">query_ball_point</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">rad</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">points</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">nn</span><span class="p">,</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">neighbors</span><span class="p">,</span> <span class="n">indices</span><span class="p">):</span>
+        <span class="n">nn</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span>  <span class="c1"># get rid of the pixel itself</span>
+    <span class="k">return</span> <span class="n">neighbors</span></div>
+
+<span class="nd">@u</span><span class="o">.</span><span class="n">quantity_input</span>
+<div class="viewcode-block" id="guess_camera_geometry"><a class="viewcode-back" href="../../../api/ctapipe.instrument.CameraDescription.guess_camera_geometry.html#ctapipe.instrument.CameraDescription.guess_camera_geometry">[docs]</a><span class="k">def</span> <span class="nf">guess_camera_geometry</span><span class="p">(</span><span class="n">pix_x</span><span class="p">:</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="n">pix_y</span><span class="p">:</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    returns a the camera class, the pixel area, the pixel type and the</span>
+<span class="sd">    distance between two pixels just from the pixel positions</span>
+
+<span class="sd">    Assumes:</span>
+<span class="sd">    --------</span>
+<span class="sd">    - the pixels are square or hexagonal</span>
+<span class="sd">    - the first two pixels are adjacent</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pix_x: array with units</span>
+<span class="sd">        positions of pixels (x-coordinate)</span>
+<span class="sd">    pix_y: array with units</span>
+<span class="sd">        positions of pixels (y-coordinate</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    camera class, pixel area, pixel type, and distance between 2 pixels</span>
+<span class="sd">    projected on the x-axis</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span> <span class="n">cam_class</span><span class="p">,</span><span class="n">pix_type</span> <span class="o">=</span> <span class="n">guess_camera_type</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pix_x</span><span class="p">))</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">pix_type</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="n">dx</span> <span class="o">=</span> <span class="n">pix_x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">pix_x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">dy</span> <span class="o">=</span> <span class="n">pix_y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">pix_y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dx</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># dist between two pixels</span>
+    <span class="n">tel_type</span><span class="p">,</span> <span class="n">cam_id</span><span class="p">,</span> <span class="n">pix_type</span> <span class="o">=</span> <span class="n">guess_camera_type</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pix_x</span><span class="p">),</span> \
+    <span class="n">u</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span><span class="s2">&quot;m&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">pix_type</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;hex&#39;</span><span class="p">):</span>
+        <span class="n">rad</span> <span class="o">=</span> <span class="n">dist</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># radius to vertex of hexagon</span>
+        <span class="n">area</span> <span class="o">=</span> <span class="n">rad</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>  <span class="c1"># area of hexagon</span>
+    <span class="k">elif</span> <span class="n">pix_type</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;rect&#39;</span><span class="p">):</span>
+        <span class="n">area</span> <span class="o">=</span> <span class="n">dist</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">else</span><span class="p">:</span> <span class="k">pass</span>
+
+    <span class="n">pix_area</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">pix_x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="n">area</span>
+
+    <span class="k">return</span> <span class="n">Camera</span><span class="p">(</span><span class="n">pix_id</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pix_x</span><span class="p">)),</span><span class="n">pix_X</span><span class="o">=</span><span class="n">pix_x</span><span class="p">,</span><span class="n">pix_Y</span><span class="o">=</span><span class="n">pix_y</span><span class="p">,</span>
+                          <span class="n">pix_area</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">pix_x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="n">pix_area</span><span class="p">,</span>
+                          <span class="n">pix_neighbors</span><span class="o">=</span><span class="n">find_neighbor_pixels</span><span class="p">(</span><span class="n">pix_x</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                                                         <span class="n">pix_y</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                                                         <span class="n">dx</span><span class="o">.</span><span class="n">value</span> <span class="o">+</span> <span class="mf">0.01</span><span class="p">),</span>
+                          <span class="n">pix_type</span><span class="o">=</span><span class="n">pix_type</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="guess_camera_type"><a class="viewcode-back" href="../../../api/ctapipe.instrument.CameraDescription.guess_camera_type.html#ctapipe.instrument.CameraDescription.guess_camera_type">[docs]</a><span class="k">def</span> <span class="nf">guess_camera_type</span><span class="p">(</span><span class="n">npix</span><span class="p">,</span><span class="n">pix_sep</span><span class="p">):</span>
+    <span class="c1"># dictionary to convert number of pixels to camera type for use in</span>
+    <span class="c1"># guess_camera_geometry.</span>
+    <span class="c1"># Key = (npix, pix_seperation_m)</span>
+    <span class="c1"># Value = (type, subtype, pixtype)</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    guesses and returns the camera type using the number of pixels</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    npix: int</span>
+<span class="sd">        number of pixels of the camera</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">npix_to_type</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">npix_to_type</span><span class="p">[(</span><span class="n">npix</span><span class="p">,</span> <span class="kc">None</span><span class="p">)]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">npix_to_type</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">npix</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">pix_sep</span><span class="p">,</span><span class="mi">3</span><span class="p">)),</span> \
+        <span class="p">(</span><span class="s1">&#39;unknown&#39;</span><span class="p">,</span> <span class="s1">&#39;unknown&#39;</span><span class="p">,</span> <span class="s1">&#39;hexagonal&#39;</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="make_rectangular_camera_geometry"><a class="viewcode-back" href="../../../api/ctapipe.instrument.CameraDescription.make_rectangular_camera_geometry.html#ctapipe.instrument.CameraDescription.make_rectangular_camera_geometry">[docs]</a><span class="k">def</span> <span class="nf">make_rectangular_camera_geometry</span><span class="p">(</span><span class="n">npix_x</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">npix_y</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+                                     <span class="n">range_x</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">range_y</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;Generate a simple camera with 2D rectangular geometry.</span>
+<span class="sd">    Used for testing.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    npix_x : int</span>
+<span class="sd">        number of pixels in X-dimension</span>
+<span class="sd">    npix_y : int</span>
+<span class="sd">        number of pixels in Y-dimension</span>
+<span class="sd">    range_x : (float,float)</span>
+<span class="sd">        min and max of x pixel coordinates in meters</span>
+<span class="sd">    range_y : (float,float)</span>
+<span class="sd">        min and max of y pixel coordinates in meters</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pix_id: int array</span>
+<span class="sd">        Pixel IDs</span>
+<span class="sd">    pix_x,pix_y: float arrays</span>
+<span class="sd">        x and y positions of the pixels in the camera</span>
+<span class="sd">    pix_area: float array</span>
+<span class="sd">        pixel areas</span>
+<span class="sd">    neighbors: list with next neighbors</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">bx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">range_x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">range_x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">npix_x</span><span class="p">)</span>
+    <span class="n">by</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">range_y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">range_y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">npix_y</span><span class="p">)</span>
+    <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">bx</span><span class="p">,</span> <span class="n">by</span><span class="p">)</span>
+    <span class="n">pix_x</span> <span class="o">=</span> <span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span>
+    <span class="n">pix_y</span> <span class="o">=</span> <span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span>
+
+    <span class="n">pix_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">npix_x</span> <span class="o">*</span> <span class="n">npix_y</span><span class="p">)</span>
+    <span class="n">rr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">pix_x</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="p">(</span><span class="n">pix_x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">pix_x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mf">2.0</span>
+    <span class="n">pix_area</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">rr</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">neighbors</span> <span class="o">=</span> <span class="n">find_neighbor_pixels</span><span class="p">(</span><span class="n">pix_x</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">pix_y</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                                     <span class="n">rad</span><span class="o">=</span><span class="p">(</span><span class="n">rr</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mf">2.001</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">Camera</span><span class="p">(</span>
+        <span class="n">pix_id</span><span class="o">=</span><span class="n">pix_ids</span><span class="p">,</span>
+        <span class="n">pix_X</span><span class="o">=</span><span class="n">pix_x</span><span class="p">,</span>
+        <span class="n">pix_Y</span><span class="o">=</span><span class="n">pix_y</span><span class="p">,</span>
+        <span class="n">pix_area</span><span class="o">=</span><span class="n">pix_area</span><span class="p">,</span>
+        <span class="n">pix_neighbors</span><span class="o">=</span><span class="n">neighbors</span><span class="p">,</span>
+        <span class="n">pix_type</span><span class="o">=</span><span class="s1">&#39;rectangular&#39;</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="rotate_camera"><a class="viewcode-back" href="../../../api/ctapipe.instrument.CameraDescription.rotate_camera.html#ctapipe.instrument.CameraDescription.rotate_camera">[docs]</a><span class="k">def</span> <span class="nf">rotate_camera</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">pix_x</span><span class="p">:</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="n">pix_y</span><span class="p">:</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;rotate the camera coordinates about the center of the camera by</span>
+<span class="sd">    specified angle. Modifies the CameraGeometry in-place (so</span>
+<span class="sd">    after this is called, the pix_x and pix_y arrays are</span>
+<span class="sd">    rotated.</span>
+
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">    This is intended only to correct simulated data that are</span>
+<span class="sd">    rotated by a fixed angle.  For the more general case of</span>
+<span class="sd">    correction for camera pointing errors (rotations,</span>
+<span class="sd">    translations, skews, etc), you should use a true coordinate</span>
+<span class="sd">    transformation defined in `ctapipe.coordinates`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    angle: value convertable to an `astropy.coordinates.Angle`</span>
+<span class="sd">        rotation angle with unit (e.g. 12 * u.deg), or &quot;12d&quot;</span>
+<span class="sd">    pix_x: array with x-positions of the camera pixels</span>
+<span class="sd">    pix_y: array with y-positions of the camera pixels</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">pix_x</span><span class="p">)</span> <span class="o">==</span> <span class="n">astropy</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">column</span><span class="o">.</span><span class="n">Column</span><span class="p">:</span>
+        <span class="n">pix_x</span> <span class="o">=</span> <span class="n">pix_x</span><span class="o">*</span><span class="n">pix_x</span><span class="o">.</span><span class="n">unit</span>
+        <span class="n">pix_y</span> <span class="o">=</span> <span class="n">pix_y</span><span class="o">*</span><span class="n">pix_y</span><span class="o">.</span><span class="n">unit</span>
+    <span class="n">rotmat</span> <span class="o">=</span> <span class="n">rotation_matrix_2d</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+    <span class="n">rotated</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">rotmat</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="p">[</span><span class="n">pix_x</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">pix_y</span><span class="o">.</span><span class="n">value</span><span class="p">])</span>
+    <span class="n">pix_x</span> <span class="o">=</span> <span class="n">rotated</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">pix_x</span><span class="o">.</span><span class="n">unit</span>
+    <span class="n">pix_y</span> <span class="o">=</span> <span class="n">rotated</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">pix_x</span><span class="o">.</span><span class="n">unit</span>
+
+    <span class="k">return</span> <span class="n">pix_x</span><span class="p">,</span> <span class="n">pix_y</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, ctapipe developers.
+      Last updated on 20 Oct 2016.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.dev1023',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

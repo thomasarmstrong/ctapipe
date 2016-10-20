@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ctapipe.analysis.camera.chargeresolution &mdash; ctapipe v0.1.dev1016</title>
+  <title>ctapipe.analysis.camera.chargeresolution &mdash; ctapipe v0.1.dev1023</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.1.dev1016" href="../../../../index.html"/>
+    <link rel="top" title="ctapipe v0.1.dev1023" href="../../../../index.html"/>
         <link rel="up" title="Module code" href="../../../index.html"/> 
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.1.dev1016
+                0.1.dev1023
               </div>
             
           
@@ -143,10 +143,10 @@
            <div itemprop="articleBody">
             
   <h1>Source code for ctapipe.analysis.camera.chargeresolution</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">log</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">log10</span><span class="p">,</span> <span class="n">sqrt</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">binned_statistic</span>
+<span></span><span class="kn">from</span> <span class="nn">astropy</span> <span class="k">import</span> <span class="n">log</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">log10</span><span class="p">,</span> <span class="n">sqrt</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="k">import</span> <span class="n">binned_statistic</span>
 
 
 <div class="viewcode-block" id="ChargeResolution"><a class="viewcode-back" href="../../../../api/ctapipe.analysis.camera.ChargeResolution.html#ctapipe.analysis.camera.ChargeResolution">[docs]</a><span class="k">class</span> <span class="nc">ChargeResolution</span><span class="p">:</span>
@@ -222,7 +222,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">sum_dict</span><span class="p">[</span><span class="n">trueq</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">relevant_q</span> <span class="o">-</span> <span class="n">trueq</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">n_dict</span><span class="p">[</span><span class="n">trueq</span><span class="p">]</span> <span class="o">+=</span> <span class="n">relevant_q</span><span class="o">.</span><span class="n">size</span></div>
 
-<div class="viewcode-block" id="ChargeResolution.add_source"><a class="viewcode-back" href="../../../../api/ctapipe.analysis.camera.ChargeResolution.html#ctapipe.analysis.camera.ChargeResolution.add_source">[docs]</a>    <span class="k">def</span> <span class="nf">add_source</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calibrated_source</span><span class="p">,</span> <span class="n">telescopes</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="ChargeResolution.add_source"><a class="viewcode-back" href="../../../../api/ctapipe.analysis.camera.ChargeResolution.html#ctapipe.analysis.camera.ChargeResolution.add_source">[docs]</a>    <span class="k">def</span> <span class="nf">add_source</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calibrated_source</span><span class="p">,</span> <span class="n">telescopes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Fill the class parameters with a calibrated source.</span>
 
@@ -237,7 +237,7 @@
         <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;[chargeres] Adding source&#39;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">calibrated_source</span><span class="p">:</span>
             <span class="n">tels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">dl0</span><span class="o">.</span><span class="n">tels_with_data</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">telescopes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">telescopes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">tels</span> <span class="o">=</span> <span class="p">[]</span>
                 <span class="k">for</span> <span class="n">tel</span> <span class="ow">in</span> <span class="n">telescopes</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">tel</span> <span class="ow">in</span> <span class="n">event</span><span class="o">.</span><span class="n">dl0</span><span class="o">.</span><span class="n">tels_with_data</span><span class="p">:</span>
@@ -299,7 +299,7 @@
         <span class="k">return</span> <span class="n">true_charge</span><span class="p">,</span> <span class="n">chargeres</span><span class="p">,</span> <span class="n">chargeres_error</span><span class="p">,</span> \
             <span class="n">scaled_chargeres</span><span class="p">,</span> <span class="n">scaled_chargeres_error</span></div>
 
-<div class="viewcode-block" id="ChargeResolution.get_binned_charge_resolution"><a class="viewcode-back" href="../../../../api/ctapipe.analysis.camera.ChargeResolution.html#ctapipe.analysis.camera.ChargeResolution.get_binned_charge_resolution">[docs]</a>    <span class="k">def</span> <span class="nf">get_binned_charge_resolution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">logarithmic_binning</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="ChargeResolution.get_binned_charge_resolution"><a class="viewcode-back" href="../../../../api/ctapipe.analysis.camera.ChargeResolution.html#ctapipe.analysis.camera.ChargeResolution.get_binned_charge_resolution">[docs]</a>    <span class="k">def</span> <span class="nf">get_binned_charge_resolution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">logarithmic_binning</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate and obtain the charge resolution graph arrays, and bin them.</span>
 
@@ -446,7 +446,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 19 Oct 2016.
+      Last updated on 20 Oct 2016.
 
     </p>
   </div>
@@ -468,7 +468,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'0.1.dev1016',
+            VERSION:'0.1.dev1023',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

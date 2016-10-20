@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Code Guidelines &mdash; ctapipe v0.1.dev1016</title>
+  <title>Code Guidelines &mdash; ctapipe v0.1.dev1023</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.1.dev1016" href="../index.html"/>
+    <link rel="top" title="ctapipe v0.1.dev1023" href="../index.html"/>
         <link rel="up" title="Development Guidelines" href="index.html"/>
         <link rel="next" title="Support Libraries" href="support-libraries.html"/>
         <link rel="prev" title="Style Guide" href="style-guide.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.1.dev1016
+                0.1.dev1023
               </div>
             
           
@@ -193,7 +193,7 @@ managed via an <a class="reference external" href="http://docs.astropy.org/en/st
 methods to read and write such a table to/from nearly any file
 format, including FITS and HDF5). Other packages like <code class="xref py py-obj docutils literal"><span class="pre">pandas</span></code> or
 <code class="xref py py-obj docutils literal"><span class="pre">dask</span></code> may be explored.</li>
-<li><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><code class="xref py py-obj docutils literal"><span class="pre">dict</span></code></a> s or classes can be used for more flexible containers for
+<li><code class="xref py py-obj docutils literal"><span class="pre">dict</span></code> s or classes can be used for more flexible containers for
 output parameters.</li>
 <li><a class="reference internal" href="../api/ctapipe.core.Container.html#ctapipe.core.Container" title="ctapipe.core.Container"><code class="xref py py-obj docutils literal"><span class="pre">ctapipe.core.Container</span></code></a> should be used for any
 high-level data structures that you want to be able to write to
@@ -206,7 +206,7 @@ Python 3 and new-style classes are the default, i.e. subclassing
 <div class="section" id="logging-and-debugging">
 <h2>Logging and debugging<a class="headerlink" href="#logging-and-debugging" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>do not use <a class="reference external" href="http://docs.python.org/3/library/functions.html#print" title="(in Python v3.4)"><code class="xref py py-obj docutils literal"><span class="pre">print()</span></code></a> statements to output text. Instead use the
+<li>do not use <a class="reference external" href="http://docs.python.org/3/library/functions.html#print" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">print()</span></code></a> statements to output text. Instead use the
 common logging failities of <code class="xref py py-obj docutils literal"><span class="pre">ctapipe</span></code>.  Log messages should be
 simple, and no not include the filename, function name, time, or any
 other metadata (which can be attached automatically by the logging
@@ -283,7 +283,7 @@ implement any <em>framework</em> features in your algorithm:
 (there will be a common factory class for that in the framework for
 all algorothms that have multiple implementations)
 - do not write data streams to disk yourself (use framework
-features, or just <a class="reference external" href="http://docs.python.org/3/library/functions.html#print" title="(in Python v3.4)"><code class="xref py py-obj docutils literal"><span class="pre">print()</span></code></a> until they are available) data flow
+features, or just <a class="reference external" href="http://docs.python.org/3/library/functions.html#print" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">print()</span></code></a> until they are available) data flow
 between algorithms, etc).
 - If a framework feature is missing, request it via the issue
 tracker.</p>
@@ -406,7 +406,7 @@ systems be tested.</li>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 19 Oct 2016.
+      Last updated on 20 Oct 2016.
 
     </p>
   </div>
@@ -428,7 +428,7 @@ systems be tested.</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.dev1016',
+            VERSION:'0.1.dev1023',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
