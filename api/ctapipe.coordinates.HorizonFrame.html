@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>TiltedGroundFrame &mdash; ctapipe v0.1.dev1036</title>
+  <title>HorizonFrame &mdash; ctapipe v0.1.dev1036</title>
   
 
   
@@ -34,8 +34,8 @@
   
     <link rel="top" title="ctapipe v0.1.dev1036" href="../index.html"/>
         <link rel="up" title="Coordinates (coordinates)" href="../coordinates/index.html"/>
-        <link rel="next" title="Core Structures and Base Classes (core)" href="../core/index.html"/>
-        <link rel="prev" title="TelescopeFrame" href="ctapipe.coordinates.TelescopeFrame.html"/> 
+        <link rel="next" title="NominalFrame" href="ctapipe.coordinates.NominalFrame.html"/>
+        <link rel="prev" title="GroundFrame" href="ctapipe.coordinates.GroundFrame.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -144,11 +144,11 @@
       
           <li><a href="../coordinates/index.html">Coordinates (<code class="docutils literal"><span class="pre">coordinates</span></code>)</a> &raquo;</li>
       
-    <li>TiltedGroundFrame</li>
+    <li>HorizonFrame</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/api/ctapipe.coordinates.TiltedGroundFrame.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/api/ctapipe.coordinates.HorizonFrame.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -158,22 +158,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="tiltedgroundframe">
-<h1>TiltedGroundFrame<a class="headerlink" href="#tiltedgroundframe" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="horizonframe">
+<h1>HorizonFrame<a class="headerlink" href="#horizonframe" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="ctapipe.coordinates.TiltedGroundFrame">
-<em class="property">class </em><code class="descclassname">ctapipe.coordinates.</code><code class="descname">TiltedGroundFrame</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/coordinates/ground_frames.html#TiltedGroundFrame"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.coordinates.TiltedGroundFrame" title="Permalink to this definition">¶</a></dt>
+<dt id="ctapipe.coordinates.HorizonFrame">
+<em class="property">class </em><code class="descclassname">ctapipe.coordinates.</code><code class="descname">HorizonFrame</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/coordinates/angular_frames.html#HorizonFrame"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.coordinates.HorizonFrame" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="http://docs.astropy.org/en/stable/api/astropy.coordinates.BaseCoordinateFrame.html#astropy.coordinates.BaseCoordinateFrame" title="astropy.coordinates.BaseCoordinateFrame"><code class="docutils literal"><span class="pre">astropy.coordinates.BaseCoordinateFrame</span></code></a></p>
-<p>Tilted ground coordinate frame.  The tilted ground coordinate frame
-is a cartesian system describing the 2 dimensional projected
-positions of objects in a tilted plane described by
-pointing_direction Typically this frame will be used for the
-reconstruction of the shower core position</p>
+<p>Horizon coordinate frame. Spherical system used to describe the direction
+of a given position, in terms of the altitude and azimuth of the system. In
+practice this is functionally identical as the astropy AltAz system, but this
+implementation allows us to pass array pointing information, allowing us to directly
+transform to the Horizon Frame from the Camera system.
+The Following attributes are carried over from the telescope frame
+to allow a direct transformation from the camera frame</p>
 <p>Frame attributes:</p>
 <ul>
 <li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">array_direction</span></code></dt>
+<dd><p class="first last">Alt,Az direction of the array pointing</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
 <dt><code class="docutils literal"><span class="pre">pointing_direction</span></code></dt>
-<dd><p class="first last">Alt,Az direction of the tilted reference plane</p>
+<dd><p class="first last">Alt,Az direction of the telescope pointing</p>
 </dd>
 </dl>
 </li>
@@ -185,47 +193,55 @@ reconstruction of the shower core position</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#ctapipe.coordinates.TiltedGroundFrame.default_representation" title="ctapipe.coordinates.TiltedGroundFrame.default_representation"><code class="xref py py-obj docutils literal"><span class="pre">default_representation</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#ctapipe.coordinates.HorizonFrame.array_direction" title="ctapipe.coordinates.HorizonFrame.array_direction"><code class="xref py py-obj docutils literal"><span class="pre">array_direction</span></code></a></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#ctapipe.coordinates.TiltedGroundFrame.frame_attributes" title="ctapipe.coordinates.TiltedGroundFrame.frame_attributes"><code class="xref py py-obj docutils literal"><span class="pre">frame_attributes</span></code></a></td>
+<tr class="row-even"><td><a class="reference internal" href="#ctapipe.coordinates.HorizonFrame.default_representation" title="ctapipe.coordinates.HorizonFrame.default_representation"><code class="xref py py-obj docutils literal"><span class="pre">default_representation</span></code></a></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ctapipe.coordinates.TiltedGroundFrame.frame_specific_representation_info" title="ctapipe.coordinates.TiltedGroundFrame.frame_specific_representation_info"><code class="xref py py-obj docutils literal"><span class="pre">frame_specific_representation_info</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#ctapipe.coordinates.HorizonFrame.frame_attributes" title="ctapipe.coordinates.HorizonFrame.frame_attributes"><code class="xref py py-obj docutils literal"><span class="pre">frame_attributes</span></code></a></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#ctapipe.coordinates.TiltedGroundFrame.name" title="ctapipe.coordinates.TiltedGroundFrame.name"><code class="xref py py-obj docutils literal"><span class="pre">name</span></code></a></td>
+<tr class="row-even"><td><a class="reference internal" href="#ctapipe.coordinates.HorizonFrame.frame_specific_representation_info" title="ctapipe.coordinates.HorizonFrame.frame_specific_representation_info"><code class="xref py py-obj docutils literal"><span class="pre">frame_specific_representation_info</span></code></a></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ctapipe.coordinates.TiltedGroundFrame.pointing_direction" title="ctapipe.coordinates.TiltedGroundFrame.pointing_direction"><code class="xref py py-obj docutils literal"><span class="pre">pointing_direction</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="#ctapipe.coordinates.HorizonFrame.name" title="ctapipe.coordinates.HorizonFrame.name"><code class="xref py py-obj docutils literal"><span class="pre">name</span></code></a></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#ctapipe.coordinates.HorizonFrame.pointing_direction" title="ctapipe.coordinates.HorizonFrame.pointing_direction"><code class="xref py py-obj docutils literal"><span class="pre">pointing_direction</span></code></a></td>
 <td></td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes Documentation</p>
 <dl class="attribute">
-<dt id="ctapipe.coordinates.TiltedGroundFrame.default_representation">
-<code class="descname">default_representation</code><a class="headerlink" href="#ctapipe.coordinates.TiltedGroundFrame.default_representation" title="Permalink to this definition">¶</a></dt>
+<dt id="ctapipe.coordinates.HorizonFrame.array_direction">
+<code class="descname">array_direction</code><em class="property"> = None</em><a class="headerlink" href="#ctapipe.coordinates.HorizonFrame.array_direction" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="ctapipe.coordinates.TiltedGroundFrame.frame_attributes">
-<code class="descname">frame_attributes</code><em class="property"> = OrderedDict([('pointing_direction', &lt;astropy.coordinates.baseframe.FrameAttribute object&gt;)])</em><a class="headerlink" href="#ctapipe.coordinates.TiltedGroundFrame.frame_attributes" title="Permalink to this definition">¶</a></dt>
+<dt id="ctapipe.coordinates.HorizonFrame.default_representation">
+<code class="descname">default_representation</code><a class="headerlink" href="#ctapipe.coordinates.HorizonFrame.default_representation" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="ctapipe.coordinates.TiltedGroundFrame.frame_specific_representation_info">
-<code class="descname">frame_specific_representation_info</code><a class="headerlink" href="#ctapipe.coordinates.TiltedGroundFrame.frame_specific_representation_info" title="Permalink to this definition">¶</a></dt>
+<dt id="ctapipe.coordinates.HorizonFrame.frame_attributes">
+<code class="descname">frame_attributes</code><em class="property"> = OrderedDict([('pointing_direction', &lt;astropy.coordinates.baseframe.FrameAttribute object&gt;), ('array_direction', &lt;astropy.coordinates.baseframe.FrameAttribute object&gt;)])</em><a class="headerlink" href="#ctapipe.coordinates.HorizonFrame.frame_attributes" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="ctapipe.coordinates.TiltedGroundFrame.name">
-<code class="descname">name</code><em class="property"> = 'tiltedgroundframe'</em><a class="headerlink" href="#ctapipe.coordinates.TiltedGroundFrame.name" title="Permalink to this definition">¶</a></dt>
+<dt id="ctapipe.coordinates.HorizonFrame.frame_specific_representation_info">
+<code class="descname">frame_specific_representation_info</code><a class="headerlink" href="#ctapipe.coordinates.HorizonFrame.frame_specific_representation_info" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="ctapipe.coordinates.TiltedGroundFrame.pointing_direction">
-<code class="descname">pointing_direction</code><em class="property"> = None</em><a class="headerlink" href="#ctapipe.coordinates.TiltedGroundFrame.pointing_direction" title="Permalink to this definition">¶</a></dt>
+<dt id="ctapipe.coordinates.HorizonFrame.name">
+<code class="descname">name</code><em class="property"> = 'horizonframe'</em><a class="headerlink" href="#ctapipe.coordinates.HorizonFrame.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ctapipe.coordinates.HorizonFrame.pointing_direction">
+<code class="descname">pointing_direction</code><em class="property"> = None</em><a class="headerlink" href="#ctapipe.coordinates.HorizonFrame.pointing_direction" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -239,10 +255,10 @@ reconstruction of the shower core position</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../core/index.html" class="btn btn-neutral float-right" title="Core Structures and Base Classes (core)" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ctapipe.coordinates.NominalFrame.html" class="btn btn-neutral float-right" title="NominalFrame" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="ctapipe.coordinates.TelescopeFrame.html" class="btn btn-neutral" title="TelescopeFrame" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="ctapipe.coordinates.GroundFrame.html" class="btn btn-neutral" title="GroundFrame" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

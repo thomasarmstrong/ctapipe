@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Code Guidelines &mdash; ctapipe v0.1.dev1023</title>
+  <title>Code Guidelines &mdash; ctapipe v0.1.dev1036</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.1.dev1023" href="../index.html"/>
+    <link rel="top" title="ctapipe v0.1.dev1036" href="../index.html"/>
         <link rel="up" title="Development Guidelines" href="index.html"/>
         <link rel="next" title="Support Libraries" href="support-libraries.html"/>
         <link rel="prev" title="Style Guide" href="style-guide.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.1.dev1023
+                0.1.dev1036
               </div>
             
           
@@ -193,14 +193,14 @@ managed via an <a class="reference external" href="http://docs.astropy.org/en/st
 methods to read and write such a table to/from nearly any file
 format, including FITS and HDF5). Other packages like <code class="xref py py-obj docutils literal"><span class="pre">pandas</span></code> or
 <code class="xref py py-obj docutils literal"><span class="pre">dask</span></code> may be explored.</li>
-<li><code class="xref py py-obj docutils literal"><span class="pre">dict</span></code> s or classes can be used for more flexible containers for
+<li><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">dict</span></code></a> s or classes can be used for more flexible containers for
 output parameters.</li>
 <li><a class="reference internal" href="../api/ctapipe.core.Container.html#ctapipe.core.Container" title="ctapipe.core.Container"><code class="xref py py-obj docutils literal"><span class="pre">ctapipe.core.Container</span></code></a> should be used for any
 high-level data structures that you want to be able to write to
 disk (they are not necessary for simple function return values)</li>
-<li>Classes don't need to sub-class <a class="reference external" href="http://docs.python.org/3/library/functions.html#object" title="(in Python v3.4)"><code class="xref py py-obj docutils literal"><span class="pre">object</span></code></a>, because we only support
+<li>Classes don't need to sub-class <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">object</span></code></a>, because we only support
 Python 3 and new-style classes are the default, i.e. subclassing
-<a class="reference external" href="http://docs.python.org/3/library/functions.html#object" title="(in Python v3.4)"><code class="xref py py-obj docutils literal"><span class="pre">object</span></code></a> is superfluous.</li>
+<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.5)"><code class="xref py py-obj docutils literal"><span class="pre">object</span></code></a> is superfluous.</li>
 </ul>
 </div>
 <div class="section" id="logging-and-debugging">
@@ -406,7 +406,7 @@ systems be tested.</li>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 20 Oct 2016.
+      Last updated on 25 Oct 2016.
 
     </p>
   </div>
@@ -428,7 +428,7 @@ systems be tested.</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.dev1023',
+            VERSION:'0.1.dev1036',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

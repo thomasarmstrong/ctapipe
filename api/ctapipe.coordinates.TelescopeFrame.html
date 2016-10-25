@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>TelescopeFrame &mdash; ctapipe v0.1.dev1023</title>
+  <title>TelescopeFrame &mdash; ctapipe v0.1.dev1036</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.1.dev1023" href="../index.html"/>
+    <link rel="top" title="ctapipe v0.1.dev1036" href="../index.html"/>
         <link rel="up" title="Coordinates (coordinates)" href="../coordinates/index.html"/>
         <link rel="next" title="TiltedGroundFrame" href="ctapipe.coordinates.TiltedGroundFrame.html"/>
         <link rel="prev" title="NominalFrame" href="ctapipe.coordinates.NominalFrame.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.1.dev1023
+                0.1.dev1036
               </div>
             
           
@@ -162,7 +162,7 @@
 <h1>TelescopeFrame<a class="headerlink" href="#telescopeframe" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="ctapipe.coordinates.TelescopeFrame">
-<em class="property">class </em><code class="descclassname">ctapipe.coordinates.</code><code class="descname">TelescopeFrame</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/coordinates/frames.html#TelescopeFrame"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.coordinates.TelescopeFrame" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">ctapipe.coordinates.</code><code class="descname">TelescopeFrame</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/coordinates/angular_frames.html#TelescopeFrame"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.coordinates.TelescopeFrame" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="http://docs.astropy.org/en/stable/api/astropy.coordinates.BaseCoordinateFrame.html#astropy.coordinates.BaseCoordinateFrame" title="astropy.coordinates.BaseCoordinateFrame"><code class="docutils literal"><span class="pre">astropy.coordinates.BaseCoordinateFrame</span></code></a></p>
 <p>Telescope coordinate frame.  Cartesian system to describe the
 angular offset of a given position in reference to pointing
@@ -200,7 +200,7 @@ this frame and the camera frame</p>
 <tr class="row-odd"><td><a class="reference internal" href="#ctapipe.coordinates.TelescopeFrame.default_representation" title="ctapipe.coordinates.TelescopeFrame.default_representation"><code class="xref py py-obj docutils literal"><span class="pre">default_representation</span></code></a></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#ctapipe.coordinates.TelescopeFrame.focal_length" title="ctapipe.coordinates.TelescopeFrame.focal_length"><code class="xref py py-obj docutils literal"><span class="pre">focal_length</span></code></a></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">TelescopeFrame.focal_length</span></code></td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#ctapipe.coordinates.TelescopeFrame.frame_attributes" title="ctapipe.coordinates.TelescopeFrame.frame_attributes"><code class="xref py py-obj docutils literal"><span class="pre">frame_attributes</span></code></a></td>
@@ -215,7 +215,7 @@ this frame and the camera frame</p>
 <tr class="row-even"><td><a class="reference internal" href="#ctapipe.coordinates.TelescopeFrame.pointing_direction" title="ctapipe.coordinates.TelescopeFrame.pointing_direction"><code class="xref py py-obj docutils literal"><span class="pre">pointing_direction</span></code></a></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ctapipe.coordinates.TelescopeFrame.rotation" title="ctapipe.coordinates.TelescopeFrame.rotation"><code class="xref py py-obj docutils literal"><span class="pre">rotation</span></code></a></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">TelescopeFrame.rotation</span></code></td>
 <td></td>
 </tr>
 </tbody>
@@ -227,13 +227,8 @@ this frame and the camera frame</p>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="ctapipe.coordinates.TelescopeFrame.focal_length">
-<code class="descname">focal_length</code><em class="property"> = None</em><a class="headerlink" href="#ctapipe.coordinates.TelescopeFrame.focal_length" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
 <dt id="ctapipe.coordinates.TelescopeFrame.frame_attributes">
-<code class="descname">frame_attributes</code><em class="property"> = OrderedDict([('focal_length', &lt;astropy.coordinates.baseframe.FrameAttribute object&gt;), ('rotation', &lt;astropy.coordinates.baseframe.FrameAttribute object&gt;), ('pointing_direction', &lt;astropy.coordinates.baseframe.FrameAttribute object&gt;)])</em><a class="headerlink" href="#ctapipe.coordinates.TelescopeFrame.frame_attributes" title="Permalink to this definition">¶</a></dt>
+<code class="descname">frame_attributes</code><em class="property"> = OrderedDict([('pointing_direction', &lt;astropy.coordinates.baseframe.FrameAttribute object&gt;)])</em><a class="headerlink" href="#ctapipe.coordinates.TelescopeFrame.frame_attributes" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -249,11 +244,6 @@ this frame and the camera frame</p>
 <dl class="attribute">
 <dt id="ctapipe.coordinates.TelescopeFrame.pointing_direction">
 <code class="descname">pointing_direction</code><em class="property"> = None</em><a class="headerlink" href="#ctapipe.coordinates.TelescopeFrame.pointing_direction" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="ctapipe.coordinates.TelescopeFrame.rotation">
-<code class="descname">rotation</code><em class="property"> = &lt;Quantity 0.0 deg&gt;</em><a class="headerlink" href="#ctapipe.coordinates.TelescopeFrame.rotation" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -280,7 +270,7 @@ this frame and the camera frame</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 20 Oct 2016.
+      Last updated on 25 Oct 2016.
 
     </p>
   </div>
@@ -302,7 +292,7 @@ this frame and the camera frame</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.dev1023',
+            VERSION:'0.1.dev1036',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>NominalFrame &mdash; ctapipe v0.1.dev1023</title>
+  <title>NominalFrame &mdash; ctapipe v0.1.dev1036</title>
   
 
   
@@ -32,10 +32,10 @@
   
 
   
-    <link rel="top" title="ctapipe v0.1.dev1023" href="../index.html"/>
+    <link rel="top" title="ctapipe v0.1.dev1036" href="../index.html"/>
         <link rel="up" title="Coordinates (coordinates)" href="../coordinates/index.html"/>
         <link rel="next" title="TelescopeFrame" href="ctapipe.coordinates.TelescopeFrame.html"/>
-        <link rel="prev" title="GroundFrame" href="ctapipe.coordinates.GroundFrame.html"/> 
+        <link rel="prev" title="HorizonFrame" href="ctapipe.coordinates.HorizonFrame.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.1.dev1023
+                0.1.dev1036
               </div>
             
           
@@ -162,7 +162,7 @@
 <h1>NominalFrame<a class="headerlink" href="#nominalframe" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="ctapipe.coordinates.NominalFrame">
-<em class="property">class </em><code class="descclassname">ctapipe.coordinates.</code><code class="descname">NominalFrame</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/coordinates/frames.html#NominalFrame"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.coordinates.NominalFrame" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">ctapipe.coordinates.</code><code class="descname">NominalFrame</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/coordinates/angular_frames.html#NominalFrame"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.coordinates.NominalFrame" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="http://docs.astropy.org/en/stable/api/astropy.coordinates.BaseCoordinateFrame.html#astropy.coordinates.BaseCoordinateFrame" title="astropy.coordinates.BaseCoordinateFrame"><code class="docutils literal"><span class="pre">astropy.coordinates.BaseCoordinateFrame</span></code></a></p>
 <p>Nominal coordinate frame.  Cartesian system to describe the angular
 offset of a given position in reference to pointing direction of a
@@ -171,19 +171,19 @@ same as the telescope frame, however in the case of divergent
 pointing they will differ.  Event reconstruction should be
 performed in this system</p>
 <p>Frame attributes:</p>
-<ul class="simple">
-<li><code class="docutils literal"><span class="pre">pointing_direction</span></code>
-Alt,Az direction of the array pointing</li>
-</ul>
-<p>The Following attributes are carried over from the telescope frame
-to allow a direct transformation from the camera frame</p>
-<ul class="simple">
-<li><code class="docutils literal"><span class="pre">focal_length</span></code>
-Focal length of the telescope</li>
-<li><code class="docutils literal"><span class="pre">rotation</span></code>
-Rotation angle of the camera (0 in most cases) [deg]</li>
-<li><code class="docutils literal"><span class="pre">pointing_direction</span></code>
-Alt,Az direction of the telescope pointing</li>
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">array_direction</span></code></dt>
+<dd><p class="first last">Alt,Az direction of the array pointing</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">pointing_direction</span></code></dt>
+<dd><p class="first last">Alt,Az direction of the telescope pointing</p>
+</dd>
+</dl>
+</li>
 </ul>
 <p class="rubric">Attributes Summary</p>
 <table border="1" class="longtable docutils">
@@ -198,7 +198,7 @@ Alt,Az direction of the telescope pointing</li>
 <tr class="row-even"><td><a class="reference internal" href="#ctapipe.coordinates.NominalFrame.default_representation" title="ctapipe.coordinates.NominalFrame.default_representation"><code class="xref py py-obj docutils literal"><span class="pre">default_representation</span></code></a></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#ctapipe.coordinates.NominalFrame.focal_length" title="ctapipe.coordinates.NominalFrame.focal_length"><code class="xref py py-obj docutils literal"><span class="pre">focal_length</span></code></a></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">NominalFrame.focal_length</span></code></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#ctapipe.coordinates.NominalFrame.frame_attributes" title="ctapipe.coordinates.NominalFrame.frame_attributes"><code class="xref py py-obj docutils literal"><span class="pre">frame_attributes</span></code></a></td>
@@ -213,7 +213,7 @@ Alt,Az direction of the telescope pointing</li>
 <tr class="row-odd"><td><a class="reference internal" href="#ctapipe.coordinates.NominalFrame.pointing_direction" title="ctapipe.coordinates.NominalFrame.pointing_direction"><code class="xref py py-obj docutils literal"><span class="pre">pointing_direction</span></code></a></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#ctapipe.coordinates.NominalFrame.rotation" title="ctapipe.coordinates.NominalFrame.rotation"><code class="xref py py-obj docutils literal"><span class="pre">rotation</span></code></a></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">NominalFrame.rotation</span></code></td>
 <td></td>
 </tr>
 </tbody>
@@ -230,13 +230,8 @@ Alt,Az direction of the telescope pointing</li>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="ctapipe.coordinates.NominalFrame.focal_length">
-<code class="descname">focal_length</code><em class="property"> = None</em><a class="headerlink" href="#ctapipe.coordinates.NominalFrame.focal_length" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
 <dt id="ctapipe.coordinates.NominalFrame.frame_attributes">
-<code class="descname">frame_attributes</code><em class="property"> = OrderedDict([('array_direction', &lt;astropy.coordinates.baseframe.FrameAttribute object&gt;), ('pointing_direction', &lt;astropy.coordinates.baseframe.FrameAttribute object&gt;), ('rotation', &lt;astropy.coordinates.baseframe.FrameAttribute object&gt;), ('focal_length', &lt;astropy.coordinates.baseframe.FrameAttribute object&gt;)])</em><a class="headerlink" href="#ctapipe.coordinates.NominalFrame.frame_attributes" title="Permalink to this definition">¶</a></dt>
+<code class="descname">frame_attributes</code><em class="property"> = OrderedDict([('pointing_direction', &lt;astropy.coordinates.baseframe.FrameAttribute object&gt;), ('array_direction', &lt;astropy.coordinates.baseframe.FrameAttribute object&gt;)])</em><a class="headerlink" href="#ctapipe.coordinates.NominalFrame.frame_attributes" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -254,11 +249,6 @@ Alt,Az direction of the telescope pointing</li>
 <code class="descname">pointing_direction</code><em class="property"> = None</em><a class="headerlink" href="#ctapipe.coordinates.NominalFrame.pointing_direction" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="ctapipe.coordinates.NominalFrame.rotation">
-<code class="descname">rotation</code><em class="property"> = &lt;Quantity 0.0 deg&gt;</em><a class="headerlink" href="#ctapipe.coordinates.NominalFrame.rotation" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 </div>
@@ -273,7 +263,7 @@ Alt,Az direction of the telescope pointing</li>
         <a href="ctapipe.coordinates.TelescopeFrame.html" class="btn btn-neutral float-right" title="TelescopeFrame" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="ctapipe.coordinates.GroundFrame.html" class="btn btn-neutral" title="GroundFrame" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="ctapipe.coordinates.HorizonFrame.html" class="btn btn-neutral" title="HorizonFrame" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -283,7 +273,7 @@ Alt,Az direction of the telescope pointing</li>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 20 Oct 2016.
+      Last updated on 25 Oct 2016.
 
     </p>
   </div>
@@ -305,7 +295,7 @@ Alt,Az direction of the telescope pointing</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.dev1023',
+            VERSION:'0.1.dev1036',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

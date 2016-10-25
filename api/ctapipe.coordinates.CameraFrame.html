@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CameraFrame &mdash; ctapipe v0.1.dev1023</title>
+  <title>CameraFrame &mdash; ctapipe v0.1.dev1036</title>
   
 
   
@@ -32,7 +32,7 @@
   
 
   
-    <link rel="top" title="ctapipe v0.1.dev1023" href="../index.html"/>
+    <link rel="top" title="ctapipe v0.1.dev1036" href="../index.html"/>
         <link rel="up" title="Coordinates (coordinates)" href="../coordinates/index.html"/>
         <link rel="next" title="GroundFrame" href="ctapipe.coordinates.GroundFrame.html"/>
         <link rel="prev" title="project_to_ground" href="ctapipe.coordinates.project_to_ground.html"/> 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.1.dev1023
+                0.1.dev1036
               </div>
             
           
@@ -162,13 +162,27 @@
 <h1>CameraFrame<a class="headerlink" href="#cameraframe" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="ctapipe.coordinates.CameraFrame">
-<em class="property">class </em><code class="descclassname">ctapipe.coordinates.</code><code class="descname">CameraFrame</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/coordinates/frames.html#CameraFrame"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.coordinates.CameraFrame" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">ctapipe.coordinates.</code><code class="descname">CameraFrame</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ctapipe/coordinates/angular_frames.html#CameraFrame"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ctapipe.coordinates.CameraFrame" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="http://docs.astropy.org/en/stable/api/astropy.coordinates.BaseCoordinateFrame.html#astropy.coordinates.BaseCoordinateFrame" title="astropy.coordinates.BaseCoordinateFrame"><code class="docutils literal"><span class="pre">astropy.coordinates.BaseCoordinateFrame</span></code></a></p>
 <p>Camera coordinate frame.  The camera frame is a simple physical
 cartesian frame, describing the 2 dimensional position of objects
 in the focal plane of the telescope Most Typically this will be
 used to describe the positions of the pixels in the focal plane</p>
-<p>Frame attributes:  None</p>
+<p>Frame attributes:</p>
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">focal_length</span></code></dt>
+<dd><p class="first last">Focal length of the telescope as a unit quantity (usually meters)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">rotation</span></code></dt>
+<dd><p class="first last">Rotation angle of the camera (0 deg in most cases)</p>
+</dd>
+</dl>
+</li>
+</ul>
 <p class="rubric">Attributes Summary</p>
 <table border="1" class="longtable docutils">
 <colgroup>
@@ -227,7 +241,7 @@ used to describe the positions of the pixels in the focal plane</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, ctapipe developers.
-      Last updated on 20 Oct 2016.
+      Last updated on 25 Oct 2016.
 
     </p>
   </div>
@@ -249,7 +263,7 @@ used to describe the positions of the pixels in the focal plane</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.dev1023',
+            VERSION:'0.1.dev1036',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
