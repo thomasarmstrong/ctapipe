@@ -297,6 +297,40 @@ class HillasReconstructor(Reconstructor):
             circle.pos = subarray.positions[tel_id]
             self.circles[tel_id] = circle
 
+    def get_great_circles_mono(self, hillas_params, subarray, tel_phi, tel_theta):
+        """
+        creates a dictionary of :class:`.GreatCircle` from a dictionary of
+        hillas
+        parameters
+
+        Parameters
+        ----------
+        hillas_dict : dictionary
+            dictionary of hillas moments
+        subarray : ctapipe.instrument.SubarrayDescription
+            subarray information
+        tel_phi, tel_theta : dictionaries
+            dictionaries of the orientation angles of the telescopes
+            needs to contain at least the same keys as in `hillas_dict`
+        """
+
+        self.circles = {}
+        # for tel_id, moments in hillas_dict.items():
+            # NOTE this is correct: +cos(psi) ; +sin(psi)
+        p2_x = hillas_params.cen_x + hillas_params.length * np.cos(hillas_params.psi)
+        p2_y = hillas_params.cen_y + hillas_params.length * np.sin(hillas_params.psi)
+        foclen = subarray.tel[1].optics.effective_focal_length
+
+        circle = GreatCircle(
+            guess_pix_direction(
+                np.array([hillas_params.cen_x / u.m, p2_x / u.m]) * u.m,
+                np.array([hillas_params.cen_y / u.m, p2_y / u.m]) * u.m,
+                tel_phi, tel_theta, foclen),
+            hillas_params.size * (hillas_params.length / hillas_params.width)
+        )
+        circle.pos = subarray.positions[1]
+        self.circles[1] = circle
+
     def fit_origin_crosses(self):
         """calculates the origin of the gamma as the weighted average
         direction of the intersections of all great circles
