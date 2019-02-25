@@ -2,7 +2,7 @@
 Image Cleaning Algorithms (identification of noisy pixels)
 """
 
-__all__ = ['tailcuts_clean', 'dilate']
+__all__ = ['tailcuts_clean', 'dilate', 'number_of_islands']
 
 import numpy as np
 from scipy.sparse.csgraph import connected_components
